@@ -1,15 +1,15 @@
-import React from 'react'
-import { Footer, Header, Dashboard, Sidebar } from '../../components'
+import React from "react";
+import { Footer, Header, Dashboard, Sidebar } from "../../components";
 
 const DashboardPage = () => {
   return (
     <>
-    <Header/>
-    <Sidebar/>
+      <Header />
+      <Sidebar />
       <Dashboard />
-    <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

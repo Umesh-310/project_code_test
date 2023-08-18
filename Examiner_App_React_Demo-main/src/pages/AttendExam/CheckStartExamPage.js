@@ -1,12 +1,12 @@
-import React from 'react'
-import { CheckStartExam } from '../../components'
+import React from "react";
+import { CheckStartExam } from "../../components";
 
 const CheckStartExamPage = () => {
   return (
     <>
-     <CheckStartExam/>
+      <CheckStartExam />
     </>
-  )
-}
+  );
+};
 
-export default CheckStartExamPage
+export default CheckStartExamPage;

@@ -1,12 +1,12 @@
-import React from 'react'
-import { WelcomeAttendExam } from '../../components'
+import React from "react";
+import { WelcomeAttendExam } from "../../components";
 
 const WelcomeAttendExamPage = () => {
   return (
     <>
-     <WelcomeAttendExam/>
+      <WelcomeAttendExam />
     </>
-  )
-}
+  );
+};
 
-export default WelcomeAttendExamPage
+export default WelcomeAttendExamPage;

@@ -1,12 +1,12 @@
-import React from 'react'
-import { AttendQuestionEditor } from '../../components'
+import React from "react";
+import { AttendQuestionEditor } from "../../components";
 
 const AttendQuestionEditorPage = () => {
   return (
     <>
-     <AttendQuestionEditor/>
+      <AttendQuestionEditor />
     </>
-  )
-}
+  );
+};
 
-export default AttendQuestionEditorPage
+export default AttendQuestionEditorPage;

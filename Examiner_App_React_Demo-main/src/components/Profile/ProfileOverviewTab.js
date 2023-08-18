@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const ProfileOverviewTab = ({currentUser}) => {
+const ProfileOverviewTab = ({ currentUser }) => {
   return (
     <>
-      <div className="tab-pane fade show active profile-overview" id="profile-overview">
+      <div
+        className="tab-pane fade show active profile-overview"
+        id="profile-overview"
+      >
         <h5 className="card-title">About</h5>
         <p className="small fst-italic">{currentUser?.about}</p>
 
@@ -23,10 +26,9 @@ const ProfileOverviewTab = ({currentUser}) => {
           <div className="col-lg-3 col-md-4 label">Mobile</div>
           <div className="col-lg-9 col-md-8">{currentUser?.mobile}</div>
         </div>
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ProfileOverviewTab
+export default ProfileOverviewTab;

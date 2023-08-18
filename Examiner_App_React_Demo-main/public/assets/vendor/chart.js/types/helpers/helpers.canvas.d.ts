@@ -1,9 +1,12 @@
-import {PointStyle, Scriptable, ScriptableScaleContext} from '../index.js';
-import {Color} from '../color.js';
-import {ChartArea, RoundedRect} from '../geometric.js';
-import {CanvasFontSpec} from '../../helpers/helpers.options.js';
+import { PointStyle, Scriptable, ScriptableScaleContext } from "../index.js";
+import { Color } from "../color.js";
+import { ChartArea, RoundedRect } from "../geometric.js";
+import { CanvasFontSpec } from "../../helpers/helpers.options.js";
 
-export function clearCanvas(canvas: HTMLCanvasElement, ctx?: CanvasRenderingContext2D): void;
+export function clearCanvas(
+  canvas: HTMLCanvasElement,
+  ctx?: CanvasRenderingContext2D,
+): void;
 
 export function clipArea(ctx: CanvasRenderingContext2D, area: ChartArea): void;
 
@@ -16,16 +19,32 @@ export interface DrawPointOptions {
   borderWidth: number;
 }
 
-export function drawPoint(ctx: CanvasRenderingContext2D, options: DrawPointOptions, x: number, y: number): void;
+export function drawPoint(
+  ctx: CanvasRenderingContext2D,
+  options: DrawPointOptions,
+  x: number,
+  y: number,
+): void;
 
-export function drawPointLegend(ctx: CanvasRenderingContext2D, options: DrawPointOptions, x: number, y: number, w: number): void;
+export function drawPointLegend(
+  ctx: CanvasRenderingContext2D,
+  options: DrawPointOptions,
+  x: number,
+  y: number,
+  w: number,
+): void;
 
 /**
  * Converts the given font object into a CSS font string.
  * @param font a font object
  * @return The CSS font string. See https://developer.mozilla.org/en-US/docs/Web/CSS/font
  */
-export function toFontString(font: { size: number; family: string; style?: string; weight?: string }): string | null;
+export function toFontString(font: {
+  size: number;
+  family: string;
+  style?: string;
+  weight?: string;
+}): string | null;
 
 export interface RenderTextOpts {
   /**
@@ -129,7 +148,10 @@ export function renderText(
   x: number,
   y: number,
   font: CanvasFontSpec,
-  opts?: RenderTextOpts
+  opts?: RenderTextOpts,
 ): void;
 
-export function addRoundedRectPath(ctx: CanvasRenderingContext2D, rect: RoundedRect): void;
+export function addRoundedRectPath(
+  ctx: CanvasRenderingContext2D,
+  rect: RoundedRect,
+): void;

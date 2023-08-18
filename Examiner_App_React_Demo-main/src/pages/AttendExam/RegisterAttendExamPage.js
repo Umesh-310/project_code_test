@@ -1,12 +1,12 @@
-import React from 'react'
-import { RegisterAttendExam } from '../../components'
+import React from "react";
+import { RegisterAttendExam } from "../../components";
 
 const RegisterAttendExamPage = () => {
   return (
     <>
-     <RegisterAttendExam/>
+      <RegisterAttendExam />
     </>
-  )
-}
+  );
+};
 
-export default RegisterAttendExamPage
+export default RegisterAttendExamPage;

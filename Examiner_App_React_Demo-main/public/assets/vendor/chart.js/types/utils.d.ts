@@ -6,15 +6,19 @@
 export type DeepPartial<T> = T extends Function
   ? T
   : T extends Array<infer U>
-    ? _DeepPartialArray<U>
-    : T extends object
-      ? _DeepPartialObject<T>
-      : T | undefined;
+  ? _DeepPartialArray<U>
+  : T extends object
+  ? _DeepPartialObject<T>
+  : T | undefined;
 
-type _DeepPartialArray<T> = Array<DeepPartial<T>>
+type _DeepPartialArray<T> = Array<DeepPartial<T>>;
 type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 
-export type DistributiveArray<T> = [T] extends [unknown] ? Array<T> : never
+export type DistributiveArray<T> = [T] extends [unknown] ? Array<T> : never;
 
 // https://stackoverflow.com/a/50375286
-export type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
+export type UnionToIntersection<U> = (
+  U extends unknown ? (k: U) => void : never
+) extends (k: infer I) => void
+  ? I
+  : never;

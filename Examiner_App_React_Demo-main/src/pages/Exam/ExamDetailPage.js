@@ -1,15 +1,15 @@
-import React from 'react'
-import {ExamDetail, Footer, Header, Sidebar} from '../../components'
+import React from "react";
+import { ExamDetail, Footer, Header, Sidebar } from "../../components";
 
 const ExamDetailPage = () => {
   return (
     <>
-    <Header/>
-    <Sidebar/>
+      <Header />
+      <Sidebar />
       <ExamDetail />
-    <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default ExamDetailPage
+export default ExamDetailPage;

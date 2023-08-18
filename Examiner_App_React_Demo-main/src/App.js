@@ -9,7 +9,7 @@ function App() {
   axios.defaults.baseURL = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   let user = useSelector((state) => state.auth.user);
-  
+
   console.log({ user });
 
   const getUser = useCallback(async () => {

@@ -1,268 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-{% load static %}
-<head>
-  <title>Invoice MeraNiwas</title>
-<style>
-  .clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  {% load static %}
+  <head>
+    <title>Invoice MeraNiwas</title>
+    <style>
+      .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
 
-a {
-  text-decoration: underline;
-}
+      a {
+        text-decoration: underline;
+      }
 
-body {
-  position: relative;
-  margin: 0 auto; 
-  color: #001028;
-  background: #FFFFFF; 
-  font-family: Arial, sans-serif; 
-  font-size: 14px; 
-  font-family: Arial;
-}
+      body {
+        position: relative;
+        margin: 0 auto;
+        color: #001028;
+        background: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-family: Arial;
+      }
 
-header {
-  padding: 10px 0;
-  margin-bottom: 30px;
-}
+      header {
+        padding: 10px 0;
+        margin-bottom: 30px;
+      }
 
-#logo {
-  text-align: center;
-  margin-bottom: 10px;
-}
+      #logo {
+        text-align: center;
+        margin-bottom: 10px;
+      }
 
-#logo img {
-  width: 90px;
-}
+      #logo img {
+        width: 90px;
+      }
 
-h1 {
-  
-  color: #5D6975;
-  font-size: 2.4em;
-  line-height: 1.4em;
-  font-weight: normal;
-  text-align: center;
-  margin: 0 0 20px 0;
-}
+      h1 {
+        color: #5d6975;
+        font-size: 2.4em;
+        line-height: 1.4em;
+        font-weight: normal;
+        text-align: center;
+        margin: 0 0 20px 0;
+      }
 
-#project {
-  float: left;
-}
+      #project {
+        float: left;
+      }
 
-#project span {
-  color: #5D6975;
-  text-align: right;
-  width: 52px;
-  margin-right: 10px;
-  display: inline-block;
-  font-size: 14px;
-}
+      #project span {
+        color: #5d6975;
+        text-align: right;
+        width: 52px;
+        margin-right: 10px;
+        display: inline-block;
+        font-size: 14px;
+      }
 
-#company {
-  float: right;
-  text-align: right;
-}
+      #company {
+        float: right;
+        text-align: right;
+      }
 
-#company div {
-  white-space: nowrap;        
-}
+      #company div {
+        white-space: nowrap;
+      }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin-bottom: 20px;
-}
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 20px;
+      }
 
+      table th,
+      table td {
+        text-align: center;
+      }
 
+      table th {
+        color: #5d6975;
+        border-bottom: 1px solid #c1ced9;
+        white-space: nowrap;
+        font-weight: normal;
+      }
 
-table th,
-table td {
-  text-align: center;
-}
+      table .service,
+      table .desc {
+        text-align: left;
+      }
 
-table th {
-  
-  
-  color: #5D6975;
-  border-bottom: 1px solid #C1CED9;
-  white-space: nowrap;        
-  font-weight: normal;
-}
+      table td {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
 
-table .service,
-table .desc {
-  text-align: left;
-}
+      table tr {
+        border-bottom: 1px solid #c1ced9;
+      }
 
-table td {
- padding-top:5px;
- padding-bottom:5px;
-  
-}
+      table td.service,
+      table td.desc {
+        vertical-align: top;
+      }
 
-table tr {
-  border-bottom: 1px solid #C1CED9;
-}
+      table td.unit,
+      table td.qty,
+      table td.total {
+        font-size: 1.2em;
+      }
 
-table td.service,
-table td.desc {
-  vertical-align: top;
-}
+      table td.grand {
+        border-top: 1px solid #5d6975;
+      }
 
-table td.unit,
-table td.qty,
-table td.total {
-  font-size: 1.2em;
-}
+      #notices .notice {
+        color: #5d6975;
+        font-size: 1.2em;
+      }
 
-table td.grand {
-  border-top: 1px solid #5D6975;;
-}
+      footer {
+        color: #5d6975;
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        bottom: 0;
+        border-top: 1px solid #c1ced9;
+        padding: 8px 0;
+        text-align: center;
+      }
+      #qrcode {
+        float: right;
+        text-align: right;
+      }
+    </style>
+  </head>
 
-#notices .notice {
-  color: #5D6975;
-  font-size: 1.2em;
-}
-
-footer {
-  color: #5D6975;
-  width: 100%;
-  height: 30px;
-  position: absolute;
-  bottom: 0;
-  border-top: 1px solid #C1CED9;
-  padding: 8px 0;
-  text-align: center;
-}
-#qrcode {
-  float: right;
-  text-align: right;
-}
-
-  </style>
-</head>
-
-<body>
-	<div class="container-fluid">
-		<div class="row">
-			<div id="logo" style="display:flex; justify-content:center; align-items:center;">
-		  {#<img src="static/firstapp/images/logo.png" class="brand-logo" width=60 height=60>#} <!--not working-->
-		  {#<img src="../../../static/logo.png" class="brand-logo" height="200px">#} <!--not working-->
-			{% comment %} <img src="E:\Django\Project\Mera_Niwas\mera_niwas\static\img\logo.png" class="brand-logo" width=150 height=60> {% endcomment %}
-			<h1 class="brand-name">CoderTest</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div id="company" class="clearfix">
-			  <div style="font-size:20px;font-weight:bold">CoderTest</div>
-			  <div><a href="https://www.instagram.com/meraniwas/">codertest</a></div>
-			  <div><a href="www.codertest.com">www.codertest.com</a></div>
-			  <div><a href="mailto:{{company_email}}">singh.chandani.dcs23@vnsgu.ac.in</a></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<div id="project">
-				  <div><span>Exam :</span> {{exam_title}}</div>
-          <div><span>Attendee :</span> {{attendee_name}}</div>
-          <div><span>Email :</span> {{attendee_email}}</div>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div id="qrcode">
-				  <div><span><img src="{{MEDIA_ROOT}}qrcode/attend_exam/{{attend_exam_id}}.png" height="250px" width="250px"/></span></div>
-				</div>
-			</div>
-		</div>
-	</div>
-  <p></p>
-  <div class="table-container" style="overflow-x:auto">
-		<center><h2 class="ipt-title">Attendee Details</h2></center>
-    <table class="table" style="width:100%">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{attendee_name}}</td>
-          <td>{{attendee_email}}</td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-	<br>
-  <div class="table-container" style="overflow-x:auto">
-		<center><h2 class="ipt-title">Exam Details</h2></center>
-    <table class="table" style="width:100%">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Passing Criteria</th>
-          <th scope="col">exam_created_by</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{exam_title}}</td>
-          <td>{{exam_description}}</td>
-          <td>{{exam_passing_percent_mark}}</td>
-          <td>{{exam_created_by}}</td>
-        </tr>
-      
-      </tbody>
-    </table>
-  </div>
-	<br>
-  <div class="table-container" style="overflow-x:auto">
-		<center><h2 class="ipt-title">Attend Exam Details</h2></center>
-    <table class="table" style="width:100%">
-      <tbody>
-        <tr>
-          <th scope="col">Qualified</th>
-          <td>{{attend_exam_is_qualified}}</td>
-        </tr>
-        <tr>
-          <th scope="col">start_time</th>
-          <td>{{attend_exam_start_time}}</td>
-        </tr>
-        <tr>
-          <th scope="col">end_time</th>
-          <td>{{attend_exam_end_time}}</td>
-        </tr>
-        <tr>
-          <th scope="col">Total Cheat</th>
-          <td>{{attend_exam_total_cheat}}</td>
-        </tr>     
-      </tbody>
-    </table>
-  </div>
-	<br>
-  {% for aq in attend_questions %}
-    <div class="table-container" style="overflow-x:auto">
-      <center><h2 class="ipt-title">{{aq.question.title}}</h2></center>
-      <table class="table" style="width:100%">
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          id="logo"
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          {#<img
+            src="static/firstapp/images/logo.png"
+            class="brand-logo"
+            width="60"
+            height="60"
+          />#}
+          <!--not working-->
+          {#<img
+            src="../../../static/logo.png"
+            class="brand-logo"
+            height="200px"
+          />#}
+          <!--not working-->
+          {% comment %}
+          <img
+            src="E:\Django\Project\Mera_Niwas\mera_niwas\static\img\logo.png"
+            class="brand-logo"
+            width="150"
+            height="60"
+          />
+          {% endcomment %}
+          <h1 class="brand-name">CoderTest</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div id="company" class="clearfix">
+          <div style="font-size: 20px; font-weight: bold">CoderTest</div>
+          <div>
+            <a href="https://www.instagram.com/meraniwas/">codertest</a>
+          </div>
+          <div><a href="www.codertest.com">www.codertest.com</a></div>
+          <div>
+            <a href="mailto:{{company_email}}"
+              >singh.chandani.dcs23@vnsgu.ac.in</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div id="project">
+            <div><span>Exam :</span> {{exam_title}}</div>
+            <div><span>Attendee :</span> {{attendee_name}}</div>
+            <div><span>Email :</span> {{attendee_email}}</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div id="qrcode">
+            <div>
+              <span
+                ><img
+                  src="{{MEDIA_ROOT}}qrcode/attend_exam/{{attend_exam_id}}.png"
+                  height="250px"
+                  width="250px"
+              /></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="table-container" style="overflow-x: auto">
+      <center><h2 class="ipt-title">Attendee Details</h2></center>
+      <table class="table" style="width: 100%">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <th scope="col">Passed Testcases</th>
-            <th scope="col">{{aq.total_passed_testcase}} / 5 Tesetcase passed</th>
+            <td>{{attendee_name}}</td>
+            <td>{{attendee_email}}</td>
           </tr>
-          <tr>
-            <td>{{aq.answer}}</td>
-          </tr> 
         </tbody>
       </table>
     </div>
-  {% endfor%}
-  <!--  <p style="text-align:right; font-size:12px;">*All values are in INR<p> -->
-</body>
-
+    <br />
+    <div class="table-container" style="overflow-x: auto">
+      <center><h2 class="ipt-title">Exam Details</h2></center>
+      <table class="table" style="width: 100%">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Passing Criteria</th>
+            <th scope="col">exam_created_by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{exam_title}}</td>
+            <td>{{exam_description}}</td>
+            <td>{{exam_passing_percent_mark}}</td>
+            <td>{{exam_created_by}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <div class="table-container" style="overflow-x: auto">
+      <center><h2 class="ipt-title">Attend Exam Details</h2></center>
+      <table class="table" style="width: 100%">
+        <tbody>
+          <tr>
+            <th scope="col">Qualified</th>
+            <td>{{attend_exam_is_qualified}}</td>
+          </tr>
+          <tr>
+            <th scope="col">start_time</th>
+            <td>{{attend_exam_start_time}}</td>
+          </tr>
+          <tr>
+            <th scope="col">end_time</th>
+            <td>{{attend_exam_end_time}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Total Cheat</th>
+            <td>{{attend_exam_total_cheat}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    {% for aq in attend_questions %}
+    <div class="table-container" style="overflow-x: auto">
+      <center><h2 class="ipt-title">{{aq.question.title}}</h2></center>
+      <table class="table" style="width: 100%">
+        <tbody>
+          <tr>
+            <th scope="col">Passed Testcases</th>
+            <th scope="col">
+              {{aq.total_passed_testcase}} / 5 Tesetcase passed
+            </th>
+          </tr>
+          <tr>
+            <td>{{aq.answer}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% endfor%}
+    <!--  <p style="text-align:right; font-size:12px;">*All values are in INR<p> -->
+  </body>
 </html>

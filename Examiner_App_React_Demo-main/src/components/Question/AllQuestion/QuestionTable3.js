@@ -1,7 +1,7 @@
-import {memo,useEffect,useState,useCallback,Fragment} from 'react';
+import { memo, useEffect, useState, useCallback, Fragment } from "react";
 
-import PropTypes from 'prop-types';
-import{
+import PropTypes from "prop-types";
+import {
   Box,
   Table,
   TableBody,
@@ -10,12 +10,12 @@ import{
   TableHead,
   TablePagination,
   TableRow,
-  TableSortLabel, 
-  Paper
-} from '@mui/material';
-import { visuallyHidden } from '@mui/utils';
+  TableSortLabel,
+  Paper,
+} from "@mui/material";
+import { visuallyHidden } from "@mui/utils";
 
-import QuestionDetailModal from './QuestionDetailModal';
+import QuestionDetailModal from "./QuestionDetailModal";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -28,7 +28,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -51,36 +51,36 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'title',
+    id: "title",
     numeric: false,
-    label: 'Title',
-    align: 'left',
+    label: "Title",
+    align: "left",
     minWidth: 170,
   },
   {
-    id: 'level',
+    id: "level",
     numeric: false,
-    label: 'Level',
-    align: 'center',
+    label: "Level",
+    align: "center",
     minWidth: 170,
   },
   {
-    id: 'created_by',
+    id: "created_by",
     numeric: false,
-    label: 'Created By',
-    align: 'center',
+    label: "Created By",
+    align: "center",
     minWidth: 170,
   },
   {
-    id: 'action',
+    id: "action",
     numeric: false,
-    label: 'Action',
-    align: 'center',
+    label: "Action",
+    align: "center",
   },
 ];
 
-const DEFAULT_ORDER = 'asc';
-const DEFAULT_ORDER_BY = 'updated_at';
+const DEFAULT_ORDER = "asc";
+const DEFAULT_ORDER_BY = "updated_at";
 const DEFAULT_ROWS_PER_PAGE = 5;
 
 function EnhancedTableHead(props) {
@@ -94,20 +94,24 @@ function EnhancedTableHead(props) {
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
-              style={{ minWidth: headCell.minWidth, fontWeight:900, fontSize:'18px'}}
-              key={headCell.id}
-              align={headCell.align}
-              sortDirection={orderBy === headCell.id ? order : false}
+            style={{
+              minWidth: headCell.minWidth,
+              fontWeight: 900,
+              fontSize: "18px",
+            }}
+            key={headCell.id}
+            align={headCell.align}
+            sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
+              direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
               ) : null}
             </TableSortLabel>
@@ -120,13 +124,12 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
 
-
-function EnhancedTable({data:rows}) {
+function EnhancedTable({ data: rows }) {
   const [order, setOrder] = useState(DEFAULT_ORDER);
   const [orderBy, setOrderBy] = useState(DEFAULT_ORDER_BY);
   const [page, setPage] = useState(0);
@@ -149,12 +152,15 @@ function EnhancedTable({data:rows}) {
 
   const handleRequestSort = useCallback(
     (event, newOrderBy) => {
-      const isAsc = orderBy === newOrderBy && order === 'asc';
-      const toggledOrder = isAsc ? 'desc' : 'asc';
+      const isAsc = orderBy === newOrderBy && order === "asc";
+      const toggledOrder = isAsc ? "desc" : "asc";
       setOrder(toggledOrder);
       setOrderBy(newOrderBy);
-      
-      const sortedRows = stableSort(rows, getComparator(toggledOrder, newOrderBy));
+
+      const sortedRows = stableSort(
+        rows,
+        getComparator(toggledOrder, newOrderBy),
+      );
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
@@ -178,9 +184,11 @@ function EnhancedTable({data:rows}) {
 
       // Avoid a layout jump when reaching the last page with empty rows.
       const numEmptyRows =
-        newPage > 0 ? Math.max(0, (1 + newPage) * rowsPerPage - rows.length) : 0;
+        newPage > 0
+          ? Math.max(0, (1 + newPage) * rowsPerPage - rows.length)
+          : 0;
 
-      const newPaddingHeight = (33) * numEmptyRows;
+      const newPaddingHeight = 33 * numEmptyRows;
       setPaddingHeight(newPaddingHeight);
     },
     [order, orderBy, rowsPerPage, rows],
@@ -207,23 +215,21 @@ function EnhancedTable({data:rows}) {
     [order, orderBy, rows],
   );
 
-  if (rows.length <= 0)
-  {
+  if (rows.length <= 0) {
     return (
-      <Box sx={{ width: '100%',textAlign:'center' }}>
-      <h3> No Data Found</h3>
+      <Box sx={{ width: "100%", textAlign: "center" }}>
+        <h3> No Data Found</h3>
       </Box>
     );
-  }
-  else{
+  } else {
     return (
-      <Box sx={{ width: '100%' }}>
-        <Paper sx={{ width: '100%', mb: 2 }}>
+      <Box sx={{ width: "100%" }}>
+        <Paper sx={{ width: "100%", mb: 2 }}>
           <TableContainer>
             <Table
               sx={{ minWidth: 750 }}
               aria-labelledby="tableTitle"
-              size={'small'}
+              size={"small"}
             >
               <EnhancedTableHead
                 order={order}
@@ -232,50 +238,58 @@ function EnhancedTable({data:rows}) {
                 rowCount={rows.length}
               />
               <TableBody>
-                {
-                  visibleRows
-                  ? 
-                  visibleRows.map((row, index) => {
-                    return (
-                      <Fragment key={row.id}>
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.name}
-                          sx={{ cursor: 'pointer' }}
-                        >
-                          <TableCell component="th">{row.title}</TableCell>
-                          <TableCell align="center">
-                          {
-                            row?.level === 'Easy'
-                            &&
-                            <button type="button" className="btn btn-success rounded-pill" disabled>Easy</button>
-                          }
-                          {   
-                            row?.level === 'Medium'
-                            &&
-                            <button type="button" className="btn btn-warning rounded-pill" disabled>Medium</button>
-                          }
-                          {    
-                            row?.level === 'Hard'
-                            &&
-                            <button type="button" className="btn btn-danger rounded-pill" disabled>Hard</button>
-                          }
-                          </TableCell>
-                          <TableCell align="center">
-                            {row?.created_by?.name}
-                          </TableCell>
-                          <TableCell align="center">
-                            <QuestionDetailModal que={row}/>
-                          </TableCell>
-                        </TableRow>
-                      </Fragment>
-                    );
-                  })
-                  : 
-                  null
-                }
+                {visibleRows
+                  ? visibleRows.map((row, index) => {
+                      return (
+                        <Fragment key={row.id}>
+                          <TableRow
+                            hover
+                            role="checkbox"
+                            tabIndex={-1}
+                            key={row.name}
+                            sx={{ cursor: "pointer" }}
+                          >
+                            <TableCell component="th">{row.title}</TableCell>
+                            <TableCell align="center">
+                              {row?.level === "Easy" && (
+                                <button
+                                  type="button"
+                                  className="btn btn-success rounded-pill"
+                                  disabled
+                                >
+                                  Easy
+                                </button>
+                              )}
+                              {row?.level === "Medium" && (
+                                <button
+                                  type="button"
+                                  className="btn btn-warning rounded-pill"
+                                  disabled
+                                >
+                                  Medium
+                                </button>
+                              )}
+                              {row?.level === "Hard" && (
+                                <button
+                                  type="button"
+                                  className="btn btn-danger rounded-pill"
+                                  disabled
+                                >
+                                  Hard
+                                </button>
+                              )}
+                            </TableCell>
+                            <TableCell align="center">
+                              {row?.created_by?.name}
+                            </TableCell>
+                            <TableCell align="center">
+                              <QuestionDetailModal que={row} />
+                            </TableCell>
+                          </TableRow>
+                        </Fragment>
+                      );
+                    })
+                  : null}
                 {paddingHeight > 0 && (
                   <TableRow
                     style={{
@@ -303,4 +317,4 @@ function EnhancedTable({data:rows}) {
   }
 }
 
-export default memo(EnhancedTable)
+export default memo(EnhancedTable);

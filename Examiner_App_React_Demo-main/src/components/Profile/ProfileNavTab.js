@@ -2,22 +2,38 @@ const ProfileNavTab = () => {
   return (
     <div>
       <ul className="nav nav-tabs nav-tabs-bordered">
-
         <li className="nav-item">
-          <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+          <button
+            className="nav-link active"
+            data-bs-toggle="tab"
+            data-bs-target="#profile-overview"
+          >
+            Overview
+          </button>
         </li>
 
         <li className="nav-item">
-          <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+          <button
+            className="nav-link"
+            data-bs-toggle="tab"
+            data-bs-target="#profile-edit"
+          >
+            Edit Profile
+          </button>
         </li>
 
         <li className="nav-item">
-          <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
+          <button
+            className="nav-link"
+            data-bs-toggle="tab"
+            data-bs-target="#profile-change-password"
+          >
+            Change Password
+          </button>
         </li>
-
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileNavTab
+export default ProfileNavTab;

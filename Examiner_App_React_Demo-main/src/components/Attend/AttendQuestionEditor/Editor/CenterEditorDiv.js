@@ -33,7 +33,7 @@ const CenterEditorDiv = ({
   const onReset = async (e) => {
     if (
       window.confirm(
-        "Are you sure you want to reset back to the default code template? If you click OK you will lose your current code."
+        "Are you sure you want to reset back to the default code template? If you click OK you will lose your current code.",
       )
     ) {
       setInitialCode();

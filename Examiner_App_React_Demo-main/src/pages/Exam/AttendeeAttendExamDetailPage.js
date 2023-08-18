@@ -1,15 +1,20 @@
-import React from 'react'
-import {AttendeeAttendExamDetail, Footer, Header, Sidebar} from '../../components'
+import React from "react";
+import {
+  AttendeeAttendExamDetail,
+  Footer,
+  Header,
+  Sidebar,
+} from "../../components";
 
 const AttendeeAttendExamDetailPage = () => {
   return (
     <>
-    <Header/>
-    <Sidebar/>
+      <Header />
+      <Sidebar />
       <AttendeeAttendExamDetail />
-    <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default AttendeeAttendExamDetailPage
+export default AttendeeAttendExamDetailPage;

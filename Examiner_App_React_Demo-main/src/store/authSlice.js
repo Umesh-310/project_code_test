@@ -101,7 +101,7 @@ export const forgotPassword = async (dispatch, body, navigate) => {
     dispatch(FORGET_PASSWORD_BEGIN());
     const response = await axios.post(
       `/api/account/send-reset-password-email/`,
-      body
+      body,
     );
     if (response.status == 200) {
       toast.success(response.data.msg);
@@ -121,7 +121,7 @@ export const resetPassword = async (dispatch, body, uid, token, navigate) => {
     dispatch(RESET_PASSWORD_BEGIN());
     const response = await axios.post(
       `/api/account/reset-password/${uid}/${token}/`,
-      body
+      body,
     );
     if (response.status == 200) {
       toast.success(response.data.msg);

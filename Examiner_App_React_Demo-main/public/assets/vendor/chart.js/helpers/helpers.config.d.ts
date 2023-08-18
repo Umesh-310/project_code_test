@@ -8,14 +8,20 @@
  * @returns Proxy
  * @private
  */
-export function _createResolver(scopes: object[], prefixes?: string[], rootScopes?: object[], fallback?: string | boolean, getTarget?: Function): {
-    [Symbol.toStringTag]: string;
-    _cacheable: boolean;
-    _scopes: any[];
-    _rootScopes: any[];
-    _fallback: string | boolean;
-    _getTarget: Function;
-    override: (scope: any) => any;
+export function _createResolver(
+  scopes: object[],
+  prefixes?: string[],
+  rootScopes?: object[],
+  fallback?: string | boolean,
+  getTarget?: Function,
+): {
+  [Symbol.toStringTag]: string;
+  _cacheable: boolean;
+  _scopes: any[];
+  _rootScopes: any[];
+  _fallback: string | boolean;
+  _getTarget: Function;
+  override: (scope: any) => any;
 };
 /**
  * Returns an Proxy for resolving option values with context.
@@ -25,37 +31,50 @@ export function _createResolver(scopes: object[], prefixes?: string[], rootScope
  * @param {{scriptable: boolean, indexable: boolean, allKeys?: boolean}} [descriptorDefaults] - Defaults for descriptors
  * @private
  */
-export function _attachContext(proxy: object, context: object, subProxy?: object, descriptorDefaults?: {
+export function _attachContext(
+  proxy: object,
+  context: object,
+  subProxy?: object,
+  descriptorDefaults?: {
     scriptable: boolean;
     indexable: boolean;
     allKeys?: boolean;
-}): {
-    _cacheable: boolean;
-    _proxy: any;
-    _context: any;
-    _subProxy: any;
-    _stack: Set<any>;
-    _descriptors: {
-        allKeys: any;
-        scriptable: any;
-        indexable: any;
-        isScriptable: (...args: any[]) => any;
-        isIndexable: (...args: any[]) => any;
-    };
-    setContext: (ctx: any) => any;
-    override: (scope: any) => any;
-};
-/**
- * @private
- */
-export function _descriptors(proxy: any, defaults?: {
-    scriptable: boolean;
-    indexable: boolean;
-}): {
+  },
+): {
+  _cacheable: boolean;
+  _proxy: any;
+  _context: any;
+  _subProxy: any;
+  _stack: Set<any>;
+  _descriptors: {
     allKeys: any;
     scriptable: any;
     indexable: any;
     isScriptable: (...args: any[]) => any;
     isIndexable: (...args: any[]) => any;
+  };
+  setContext: (ctx: any) => any;
+  override: (scope: any) => any;
 };
-export function _parseObjectDataRadialScale(meta: any, data: any, start: any, count: any): any[];
+/**
+ * @private
+ */
+export function _descriptors(
+  proxy: any,
+  defaults?: {
+    scriptable: boolean;
+    indexable: boolean;
+  },
+): {
+  allKeys: any;
+  scriptable: any;
+  indexable: any;
+  isScriptable: (...args: any[]) => any;
+  isIndexable: (...args: any[]) => any;
+};
+export function _parseObjectDataRadialScale(
+  meta: any,
+  data: any,
+  start: any,
+  count: any,
+): any[];

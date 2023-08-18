@@ -1,12 +1,12 @@
-import React from 'react'
-import { CheckExamStatus } from '../../components'
+import React from "react";
+import { CheckExamStatus } from "../../components";
 
 const CheckExamStatusPage = () => {
   return (
     <>
-     <CheckExamStatus/>
+      <CheckExamStatus />
     </>
-  )
-}
+  );
+};
 
-export default CheckExamStatusPage
+export default CheckExamStatusPage;
