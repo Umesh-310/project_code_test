@@ -1,0 +1,31 @@
+.custom-modal-title{
+    color : #0c1f4d;
+    font-weight : 700;
+}
+
+.custom-form-label{
+    color : #0c1f4d;
+    font-weight : 600;
+}
+
+.custom_hr{
+    border : 1px solid #0c1f4d;
+}
+
+.custom-form-label-secondary{
+    font-weight : 600;
+    color : rgba(1, 41, 112, 0.6);
+}
+
+.custom-card{
+    background-color: #a5c2f0;
+    text-decoration: none;
+}
+
+.custom-card:hover{
+    box-shadow : 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19)
+}
+
+.custom-main{
+    min-height: 80vh;
+}

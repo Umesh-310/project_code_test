@@ -1,0 +1,9 @@
+{
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.tabs.hideCondition": "singleTerminal",
+  "debug.javascript.terminalOptions": {
+
+  }
+  
+}

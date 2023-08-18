@@ -1,0 +1,3042 @@
+{
+	"info": {
+		"_postman_id": "4bef1c7f-685a-4e03-acdd-642675d52e18",
+		"name": "Demo Project Auth Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "-- api/account/groups/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDUwMDc4LCJpYXQiOjE2Nzg5NjM2NzgsImp0aSI6IjQxNmI1MWZlMjQ1MzQxZDM4NmJhZmFkMTkzMzJiNmFkIiwidXNlcl9pZCI6MTd9.8W10jk0mSL7h-7tNq6-Os6kuHnyVc8rHBEUgonMTWws",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/groups/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"groups",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/register/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "singh.chandani.dcs23@vnsgu.ac.in",
+							"type": "default"
+						},
+						{
+							"key": "name",
+							"value": "Chandani Singh",
+							"type": "default"
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default"
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default"
+						},
+						{
+							"key": "about",
+							"value": "Chandani Harendra Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Author",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/register_attendee/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email2",
+							"value": "chandanisingh@gmail.com",
+							"type": "default"
+						},
+						{
+							"key": "name",
+							"value": "Chandani H Singh",
+							"type": "default"
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "sumit123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "sumit123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Sumit Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Author",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "is_attendee",
+							"value": "True",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/register_attendee/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"register_attendee",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/login/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"chandaniharendrasingh@gmail.com\",\n    \"password\" : \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/login/ Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"singh.chandani.dcs23@vnsgu.ac.in\",\n    \"password\" : \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/profile/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwODQyNjUzLCJpYXQiOjE2ODA3NTYyNTMsImp0aSI6ImMxNmI2MGJkMzdiOTRhNjNiMjk2NjIwYjg4Njk4M2FjIiwidXNlcl9pZCI6ImEwNzIxZTRhLTEwMDMtNDZkZi1iYThkLWVhOTc4ZGViZmUyMCJ9.8ryi-MIk6CcPFa9JDWRteWS-NH4h0tsGes_1Vz-PV3o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/update-profile/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjcyMTE1LCJpYXQiOjE2ODA1ODU3MTUsImp0aSI6Ijk0NGVhMmJkNGViMDQ3ODY4MWUwYzE2NjFkYTcyMGI3IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.29QgG1bPYN8WJIWX9SxdDwWmNU2l9jmn3y5uuYPt2GE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/home/lcom/Documents/Chandani/3-ReactJS/Practice/React - The Complete Guide2/React - The Complete Guide/20-react-router-quote/public/logo192.png"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/update-profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"update-profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/changepassword/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjY5MjgyLCJpYXQiOjE2ODA1ODI4ODIsImp0aSI6IjUyY2UxZTVmYTU5ZjQyNDhiODE5YTNhYmNjNmM3ZmM4IiwidXNlcl9pZCI6Nn0.64P7L6bwXilDjL_MqXmWBSwltfKlv5H7wzJYEZiFfPY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default"
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default"
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/changepassword/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"changepassword",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/send-reset-password-email/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmail.com",
+							"type": "default"
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/send-reset-password-email/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"send-reset-password-email",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/reset-password/:uid/:token/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default"
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default"
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/reset-password/Ng/bm47gc-874af8e4b5015a2d49917a41e9b85ed0/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"reset-password",
+						"Ng",
+						"bm47gc-874af8e4b5015a2d49917a41e9b85ed0",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/token/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MTY0NDg0LCJpYXQiOjE2NzgxNjQxODQsImp0aSI6Ijg2M2I4Y2U3MzVkZTQ2NWU5ZTE2M2ZkOGQ2MmE3YmEwIiwidXNlcl9pZCI6Mjd9.IrKFaoZrrPO_WSxDAIa6YLS4pOfFDUxykebbWdKRUS8",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "sumit@gmail.com",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "sumit123",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/token/refresh/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "refresh",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4MDU5MzAxOSwiaWF0IjoxNjc5NzI5MDE5LCJqdGkiOiIzY2MyZjljMDhmMzc0ZDYxYmVjZjU0ZDZmNDcyZTdkZSIsInVzZXJfaWQiOjV9.o_MF7KnFuUepH_w8d2TqYoR-H-x5RlV4oHstMsCVZLs",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/token/refresh/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"token",
+						"refresh",
+						""
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "chandani@gmail.com",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/become_author/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNTQ4NDA5LCJpYXQiOjE2ODE0NjIwMDksImp0aSI6Ijg3YWZmMDJjNzIxMjQzNWI5NWU4ZDAyYjEwZTM4YzgzIiwidXNlcl9pZCI6ImYwMWI2ZjI1LTdkZWEtNDU5Yi05ZGJkLTViOGJmZmNjM2VjOSJ9.upa8_javuLkvbTRlPhDcXHSdRZK3rLhbr-orpK27cyA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/become_author/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"become_author",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/account/become_examiner/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNTQ4NDA5LCJpYXQiOjE2ODE0NjIwMDksImp0aSI6Ijg3YWZmMDJjNzIxMjQzNWI5NWU4ZDAyYjEwZTM4YzgzIiwidXNlcl9pZCI6ImYwMWI2ZjI1LTdkZWEtNDU5Yi05ZGJkLTViOGJmZmNjM2VjOSJ9.upa8_javuLkvbTRlPhDcXHSdRZK3rLhbr-orpK27cyA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/become_examiner/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"become_examiner",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/create_question/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNTQ1NDEwLCJpYXQiOjE2ODE0NTkwMTAsImp0aSI6IjBmYjYwZjc1Yzc4OTQ1NzM4NGE3ZjFlMGNiYzAxNDEyIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.h_-Mdu4JVN52JhjC_nQEbgAtnT7UY4iX0rUIl-7h2h0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Add 4 Numbers\",\n    \"description\": \"add two numbers\",\n    \"example\" : \"input : 5,2\\noutput : 7\",\n    \"level\" : \"Easy\",\n    \"is_private\" : true,\n    \"testcases\" : [\n        {\"input\" : \"5,2\", \"output\" : \"7\", \"number\" : 1},\n        {\"input\" : \"6,2\", \"output\" : \"8\", \"number\" : 2},\n        {\"input\" : \"7,2\", \"output\" : \"9\", \"number\" : 3}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/create_question/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"create_question",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/update_question/:question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNTQ1NDEwLCJpYXQiOjE2ODE0NTkwMTAsImp0aSI6IjBmYjYwZjc1Yzc4OTQ1NzM4NGE3ZjFlMGNiYzAxNDEyIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.h_-Mdu4JVN52JhjC_nQEbgAtnT7UY4iX0rUIl-7h2h0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"dd7dc01a-2d57-444c-936a-c36bae5d9c2d\",\n    \"title\": \"Subtract 3 number\",\n    \"description\": \"Subtract 2 number\",\n    \"example\": \"input : 5,2\\noutput : 3\",\n    \"level\": \"Easy\",\n    \"testcases\": [\n        {\n            \"id\": \"a138f947-b214-4065-b3f5-5874c3c51351\",\n            \"number\": 1,\n            \"input\": \"5,2,2\",\n            \"output\": \"3\",\n            \"is_active\": true\n        },\n        {\n            \"id\": \"be16069b-c286-4e78-a0d3-7b3dae33ded4\",\n            \"number\": 2,\n            \"input\": \"10,2,2\",\n            \"output\": \"8\",\n            \"is_active\": true\n        },\n        {\n            \"id\": \"70b028d0-8226-43ba-ab0d-e5149871f771\",\n            \"number\": 3,\n            \"input\": \"20,2,2\",\n            \"output\": \"18\",\n            \"is_active\": true\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/update_question/dd7dc01a-2d57-444c-936a-c36bae5d9c2d/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"update_question",
+						"dd7dc01a-2d57-444c-936a-c36bae5d9c2d",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/update_testcase/:testcase_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNTQ1NDEwLCJpYXQiOjE2ODE0NTkwMTAsImp0aSI6IjBmYjYwZjc1Yzc4OTQ1NzM4NGE3ZjFlMGNiYzAxNDEyIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.h_-Mdu4JVN52JhjC_nQEbgAtnT7UY4iX0rUIl-7h2h0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"input\": \"1,2,3\",\n    \"output\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/update_testcase/a138f947-b214-4065-b3f5-5874c3c51351/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"update_testcase",
+						"a138f947-b214-4065-b3f5-5874c3c51351",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/delete_question/:question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMjAwNTA5LCJpYXQiOjE2ODExMTQxMDksImp0aSI6ImY5NzU2YzE3OWZkZjQ3MTVhNWZiYmM0ZTdkNDljNmIzIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.jPD21CQ2wDqgFPbecuBPFYfag_ARdzyhscWdEp1sUuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/delete_question/30854b3e-2544-414c-a37b-b7f76754347f/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"delete_question",
+						"30854b3e-2544-414c-a37b-b7f76754347f",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/restore_question/:question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMjAwNTA5LCJpYXQiOjE2ODExMTQxMDksImp0aSI6ImY5NzU2YzE3OWZkZjQ3MTVhNWZiYmM0ZTdkNDljNmIzIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.jPD21CQ2wDqgFPbecuBPFYfag_ARdzyhscWdEp1sUuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/restore_question/30854b3e-2544-414c-a37b-b7f76754347f/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"restore_question",
+						"30854b3e-2544-414c-a37b-b7f76754347f",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/get_single_question/:question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMjAwNTA5LCJpYXQiOjE2ODExMTQxMDksImp0aSI6ImY5NzU2YzE3OWZkZjQ3MTVhNWZiYmM0ZTdkNDljNmIzIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.jPD21CQ2wDqgFPbecuBPFYfag_ARdzyhscWdEp1sUuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/get_single_question/30854b3e-2544-414c-a37b-b7f76754347f/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"get_single_question",
+						"30854b3e-2544-414c-a37b-b7f76754347f",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/get_single_question_by_me/:question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMjAwNTA5LCJpYXQiOjE2ODExMTQxMDksImp0aSI6ImY5NzU2YzE3OWZkZjQ3MTVhNWZiYmM0ZTdkNDljNmIzIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.jPD21CQ2wDqgFPbecuBPFYfag_ARdzyhscWdEp1sUuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/get_single_question_by_me/30854b3e-2544-414c-a37b-b7f76754347f/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"get_single_question_by_me",
+						"30854b3e-2544-414c-a37b-b7f76754347f",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/questionlist/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxNTQ1NDEwLCJpYXQiOjE2ODE0NTkwMTAsImp0aSI6IjBmYjYwZjc1Yzc4OTQ1NzM4NGE3ZjFlMGNiYzAxNDEyIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.h_-Mdu4JVN52JhjC_nQEbgAtnT7UY4iX0rUIl-7h2h0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjUwNDY0LCJpYXQiOjE2Nzk1NjQwNjQsImp0aSI6IjBlNjAxMzkxYWM2MTRiZDA5NDlhYzE5OTBkNTMzZGI0IiwidXNlcl9pZCI6NDh9.S962k3iKw_07fqKLrG4lK1cpNMzYa5wH2R2hU6KtsKM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "users",
+							"value": "chandaniharendrasingh@gmail.com, singh.chandani.dcs23@vnsgu.ac.in",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/questionlist/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"questionlist",
+						""
+					],
+					"query": [
+						{
+							"key": "users",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/author/questionlist_by_me/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMjAwNTA5LCJpYXQiOjE2ODExMTQxMDksImp0aSI6ImY5NzU2YzE3OWZkZjQ3MTVhNWZiYmM0ZTdkNDljNmIzIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.jPD21CQ2wDqgFPbecuBPFYfag_ARdzyhscWdEp1sUuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5NjU1OTIzLCJpYXQiOjE2Nzk1Njk1MjMsImp0aSI6IjU5NzI1YzY2MWE3NjQxNGQ4NTdlNDlkMzk1ZDBkOWY2IiwidXNlcl9pZCI6Mn0.RIpB1oItyWMG_TKbpvmXaGxcShcthA6X_YpgkSEL--s",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/author/questionlist_by_me/?level=Medium",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"author",
+						"questionlist_by_me",
+						""
+					],
+					"query": [
+						{
+							"key": "level",
+							"value": "Medium"
+						},
+						{
+							"key": "users",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/create_exam/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDc2OTI1LCJpYXQiOjE2Nzk5OTA1MjUsImp0aSI6IjRkNmQ2YTY5ZDY5MTQ4NTBhYTlkMGEzNWRhNzZkMDRmIiwidXNlcl9pZCI6Nn0.4G4G2Q3K1KUCJquBqxA40wG6fIQKsp_dCEZdADsiNK8",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"title1\",\n    \"description\": \"title1\",\n    \"is_time_limit\" : true,\n    \"time_limit\" : 2,\n    \"no_of_question\" : 2,\n    \"questions\" : [\n        {\"question\" : \"30854b3e-2544-414c-a37b-b7f76754347f\", \"number\" : \"1\"},\n        {\"question\" : \"9b75c8a6-a218-4fc4-97f7-1a7cc00ad71e\", \"number\" : \"2\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/create_exam/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"create_exam",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/create_exam_with_random_questions/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMDc2OTI1LCJpYXQiOjE2Nzk5OTA1MjUsImp0aSI6IjRkNmQ2YTY5ZDY5MTQ4NTBhYTlkMGEzNWRhNzZkMDRmIiwidXNlcl9pZCI6Nn0.4G4G2Q3K1KUCJquBqxA40wG6fIQKsp_dCEZdADsiNK8",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"title222222222\",\n    \"description\": \"title22 title22\",\n    \"is_time_limit\" : true,\n    \"time_limit\" : 2,\n    \"no_of_question\" : 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/create_exam_with_random_questions/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"create_exam_with_random_questions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/update_exam/:exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg0Mjk2LCJpYXQiOjE2NzkyOTc4OTYsImp0aSI6ImFhYjU1MDgzZGY3MjRiMDY5NGU2N2I5YTcxYjUyOGNmIiwidXNlcl9pZCI6Mn0.KI8Zi72OzXlPJ9Pxi5rURfrOlbkJwdw4SYh_BfwTISY",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/update_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"update_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/delete_exam/:exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MTI2ODY1LCJpYXQiOjE2NzkwNDA0NjUsImp0aSI6IjY3NGRhM2IyNDRkMDRkZWU4NzQ4NzAzMTM1MTE4YjkxIiwidXNlcl9pZCI6Mn0.h-BAWNDsiTT3dR43eCowS2Yo9bzr1cd-z2T253y4UvM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "title2",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "description22222222",
+							"type": "default"
+						},
+						{
+							"key": "exam_time",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "start_time",
+							"value": "2023-03-27",
+							"type": "default"
+						},
+						{
+							"key": "end_time",
+							"value": "2023-03-28",
+							"type": "default"
+						},
+						{
+							"key": "q1",
+							"value": "e4889896-3c2a-4baf-8d6e-7f3a8a774f04",
+							"type": "default"
+						},
+						{
+							"key": "q2",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						},
+						{
+							"key": "q3",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/delete_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"delete_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/restore_exam/:exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MTI2ODY1LCJpYXQiOjE2NzkwNDA0NjUsImp0aSI6IjY3NGRhM2IyNDRkMDRkZWU4NzQ4NzAzMTM1MTE4YjkxIiwidXNlcl9pZCI6Mn0.h-BAWNDsiTT3dR43eCowS2Yo9bzr1cd-z2T253y4UvM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "title2",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "description22222222",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "exam_time",
+							"value": "3",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "start_time",
+							"value": "2023-03-27",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "end_time",
+							"value": "2023-03-28",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "q1",
+							"value": "e4889896-3c2a-4baf-8d6e-7f3a8a774f04",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "q2",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "q3",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/restore_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"restore_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/deactivate_exam/:exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MTI2ODY1LCJpYXQiOjE2NzkwNDA0NjUsImp0aSI6IjY3NGRhM2IyNDRkMDRkZWU4NzQ4NzAzMTM1MTE4YjkxIiwidXNlcl9pZCI6Mn0.h-BAWNDsiTT3dR43eCowS2Yo9bzr1cd-z2T253y4UvM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "title2",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "description22222222",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "exam_time",
+							"value": "3",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "start_time",
+							"value": "2023-03-27",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "end_time",
+							"value": "2023-03-28",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "q1",
+							"value": "e4889896-3c2a-4baf-8d6e-7f3a8a774f04",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "q2",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "q3",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/deactivate_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"deactivate_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/activate_exam/:exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MTI2ODY1LCJpYXQiOjE2NzkwNDA0NjUsImp0aSI6IjY3NGRhM2IyNDRkMDRkZWU4NzQ4NzAzMTM1MTE4YjkxIiwidXNlcl9pZCI6Mn0.h-BAWNDsiTT3dR43eCowS2Yo9bzr1cd-z2T253y4UvM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "title2",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "description22222222",
+							"type": "default"
+						},
+						{
+							"key": "exam_time",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "start_time",
+							"value": "2023-03-27",
+							"type": "default"
+						},
+						{
+							"key": "end_time",
+							"value": "2023-03-28",
+							"type": "default"
+						},
+						{
+							"key": "q1",
+							"value": "e4889896-3c2a-4baf-8d6e-7f3a8a774f04",
+							"type": "default"
+						},
+						{
+							"key": "q2",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						},
+						{
+							"key": "q3",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/activate_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"activate_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/get_single_exam/:exam_id/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzc0NTIxLCJpYXQiOjE2NzkyODgxMjEsImp0aSI6IjQ4NDQyYzcxMTRkMTRkZGE5ZjgxY2Y4NjFjNTc4YmJhIiwidXNlcl9pZCI6MTJ9.kT3DWE_ENIOkyYZ7AsW_-C-UwGNvlNX3exrzJipxm-Y",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "title2",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "description2",
+							"type": "default"
+						},
+						{
+							"key": "exam_time",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "start_time",
+							"value": "2023-03-27",
+							"type": "default"
+						},
+						{
+							"key": "end_time",
+							"value": "2023-03-28",
+							"type": "default"
+						},
+						{
+							"key": "q1",
+							"value": "e4889896-3c2a-4baf-8d6e-7f3a8a774f04",
+							"type": "default"
+						},
+						{
+							"key": "q2",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						},
+						{
+							"key": "q3",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/get_single_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"get_single_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/examlist_by_me/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MTI2ODY1LCJpYXQiOjE2NzkwNDA0NjUsImp0aSI6IjY3NGRhM2IyNDRkMDRkZWU4NzQ4NzAzMTM1MTE4YjkxIiwidXNlcl9pZCI6Mn0.h-BAWNDsiTT3dR43eCowS2Yo9bzr1cd-z2T253y4UvM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "users",
+							"value": "chandaniharendrasingh@gmail.com, singh.chandani.dcs23@vnsgu.ac.in",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/examlist_by_me/?is_deleted=False",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"examlist_by_me",
+						""
+					],
+					"query": [
+						{
+							"key": "users",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "is_deleted",
+							"value": "False"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/examiner/mail_exam_link/:exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MTI2ODY1LCJpYXQiOjE2NzkwNDA0NjUsImp0aSI6IjY3NGRhM2IyNDRkMDRkZWU4NzQ4NzAzMTM1MTE4YjkxIiwidXNlcl9pZCI6Mn0.h-BAWNDsiTT3dR43eCowS2Yo9bzr1cd-z2T253y4UvM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"users\" : [\n        \"chandaniharendrasingh@gmail.com\",\n        \"singh.chandani.dcs23@vnsgu.ac.in\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/examiner/mail_exam_link/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"examiner",
+						"mail_exam_link",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					],
+					"query": [
+						{
+							"key": "users",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/register_for_attend_exam/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjgwOTQwLCJpYXQiOjE2ODA1OTQ1NDAsImp0aSI6IjczZTM4ZjJhYzQyNTQ3NmE4ODdjNTQ1NTk4YjU4Y2ZjIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.d17hq9-1z5G5v5avlaDWbUaTrr1eiPQoNYnJswRlySk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"exam\" : \"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/register_for_attend_exam/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"register_for_attend_exam",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/get_single_attend_exam/:attend_exam_id/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"exam\" : \"fcdfb945-ca29-43b3-8f6d-7b862acd3a10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/get_single_attend_exam/bedaf96d-5cb5-4916-a64c-6259129dfc66/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"get_single_attend_exam",
+						"bedaf96d-5cb5-4916-a64c-6259129dfc66",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "-- api/attendee/check_for_exam_start/:exam_id/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMzI2MzU1LCJpYXQiOjE2ODAyMzk5NTUsImp0aSI6ImFmMGI3Zjc3MmY2NDQ4YWVhZDcxYjMwOTEwYjMzNTFhIiwidXNlcl9pZCI6MTV9.n6E9PvjwwRoO9nqRATRwIXsTXRVCM-ZdS3bu8k8qpk4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"exam\" : \"fcdfb945-ca29-43b3-8f6d-7b862acd3a10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/check_for_exam_start/32ca8763-0c0e-4860-ac54-585dcfe44ef1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"check_for_exam_start",
+						"32ca8763-0c0e-4860-ac54-585dcfe44ef1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "-- api/attendee/start_attend_exam/:attend_exam_id/",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/start_attend_exam/1080dd69-ad3e-4eaa-866e-013cc279f648/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"start_attend_exam",
+						"1080dd69-ad3e-4eaa-866e-013cc279f648",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/end_attend_exam/:attend_exam_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "video",
+							"type": "file",
+							"src": "/home/lcom/Documents/Chandani/3-ReactJS/Practice/React - The Complete Guide2/React - The Complete Guide/18-redux/public/logo192.png"
+						},
+						{
+							"key": "total_cheat",
+							"value": "1",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/end_attend_exam/96e59d5a-1706-4954-8244-bff64fe6afa7/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"end_attend_exam",
+						"96e59d5a-1706-4954-8244-bff64fe6afa7",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/start_attend_question/:attend_question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/start_attend_question/77608be9-d972-48e6-b2a3-d06d08f9ae99/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"start_attend_question",
+						"77608be9-d972-48e6-b2a3-d06d08f9ae99",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/update_attend_question/:attend_question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answer\" : \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/update_attend_question/77608be9-d972-48e6-b2a3-d06d08f9ae99/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"update_attend_question",
+						"77608be9-d972-48e6-b2a3-d06d08f9ae99",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/end_attend_question/:attend_question_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answer\" : \"print('hello world')\",\n    \"testcases\" :[\n            {\n                \"id\": \"012f2cc3-92bd-43db-83c7-51e981029220\",\n                \"number\": 1,\n                \"input\": \"5,2\",\n                \"output\": \"7\",\n                \"is_active\": true\n            },\n            {\n                \"id\": \"feded21f-2178-4515-8316-a8e5da33fe65\",\n                \"number\": 2,\n                \"input\": \"6,2\",\n                \"output\": \"8\",\n                \"is_active\": true\n            },\n            {\n                \"id\": \"e4cd50b0-f4d8-4662-8448-8edfa701a485\",\n                \"number\": 3,\n                \"input\": \"7,2\",\n                \"output\": \"9\",\n                \"is_active\": true\n            }\n        ],\n    \"language\" : \"PYTHON\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/end_attend_question/511fa41b-7f44-4b58-8390-6774d905cf80/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"end_attend_question",
+						"511fa41b-7f44-4b58-8390-6774d905cf80",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/get_single_attend_question/:attend_question_id/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answer\" : \"print('hello world')\",\n    \"mark\" : 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/get_single_attend_question/77608be9-d972-48e6-b2a3-d06d08f9ae99/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"get_single_attend_question",
+						"77608be9-d972-48e6-b2a3-d06d08f9ae99",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/attendexamlist_of_exam/:exam_id/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzc0NTIxLCJpYXQiOjE2NzkyODgxMjEsImp0aSI6IjQ4NDQyYzcxMTRkMTRkZGE5ZjgxY2Y4NjFjNTc4YmJhIiwidXNlcl9pZCI6MTJ9.kT3DWE_ENIOkyYZ7AsW_-C-UwGNvlNX3exrzJipxm-Y",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "title2",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "description2",
+							"type": "default"
+						},
+						{
+							"key": "exam_time",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "start_time",
+							"value": "2023-03-27",
+							"type": "default"
+						},
+						{
+							"key": "end_time",
+							"value": "2023-03-28",
+							"type": "default"
+						},
+						{
+							"key": "q1",
+							"value": "e4889896-3c2a-4baf-8d6e-7f3a8a774f04",
+							"type": "default"
+						},
+						{
+							"key": "q2",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						},
+						{
+							"key": "q3",
+							"value": "5026cb2d-3a75-4d98-acd3-5a1a4e1d5033",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/attendexamlist_of_exam/6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"attendexamlist_of_exam",
+						"6fdfef0e-e5e7-4a0a-84bc-a4fb394538aa",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/mail_video_of_attend_exam/:attend_exam_id/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjgwOTQwLCJpYXQiOjE2ODA1OTQ1NDAsImp0aSI6IjczZTM4ZjJhYzQyNTQ3NmE4ODdjNTQ1NTk4YjU4Y2ZjIiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.d17hq9-1z5G5v5avlaDWbUaTrr1eiPQoNYnJswRlySk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answer\" : \"print('hello world')\",\n    \"mark\" : 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/mail_video_of_attend_exam/bedaf96d-5cb5-4916-a64c-6259129dfc66/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"mail_video_of_attend_exam",
+						"bedaf96d-5cb5-4916-a64c-6259129dfc66",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "---api/account/logout/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4MzQ2Njk2LCJpYXQiOjE2NzgzNDU0OTYsImp0aSI6IjAwM2YxZTkyM2JhZTQ4ZjdiOTdhMDA1ZTMxNWY3Mjc4IiwidXNlcl9pZCI6Mn0.GNz4iOU91se027Xc_uGyFI0scCPMWr05W9Nil0jHh-Q",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "chandaniharendrasingh@gmil.com",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Chandani",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "8956231234",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "password2",
+							"value": "chandani123",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "about",
+							"value": "Chandani Singh",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "user_type",
+							"value": "Examiner",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/account/logout/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/attendee/run_code_view/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwNjc1MjY4LCJpYXQiOjE2ODA1ODg4NjgsImp0aSI6ImRkNWQ3NDM1YTMwMzRiNDNhYWNmNjYzMWNiNjFiODE5IiwidXNlcl9pZCI6IjM3MTkxM2I5LTk4MGItNDExOC05ODY3LWI2Y2UwYWQ1OTRiMyJ9.iSO2avL0rW3iCAgXXbOVKR7TSt3AqO_0qh3THskuyto",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answer\" : \"print('hello world')\",\n    \"testcases\" :[\n            {\n                \"id\": \"012f2cc3-92bd-43db-83c7-51e981029220\",\n                \"number\": 1,\n                \"input\": \"5,2\",\n                \"output\": \"7\",\n                \"is_active\": true\n            },\n            {\n                \"id\": \"feded21f-2178-4515-8316-a8e5da33fe65\",\n                \"number\": 2,\n                \"input\": \"6,2\",\n                \"output\": \"8\",\n                \"is_active\": true\n            },\n            {\n                \"id\": \"e4cd50b0-f4d8-4662-8448-8edfa701a485\",\n                \"number\": 3,\n                \"input\": \"7,2\",\n                \"output\": \"9\",\n                \"is_active\": true\n            }\n        ],\n    \"language\" : \"PYTHON\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/attendee/run_code_view/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"attendee",
+						"run_code_view",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "-- api/attendee/temp_view/ Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgwMzIxNDk4LCJpYXQiOjE2ODAyMzUwOTgsImp0aSI6ImJiOWFiMWMyODcwNjQ0N2Y4ODQ3ZmI5MzM1NjRmNTk2IiwidXNlcl9pZCI6Nn0.boxEo2PM3UKqmk2649KDQHHRCA2J8zYMRO-MPkFkwTI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5Mzg3MzM0LCJpYXQiOjE2NzkzMDA5MzQsImp0aSI6ImYyNzk4NTNjYmY2YTRjNmFiNWVhMDcxMjJlNDk5YjQzIiwidXNlcl9pZCI6NDZ9.JTbiUOmqS5QZMsYLkgT6q3djpYYUamiyllDWrTqV_Fw",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answer\" : \"print('hello world')\",\n    \"mark\" : 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.hackerearth.com/v3/code/run/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hackerearth",
+						"com"
+					],
+					"path": [
+						"v3",
+						"code",
+						"run",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "-- New Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client-secret",
+						"value": "eb6561a3d2d3baea1690565ddf0e3e63311496cc",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://api.hackerearth.com/v4/partner/code-evaluation/submissions/1358cf90-cbb4-4371-be39-f05aa5fa9285/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hackerearth",
+						"com"
+					],
+					"path": [
+						"v4",
+						"partner",
+						"code-evaluation",
+						"submissions",
+						"1358cf90-cbb4-4371-be39-f05aa5fa9285",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "-- New Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client-secret",
+						"value": "eb6561a3d2d3baea1690565ddf0e3e63311496cc",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"source\" : \"print('hii')\",\n    \"lang\" : \"PYTHON\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.hackerearth.com/v4/partner/code-evaluation/submissions/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"hackerearth",
+						"com"
+					],
+					"path": [
+						"v4",
+						"partner",
+						"code-evaluation",
+						"submissions",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

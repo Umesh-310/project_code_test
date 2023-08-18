@@ -1,0 +1,35 @@
+python -m venv myenv
+source myenv/bin/activate
+
+pip install django djangorestframework
+django-admin startproject admin_site
+python manage.py startapp account
+
+
+pip install -r requirements.txt
+
+python manage.py runserver
+
+
+=> to convert sqlite3 to postgresql locally
+pip install psycopg2-binary
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes > data.json
+
+- change DATABASES = {....}
+python manage.py migrate
+python manage.py loaddata data.json
+
+
+=> to transfer data from local postgresql to elephantsql
+pg_dump -U <local_username> -h <local_hostname> -p <local_port> <local_database_name> > dump.sql
+pg_dump -U linuxhint -h localhost -p 5432 codertest-db > dump.sql
+
+### gives error like use psql not text beacuse dump 
+pg_restore --verbose --clean --no-acl --no-owner -h <elephantsql_hostname> -p <elephantsql_port> -U <elephantsql_username> -d <elephantsql_database_name> dump.sql
+pg_restore --verbose --clean --no-acl --no-owner -h satao.db.elephantsql.com -p 5432 -U uhsftjsq -d uhsftjsq dump.sql
+
+## working fine
+psql -h <elephantsql_hostname> -p <elephantsql_port> -U <elephantsql_username> -d <elephantsql_database_name> -f dump.sql
+psql -h satao.db.elephantsql.com -p 5432 -U uhsftjsq -d uhsftjsq -f dump.sql
+
+

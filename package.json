@@ -1,0 +1,10 @@
+{
+  "name": "react_paython",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+      "python": "cd Django_Demo_Project-main && python3 manage.py runserver",
+      "react": "cd Examiner_App_React_Demo-main && npm start",
+      "setup": "cd Django_Demo_Project-main && pip install -r requirements.txt && cd ../Examiner_App_React_Demo-main && npm install"
+  }
+}
