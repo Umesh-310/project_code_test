@@ -35,6 +35,7 @@ import AuthorOnlyRoute from "./AuthorOnlyRoute";
 import ExaminerOnlyRoute from "./ExaminerOnlyRoute";
 import AttendeeOnlyRoute from "./AttendeeOnlyRoute";
 import { getCurrentUser } from "../store/authSlice";
+import AddHeaderFooter from "./AddHeaderFooter";
 
 const ThemeRoutes = () => {
   const user = useSelector((state) => state.auth.user);
@@ -53,17 +54,66 @@ const ThemeRoutes = () => {
       {/* All Users */}
       {/* public routes */}
 
-      <Route path="/" exact element={<HomePage />} />
-      <Route path="/candidate_guide" exact element={<CandidateGuidePage />} />
-      <Route path="/examiner_guide" exact element={<ExaminerGuidePage />} />
+      <Route
+        path="/"
+        exact
+        element={
+          <AddHeaderFooter>
+            <HomePage />
+          </AddHeaderFooter>
+        }
+      />
+      <Route
+        path="/candidate_guide"
+        exact
+        element={
+          <AddHeaderFooter>
+            <CandidateGuidePage />
+          </AddHeaderFooter>
+        }
+      />
+      <Route
+        path="/examiner_guide"
+        exact
+        element={
+          <AddHeaderFooter>
+            <ExaminerGuidePage />
+          </AddHeaderFooter>
+        }
+      />
 
       <Route path="/auth/">
-        <Route path="/auth/signup" element={<SignUpPage />} />
-        <Route path="/auth/login" element={<LoginPage />} />
-        <Route path="/auth/forgot_password" element={<ForgotPasswordPage />} />
+        <Route
+          path="/auth/signup"
+          element={
+            <AddHeaderFooter>
+              <SignUpPage />
+            </AddHeaderFooter>
+          }
+        />
+        <Route
+          path="/auth/login"
+          element={
+            <AddHeaderFooter>
+              <LoginPage />
+            </AddHeaderFooter>
+          }
+        />
+        <Route
+          path="/auth/forgot_password"
+          element={
+            <AddHeaderFooter>
+              <ForgotPasswordPage />
+            </AddHeaderFooter>
+          }
+        />
         <Route
           path="/auth/reset_password/:uid/:token"
-          element={<ResetPasswordPage />}
+          element={
+            <AddHeaderFooter>
+              <ResetPasswordPage />
+            </AddHeaderFooter>
+          }
         />
         <Route path="/auth/logout" element={<LogoutPage />} />
       </Route>
@@ -74,7 +124,9 @@ const ThemeRoutes = () => {
           path="/account/dashboard"
           element={
             <ProtectRoute user={user}>
-              <DashboardPage />
+              <AddHeaderFooter>
+                <DashboardPage />
+              </AddHeaderFooter>
             </ProtectRoute>
           }
         />
@@ -82,7 +134,9 @@ const ThemeRoutes = () => {
           path="/account/profile"
           element={
             <ProtectRoute user={user}>
-              <ProfilePage />
+              <AddHeaderFooter>
+                <ProfilePage />
+              </AddHeaderFooter>
             </ProtectRoute>
           }
         />
@@ -94,7 +148,9 @@ const ThemeRoutes = () => {
           path="/question/all_question"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AllQuestionPage />
+              <AddHeaderFooter>
+                <AllQuestionPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />
@@ -102,7 +158,9 @@ const ThemeRoutes = () => {
           path="/question/my_question"
           element={
             <AuthorOnlyRoute user={user}>
-              <MyQuestionPage />
+              <AddHeaderFooter>
+                <MyQuestionPage />
+              </AddHeaderFooter>
             </AuthorOnlyRoute>
           }
         />
@@ -110,7 +168,9 @@ const ThemeRoutes = () => {
           path="/question/add_question"
           element={
             <AuthorOnlyRoute user={user}>
-              <AddQuestionPage />
+              <AddHeaderFooter>
+                <AddQuestionPage />
+              </AddHeaderFooter>
             </AuthorOnlyRoute>
           }
         />
@@ -122,7 +182,9 @@ const ThemeRoutes = () => {
           path="/exam/all_exam"
           element={
             <ExaminerOnlyRoute user={user}>
-              <MyAllExamPage />
+              <AddHeaderFooter>
+                <MyAllExamPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />
@@ -130,7 +192,9 @@ const ThemeRoutes = () => {
           path="/exam/create_exam_option"
           element={
             <ExaminerOnlyRoute user={user}>
-              <CreateExamOptionPage />
+              <AddHeaderFooter>
+                <CreateExamOptionPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />
@@ -138,7 +202,9 @@ const ThemeRoutes = () => {
           path="/exam/create_exam_with_selected_question"
           element={
             <ExaminerOnlyRoute user={user}>
-              <CreateExamWithSelectedQuestionPage />
+              <AddHeaderFooter>
+                <CreateExamWithSelectedQuestionPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />
@@ -146,7 +212,9 @@ const ThemeRoutes = () => {
           path="/exam/create_exam_with_random_question"
           element={
             <ExaminerOnlyRoute user={user}>
-              <CreateExamWithRandomQuestionPage />
+              <AddHeaderFooter>
+                <CreateExamWithRandomQuestionPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />
@@ -154,7 +222,9 @@ const ThemeRoutes = () => {
           path="/exam/exam_detail/:id"
           element={
             <ExaminerOnlyRoute user={user}>
-              <ExamDetailPage />
+              <AddHeaderFooter>
+                <ExamDetailPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />
@@ -162,7 +232,9 @@ const ThemeRoutes = () => {
           path="/exam/attendee_attend_exam_detail/:id"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AttendeeAttendExamDetailPage />
+              <AddHeaderFooter>
+                <AttendeeAttendExamDetailPage />
+              </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }
         />

@@ -1,13 +1,13 @@
 import React from "react";
-import { Footer, Header, Dashboard, Sidebar } from "../../components";
+import { Dashboard, Sidebar } from "../../components";
 
 const DashboardPage = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Sidebar />
       <Dashboard />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

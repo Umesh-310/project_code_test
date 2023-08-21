@@ -9,7 +9,7 @@ const LogoutPage = () => {
 
   useEffect(() => {
     logoutUser(dispatch, navigate);
-  }, []);
+  }, [dispatch, navigate]);
 
   return <>Logout</>;
 };

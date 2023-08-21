@@ -1,13 +1,13 @@
 import React from "react";
-import { MyAllExam, Footer, Header, Sidebar } from "../../components";
+import { MyAllExam, Sidebar } from "../../components";
 
 const MyAllExamPage = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Sidebar />
       <MyAllExam />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

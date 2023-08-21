@@ -10,7 +10,7 @@ const Footer = () => {
           . All Rights Reserved
         </div>
         <div className="credits">
-          Designed by <a href="/">Chandani Singh</a>
+          Designed by <a href="/">La-net team</a>
         </div>
       </footer>
 

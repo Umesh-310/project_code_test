@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  CreateExamWithSelectedQuestion,
-  Footer,
-  Header,
-  Sidebar,
-} from "../../components";
+import { CreateExamWithSelectedQuestion, Sidebar } from "../../components";
 
 const CreateExamWithSelectedQuestionPage = () => {
   return (
     <>
-      <Header />
       <Sidebar />
       <CreateExamWithSelectedQuestion />
-      <Footer />
     </>
   );
 };

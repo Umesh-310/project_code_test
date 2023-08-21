@@ -1,13 +1,13 @@
 import React from "react";
-import { AddQuestion, Footer, Header, Sidebar } from "../../components";
+import { AddQuestion, Sidebar } from "../../components";
 
 const AddQuestionPage = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Sidebar />
       <AddQuestion />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

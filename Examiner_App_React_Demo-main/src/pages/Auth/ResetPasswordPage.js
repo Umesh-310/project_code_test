@@ -1,12 +1,12 @@
 import React from "react";
-import { Header, ResetPasswordSide } from "../../components";
+import { ResetPasswordSide } from "../../components";
 import AuthTheme from "../../utils/AuthTheme";
 
 const ResetPasswordPage = () => {
   return (
     <>
       <AuthTheme>
-        <Header />
+        {/* <Header /> */}
         <ResetPasswordSide />
       </AuthTheme>
     </>

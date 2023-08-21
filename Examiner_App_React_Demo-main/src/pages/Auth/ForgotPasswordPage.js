@@ -1,12 +1,12 @@
 import React from "react";
-import { ForgotPasswordSide, Header } from "../../components";
+import { ForgotPasswordSide } from "../../components";
 import AuthTheme from "../../utils/AuthTheme";
 
 const ForgotPasswordPage = () => {
   return (
     <>
       <AuthTheme>
-        <Header />
+        {/* <Header /> */}
         <ForgotPasswordSide />
       </AuthTheme>
     </>

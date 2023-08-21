@@ -1,13 +1,11 @@
 import React from "react";
-import { ExamDetail, Footer, Header, Sidebar } from "../../components";
+import { ExamDetail, Sidebar } from "../../components";
 
 const ExamDetailPage = () => {
   return (
     <>
-      <Header />
       <Sidebar />
       <ExamDetail />
-      <Footer />
     </>
   );
 };

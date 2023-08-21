@@ -1,12 +1,12 @@
 import React from "react";
-import { Header, SignInSide } from "../../components";
+import { SignInSide } from "../../components";
 import AuthTheme from "../../utils/AuthTheme";
 
 const LoginPage = () => {
   return (
     <>
       <AuthTheme>
-        <Header />
+        {/* <Header /> */}
         <SignInSide />
       </AuthTheme>
     </>
