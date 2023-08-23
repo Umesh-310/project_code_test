@@ -1,13 +1,8 @@
 import React from "react";
-import { AttendeeAttendExamDetail, Sidebar } from "../../components";
+import { AttendeeAttendExamDetail } from "../../components";
 
 const AttendeeAttendExamDetailPage = () => {
-  return (
-    <>
-      <Sidebar />
-      <AttendeeAttendExamDetail />
-    </>
-  );
+  return <AttendeeAttendExamDetail />;
 };
 
 export default AttendeeAttendExamDetailPage;

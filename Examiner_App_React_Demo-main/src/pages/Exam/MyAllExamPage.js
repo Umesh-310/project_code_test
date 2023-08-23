@@ -1,15 +1,8 @@
 import React from "react";
-import { MyAllExam, Sidebar } from "../../components";
+import { MyAllExam } from "../../components";
 
 const MyAllExamPage = () => {
-  return (
-    <>
-      {/* <Header /> */}
-      <Sidebar />
-      <MyAllExam />
-      {/* <Footer /> */}
-    </>
-  );
+  return <MyAllExam />;
 };
 
 export default MyAllExamPage;

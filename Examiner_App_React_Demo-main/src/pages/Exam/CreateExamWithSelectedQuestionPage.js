@@ -1,13 +1,8 @@
 import React from "react";
-import { CreateExamWithSelectedQuestion, Sidebar } from "../../components";
+import { CreateExamWithSelectedQuestion } from "../../components";
 
 const CreateExamWithSelectedQuestionPage = () => {
-  return (
-    <>
-      <Sidebar />
-      <CreateExamWithSelectedQuestion />
-    </>
-  );
+  return <CreateExamWithSelectedQuestion />;
 };
 
 export default CreateExamWithSelectedQuestionPage;

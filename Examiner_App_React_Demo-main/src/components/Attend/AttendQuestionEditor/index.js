@@ -66,14 +66,14 @@ const AttendQuestionEditor = () => {
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
         `/api/attendee/get_single_attend_question/${attendQuestionId}`,
-        { headers },
+        { headers }
       );
       if (response.status === 200) {
         if (reset) {
           setData({
             ...data,
-            ["python_code"]: response?.data?.data?.question?.python_init_code,
-            ["javascript_code"]:
+            python_code: response?.data?.data?.question?.python_init_code,
+            javascript_code:
               response?.data?.data?.question?.javascript_init_code,
           });
 
@@ -106,7 +106,7 @@ const AttendQuestionEditor = () => {
             response?.data?.data?.attend_exam?.exam,
             recorder,
             stream,
-            pasteCount,
+            pasteCount
           );
         }
       } else {
@@ -134,7 +134,7 @@ const AttendQuestionEditor = () => {
           filename: attendQuestionId,
           inputVal: inputVal,
         },
-        { headers },
+        { headers }
       );
 
       let data = response.data;
@@ -173,21 +173,21 @@ const AttendQuestionEditor = () => {
           language: language,
           filename: attendQuestionId,
         },
-        { headers },
+        { headers }
       );
       const tempResult = response?.data?.data;
       setTestcaseResults([
         {
-          ["input"]: tempResult.inputs[0],
-          ["output"]: tempResult.outputs[0],
-          ["testcaseResult"]: tempResult.testcaseResults[0],
-          ["errorMsg"]: tempResult.errorMsgs[0],
+          input: tempResult.inputs[0],
+          output: tempResult.outputs[0],
+          testcaseResult: tempResult.testcaseResults[0],
+          errorMsg: tempResult.errorMsgs[0],
         },
         {
-          ["input"]: tempResult.inputs[1],
-          ["output"]: tempResult.outputs[1],
-          ["testcaseResult"]: tempResult.testcaseResults[1],
-          ["errorMsg"]: tempResult.errorMsgs[1],
+          input: tempResult.inputs[1],
+          output: tempResult.outputs[1],
+          testcaseResult: tempResult.testcaseResults[1],
+          errorMsg: tempResult.errorMsgs[1],
         },
       ]);
       setOutput("");
@@ -214,7 +214,7 @@ const AttendQuestionEditor = () => {
           language: language,
           filename: attendQuestionId,
         },
-        { headers },
+        { headers }
       );
 
       if (response.status === 200) {
@@ -241,7 +241,7 @@ const AttendQuestionEditor = () => {
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/attendee/update_attend_question/${attendQuestionId}/`,
         body,
-        { headers },
+        { headers }
       );
 
       if (response.status === 200) {
@@ -295,7 +295,7 @@ const AttendQuestionEditor = () => {
           exam,
           recorder,
           stream,
-          pasteCount,
+          pasteCount
         );
       }
     }, 10000);

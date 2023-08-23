@@ -31,6 +31,7 @@ const initialAuthState = {
 // })
 
 export const getCurrentUser = async (dispatch) => {
+  dispatch(GET_CURRENT_USER_BEGIN());
   try {
     let access_token = loadCookies("access_token");
     const headers = { Authorization: `Bearer ${access_token}` };
@@ -49,7 +50,7 @@ export const signUpUser = async (dispatch, body, navigate) => {
   try {
     dispatch(SIGNUP_USER_BEGIN());
     const response = await axios.post(`/api/account/register/`, body);
-    if (response.status == 201) {
+    if (response.status === 201) {
       toast.success(response.data.msg);
       dispatch(SIGNUP_USER_SUCCESS());
       navigate("/auth/login");
@@ -67,7 +68,7 @@ export const loginUser = async (dispatch, body, navigate) => {
   try {
     dispatch(LOGIN_USER_BEGIN());
     const response = await axios.post(`/api/account/login/`, body);
-    if (response.status == 200) {
+    if (response.status === 200) {
       toast.success(response.data.msg);
       dispatch(LOGIN_USER_SUCCESS(response.data.user));
       localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -101,9 +102,9 @@ export const forgotPassword = async (dispatch, body, navigate) => {
     dispatch(FORGET_PASSWORD_BEGIN());
     const response = await axios.post(
       `/api/account/send-reset-password-email/`,
-      body,
+      body
     );
-    if (response.status == 200) {
+    if (response.status === 200) {
       toast.success(response.data.msg);
       dispatch(FORGET_PASSWORD_SUCCESS());
     } else {
@@ -121,9 +122,9 @@ export const resetPassword = async (dispatch, body, uid, token, navigate) => {
     dispatch(RESET_PASSWORD_BEGIN());
     const response = await axios.post(
       `/api/account/reset-password/${uid}/${token}/`,
-      body,
+      body
     );
-    if (response.status == 200) {
+    if (response.status === 200) {
       toast.success(response.data.msg);
       dispatch(RESET_PASSWORD_SUCCESS());
     } else {

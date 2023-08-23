@@ -1,13 +1,8 @@
 import React from "react";
-import { CreateExamWithRandomQuestion, Sidebar } from "../../components";
+import { CreateExamWithRandomQuestion } from "../../components";
 
 const CreateExamWithRandomQuestionPage = () => {
-  return (
-    <>
-      <Sidebar />
-      <CreateExamWithRandomQuestion />
-    </>
-  );
+  return <CreateExamWithRandomQuestion />;
 };
 
 export default CreateExamWithRandomQuestionPage;

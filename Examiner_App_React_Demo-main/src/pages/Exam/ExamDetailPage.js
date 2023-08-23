@@ -1,13 +1,8 @@
 import React from "react";
-import { ExamDetail, Sidebar } from "../../components";
+import { ExamDetail } from "../../components";
 
 const ExamDetailPage = () => {
-  return (
-    <>
-      <Sidebar />
-      <ExamDetail />
-    </>
-  );
+  return <ExamDetail />;
 };
 
 export default ExamDetailPage;

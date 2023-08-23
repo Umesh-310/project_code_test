@@ -1,163 +1,292 @@
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Button, Tooltip } from "@mui/material";
+import { Box, Button, Divider, Menu, MenuItem, Tooltip } from "@mui/material";
+import css from "./header.module.css";
+import { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 
-const Header = () => {
-  const user = useSelector((state) => state.auth.user);
+const Header = ({ showDrawerIcon, handleDrawer }) => {
+  const { user, loading } = useSelector((state) => state.auth);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [userMenu, setUserMenu] = useState(null);
+  const open = Boolean(anchorEl);
+  const openMenu = Boolean(userMenu);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClickMenu = (event) => {
+    setUserMenu(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setUserMenu(null);
+  };
+  const ButtonCss = { backgroundColor: "#9fa8da", p: 1, m: 0.5 };
+  const menuCss = {
+    paddingTop: "0px",
+    paddingBottom: "0px",
+    minHeight: "30px",
+  };
+  const candidateGuide = (
+    <NavLink to="/candidate_guide" className={css.navText}>
+      Candidate Guide
+    </NavLink>
+  );
+  const examinerGuide = (
+    <NavLink to="/examiner_guide" className={css.navText}>
+      Examiner Guide
+    </NavLink>
+  );
 
+  const signUp = (
+    <NavLink className={css.navText} to="/auth/signup">
+      SignUp
+    </NavLink>
+  );
+  const Login = (
+    <NavLink className={css.navText} to="/auth/login">
+      Login
+    </NavLink>
+  );
   return (
-    <>
-      <header
-        id="header"
-        className="header fixed-top d-flex align-items-center"
-      >
-        <div className="d-flex align-items-center justify-content-between">
-          <Link
-            to={process.env.REACT_APP_BASE_URL}
-            className="logo d-flex align-items-center"
+    <header id="header" className={css.header}>
+      <div className={css.flex}>
+        {showDrawerIcon && (
+          <Box
+            className={css.menuIcon}
+            onClick={handleDrawer}
+            sx={{ flexGrow: 1, display: { xs: "flex", lg: "none" } }}
           >
-            {/* <img src="assets/img/logo.png" alt=""/> */}
-            <AdbIcon
+            <MenuIcon
               sx={{
                 display: { xs: "block", md: "flex" },
-                mr: 1,
                 color: "#0c1f4d",
               }}
             />
-            <span className="d-block d-lg-block">CoderTest</span>
-          </Link>
-          {/* <i className="bi bi-list toggle-sidebar-btn"></i> */}
-        </div>
+          </Box>
+        )}
+        <Link to={process.env.REACT_APP_BASE_URL} className={css.logoWrap}>
+          <AdbIcon
+            sx={{
+              display: { xs: "block", md: "flex" },
+              mr: 1,
+              color: "#0c1f4d",
+            }}
+          />
+          <span className={css.logoText}>CoderTest</span>
+        </Link>
+      </div>
 
-        <nav className="header-nav ms-auto">
-          <ul className="d-flex align-items-center">
-            <NavLink
-              to="/candidate_guide"
-              style={{ textDecoration: "none", color: "#0c1f4d" }}
-            >
-              Candidate Guide
-            </NavLink>{" "}
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <NavLink
-              to="/examiner_guide"
-              style={{ textDecoration: "none", color: "#0c1f4d" }}
-            >
-              Examiner Guide
-            </NavLink>{" "}
-            &nbsp;&nbsp;
-            {user ? (
-              <li className="nav-item dropdown pe-3">
-                <a
-                  className="nav-link nav-profile d-flex align-items-center pe-0"
-                  href="#"
-                  data-bs-toggle="dropdown"
+      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        {!loading && (
+          <ul className={css.MenuWrap}>
+            {candidateGuide}
+            {examinerGuide}
+            {!user && (
+              <>
+                <Tooltip title="Signup">
+                  <Button color="inherit" sx={ButtonCss}>
+                    {signUp}
+                  </Button>
+                </Tooltip>
+                <Tooltip title="Login">
+                  <Button color="inherit" aria-label="login" sx={ButtonCss}>
+                    {Login}
+                  </Button>
+                </Tooltip>
+              </>
+            )}
+            {user && (
+              <>
+                <div
+                  id="user-menu-btn"
+                  aria-controls={openMenu ? "user-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={openMenu ? "true" : undefined}
+                  onClick={handleClickMenu}
+                  className={css.userInfo}
                 >
                   {user?.image ? (
                     <img
                       src={`${process.env.REACT_APP_API_URL}${user?.image}`}
                       alt="Profile"
-                      className="rounded-circle"
                     />
                   ) : (
-                    <div
-                      className="bg-info rounded-circle"
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        display: "flex",
-                        textAlign: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <span
-                        className="avatar"
-                        style={{
-                          color: "white",
-                          fontSize: "32px",
-                          fontWeight: "bold",
-                        }}
-                      >
+                    <div className={css.userNameImg}>
+                      <span className={css.userNameImfText}>
                         {user?.name?.slice(0, 1)}
                       </span>
                     </div>
                   )}
-                  <span className="d-none d-md-block dropdown-toggle ps-2">
-                    {user?.name}
-                  </span>
-                </a>
-
-                <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li className="dropdown-header">
+                  <span className={css.userName}>{user?.name}</span>
+                </div>
+                <Menu
+                  id="user-menu "
+                  anchorEl={userMenu}
+                  open={openMenu}
+                  onClose={handleCloseMenu}
+                  MenuListProps={{
+                    "aria-labelledby": "user-menu-btn",
+                  }}
+                  PaperProps={{
+                    sx: {
+                      minWidth: 200,
+                    },
+                  }}
+                >
+                  <MenuItem className={css.userDataWrap}>
                     <h6>{user?.name}</h6>
                     <span>{user?.name}</span>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
+                  </MenuItem>
+                  <Divider sx={{ borderColor: "gray" }} />
+                  <MenuItem onClick={handleCloseMenu}>
                     <Link
                       to="/account/profile"
-                      className="dropdown-item d-flex align-items-center"
+                      className={css.navText}
+                      style={{ display: "flex", gap: "5px" }}
                     >
                       <i className="bi bi-person"></i>
                       <span>My Profile</span>
                     </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
+                  </MenuItem>
+                  <Divider sx={{ borderColor: "gray" }} />
+                  <MenuItem onClick={handleCloseMenu}>
                     <NavLink
-                      className="dropdown-item d-flex align-items-center"
+                      className={css.navText}
                       to="/auth/logout"
+                      style={{ display: "flex", gap: "5px" }}
                     >
                       <i className="bi bi-box-arrow-right"></i>
                       <span>LogOut</span>
                     </NavLink>
-                  </li>
-                </ul>
-              </li>
-            ) : (
-              <>
-                <Tooltip title="Signup">
-                  <Button
-                    color="inherit"
-                    sx={{
-                      backgroundColor: "#9fa8da",
-                      p: 1,
-                      m: 0.5,
-                      textDecoration: "none",
-                    }}
-                  >
-                    <NavLink
-                      to="/auth/signup"
-                      style={{ textDecoration: "none", color: "#0c1f4d" }}
-                    >
-                      SignUp
-                    </NavLink>
-                  </Button>
-                </Tooltip>
-                <Tooltip title="Login">
-                  <Button
-                    color="inherit"
-                    aria-label="login"
-                    sx={{ backgroundColor: "#9fa8da", p: 1, m: 0.5 }}
-                  >
-                    <NavLink
-                      to="/auth/login"
-                      style={{ textDecoration: "none", color: "#0c1f4d" }}
-                    >
-                      Login
-                    </NavLink>
-                  </Button>
-                </Tooltip>
+                  </MenuItem>
+                </Menu>
               </>
             )}
           </ul>
-        </nav>
-      </header>
-    </>
+        )}
+      </Box>
+      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+        <ul className={css.MenuWrap}>
+          {user ? (
+            <div
+              id="default-menu-btn"
+              aria-controls={open ? "default-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              className={css.userInfo}
+            >
+              {user?.image ? (
+                <img
+                  src={`${process.env.REACT_APP_API_URL}${user?.image}`}
+                  alt="Profile"
+                />
+              ) : (
+                <div className={css.userNameImg}>
+                  <span className={css.userNameImfText}>
+                    {user?.name?.slice(0, 1)}
+                  </span>
+                </div>
+              )}
+              <span className={css.userName}>{user?.name}</span>
+            </div>
+          ) : (
+            <Button
+              id="default-menu-btn"
+              aria-controls={open ? "default-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              sx={{ padding: "8px 2px" }}
+            >
+              <MenuIcon
+                sx={{
+                  display: { xs: "block", md: "flex" },
+                  color: "#0c1f4d",
+                }}
+              />
+            </Button>
+          )}
+          <Menu
+            id="default-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "default-menu-btn",
+            }}
+            PaperProps={{
+              sx: {
+                minWidth: 180,
+                padding: "0px",
+              },
+            }}
+          >
+            {user ? (
+              <>
+                <MenuItem className={css.userDataWrap}>
+                  <h6>{user?.name}</h6>
+                  <span>{user?.name}</span>
+                </MenuItem>
+                <Divider
+                  sx={{
+                    borderColor: "gray",
+                  }}
+                />
+                {[candidateGuide, examinerGuide].map((val, i) => {
+                  return (
+                    <>
+                      <MenuItem sx={menuCss} key={i} onClick={handleClose}>
+                        {val}
+                      </MenuItem>
+                      <Divider
+                        sx={{
+                          borderColor: "gray",
+                        }}
+                      />
+                    </>
+                  );
+                })}
+                <MenuItem sx={menuCss} onClick={handleClose}>
+                  <Link
+                    to="/account/profile"
+                    className={css.navText}
+                    style={{ display: "flex", gap: "5px" }}
+                  >
+                    <i className="bi bi-person"></i>
+                    <span>My Profile</span>
+                  </Link>
+                </MenuItem>
+                <Divider sx={{ borderColor: "gray", p: 0 }} />
+
+                <MenuItem sx={menuCss} onClick={handleClose}>
+                  <NavLink
+                    className={css.navText}
+                    to="/auth/logout"
+                    style={{ display: "flex", gap: "5px" }}
+                  >
+                    <i className="bi bi-box-arrow-right"></i>
+                    <span>LogOut</span>
+                  </NavLink>
+                </MenuItem>
+              </>
+            ) : (
+              [candidateGuide, examinerGuide, signUp, Login].map((val, i) => {
+                return (
+                  <MenuItem key={i} onClick={handleClose}>
+                    {val}
+                  </MenuItem>
+                );
+              })
+            )}
+          </Menu>
+        </ul>
+      </Box>
+    </header>
   );
 };
 

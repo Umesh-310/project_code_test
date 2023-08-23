@@ -1,6 +1,128 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-# dependencies
-Dockerfile
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+.ENV/
+
+# Django generated files
+*.log
+*.pot
+*.pyc
+db.sqlite3
+local_settings.py
+media/
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# Compiled C extensions
+*.so
+
+# Cache and logs
+*.cache/
+logs/
+
+# Testing
+*.swp
+*.swo
+*.coverage
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Documentation
+docs/_build/
+doc/_build/
+
+# Dependencies
+/node_modules/
+/bower_components/
+
+# Environment variables
 .env
-/z?
+
+# Django static files
+/staticfiles/
+/static/
+/static_root/
+
+# Editor-specific
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.komodotools
+.editorconfig
+
+# PyCharm
+.idea/
+
+# Visual Studio Code
+.vscode/
+.settings/
+*.code-workspace
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Local .env files
+**/.env
+
+# Mac OS files
+.DS_Store
+
+# Windows Thumbs.db files
+Thumbs.db
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Compiled Python files
+*.pyc
+
+# Compiled files
+*.class
+
+# Temporary build directories
+*.egg-info/
+*.pyc
+
+# Ignore pipenv virtual environment
+/.venv/
+/.idea/

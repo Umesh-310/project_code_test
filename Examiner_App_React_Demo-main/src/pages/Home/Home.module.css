@@ -1,0 +1,33 @@
+.homeRoot {
+  width: 60%;
+  /* height: 100vh; */
+  background-color: #fff;
+  padding: 50px;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #0005;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+}
+.homeHeading {
+  width: 100%;
+  text-align: center;
+}
+.lableText {
+  color: #0c1f4d;
+  font-weight: 600;
+}
+.imageWrap {
+  width: 80%;
+  margin: auto;
+  @media (max-width: 450px) {
+    width: 100%;
+  }
+}
+.imageWrap img {
+  width: 100%;
+}

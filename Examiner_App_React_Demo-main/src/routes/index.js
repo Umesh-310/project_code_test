@@ -124,7 +124,7 @@ const ThemeRoutes = () => {
           path="/account/dashboard"
           element={
             <ProtectRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <DashboardPage />
               </AddHeaderFooter>
             </ProtectRoute>
@@ -134,7 +134,7 @@ const ThemeRoutes = () => {
           path="/account/profile"
           element={
             <ProtectRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <ProfilePage />
               </AddHeaderFooter>
             </ProtectRoute>
@@ -148,7 +148,7 @@ const ThemeRoutes = () => {
           path="/question/all_question"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <AllQuestionPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
@@ -158,7 +158,7 @@ const ThemeRoutes = () => {
           path="/question/my_question"
           element={
             <AuthorOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <MyQuestionPage />
               </AddHeaderFooter>
             </AuthorOnlyRoute>
@@ -168,7 +168,7 @@ const ThemeRoutes = () => {
           path="/question/add_question"
           element={
             <AuthorOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <AddQuestionPage />
               </AddHeaderFooter>
             </AuthorOnlyRoute>
@@ -182,7 +182,7 @@ const ThemeRoutes = () => {
           path="/exam/all_exam"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <MyAllExamPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
@@ -192,7 +192,7 @@ const ThemeRoutes = () => {
           path="/exam/create_exam_option"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <CreateExamOptionPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
@@ -202,7 +202,7 @@ const ThemeRoutes = () => {
           path="/exam/create_exam_with_selected_question"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <CreateExamWithSelectedQuestionPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
@@ -212,7 +212,7 @@ const ThemeRoutes = () => {
           path="/exam/create_exam_with_random_question"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <CreateExamWithRandomQuestionPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
@@ -222,7 +222,7 @@ const ThemeRoutes = () => {
           path="/exam/exam_detail/:id"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <ExamDetailPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
@@ -232,7 +232,7 @@ const ThemeRoutes = () => {
           path="/exam/attendee_attend_exam_detail/:id"
           element={
             <ExaminerOnlyRoute user={user}>
-              <AddHeaderFooter>
+              <AddHeaderFooter siderBar={true}>
                 <AttendeeAttendExamDetailPage />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const Sidebar = () => {
+const Sidebar = ({ toggle, closeDrawer }) => {
   let user = useSelector((state) => state.auth.user);
 
   return (
     <>
-      <aside id="sidebar" className="sidebar">
+      <aside id="sidebar" className={`sidebar ${toggle && "togglebar"}`}>
         <ul className="sidebar-nav" id="sidebar-nav">
           <li className="nav-item">
             <Link to="/account/dashboard" className="nav-link collapsed">

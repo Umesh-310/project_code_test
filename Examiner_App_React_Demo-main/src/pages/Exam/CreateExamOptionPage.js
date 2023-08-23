@@ -1,13 +1,8 @@
 import React from "react";
-import { CreateExamOption, Sidebar } from "../../components";
+import { CreateExamOption } from "../../components";
 
 const CreateExamOptionPage = () => {
-  return (
-    <>
-      <Sidebar />
-      <CreateExamOption />
-    </>
-  );
+  return <CreateExamOption />;
 };
 
 export default CreateExamOptionPage;

@@ -1,15 +1,8 @@
 import React from "react";
-import { MyQuestion, Sidebar } from "../../components";
+import { MyQuestion } from "../../components";
 
 const myQuestionPage = () => {
-  return (
-    <>
-      {/* <Header /> */}
-      <Sidebar />
-      <MyQuestion />
-      {/* <Footer /> */}
-    </>
-  );
+  return <MyQuestion />;
 };
 
 export default myQuestionPage;

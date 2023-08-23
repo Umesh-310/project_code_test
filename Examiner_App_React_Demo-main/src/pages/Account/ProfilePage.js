@@ -1,15 +1,8 @@
 import React from "react";
-import { Profile, Sidebar } from "../../components";
+import { Profile } from "../../components";
 
 const ProfilePage = () => {
-  return (
-    <>
-      {/* <Header /> */}
-      <Sidebar />
-      <Profile style={{ height: "100vh" }} />
-      {/* <Footer /> */}
-    </>
-  );
+  return <Profile style={{ height: "100vh" }} />;
 };
 
 export default ProfilePage;
