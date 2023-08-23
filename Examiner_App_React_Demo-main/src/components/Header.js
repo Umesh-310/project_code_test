@@ -153,16 +153,16 @@ const Header = ({ showDrawerIcon, handleDrawer }) => {
                     </Link>
                   </MenuItem>
                   <Divider sx={{ borderColor: "gray" }} />
-                  <MenuItem onClick={handleCloseMenu}>
-                    <NavLink
-                      className={css.navText}
-                      to="/auth/logout"
-                      style={{ display: "flex", gap: "5px" }}
-                    >
+                  <NavLink
+                    className={css.navText}
+                    to="/auth/logout"
+                    style={{ display: "flex", gap: "5px" }}
+                  >
+                    <MenuItem onClick={handleCloseMenu}>
                       <i className="bi bi-box-arrow-right"></i>
                       <span>LogOut</span>
-                    </NavLink>
-                  </MenuItem>
+                    </MenuItem>
+                  </NavLink>
                 </Menu>
               </>
             )}
@@ -263,16 +263,16 @@ const Header = ({ showDrawerIcon, handleDrawer }) => {
                 </MenuItem>
                 <Divider sx={{ borderColor: "gray", p: 0 }} />
 
-                <MenuItem sx={menuCss} onClick={handleClose}>
-                  <NavLink
-                    className={css.navText}
-                    to="/auth/logout"
-                    style={{ display: "flex", gap: "5px" }}
-                  >
+                <NavLink
+                  className={css.navText}
+                  to="/auth/logout"
+                  style={{ display: "flex", gap: "5px" }}
+                >
+                  <MenuItem sx={menuCss} onClick={handleClose}>
                     <i className="bi bi-box-arrow-right"></i>
                     <span>LogOut</span>
-                  </NavLink>
-                </MenuItem>
+                  </MenuItem>
+                </NavLink>
               </>
             ) : (
               [candidateGuide, examinerGuide, signUp, Login].map((val, i) => {

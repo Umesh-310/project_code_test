@@ -291,7 +291,7 @@ def run_code_view(request):
     headers = {"client-secret": os.environ.get('CLIENT_SECRET')}
     resp = requests.post(os.environ.get('CODE_EVALUATION_URL'), json=data, headers=headers)
     dict = json.loads(resp.text)
-
+    print('dict' , dict)
     status = 'NA'
     success = False
     errorMsg = ''
@@ -302,7 +302,7 @@ def run_code_view(request):
         dict = json.loads(resp.text)
         request_status = dict['request_status']
         compile_status = dict['result']['compile_status']
-
+        print('dict' , dict)
         if(request_status['code'] == 'CODE_COMPILED' and compile_status != 'OK'):
             errorMsg = compile_status
             break
@@ -312,9 +312,11 @@ def run_code_view(request):
 
             status = run_status['status']
             if status == 'RE':
+                print(status)
                 errorMsg = run_status['stderr']
                 break
             elif status == 'AC':
+                print(status)
                 success = True
                 break
 
@@ -419,20 +421,22 @@ def submit_view(answer, language, testcases):
             'input': validInput,
             'id': "client-001"
         }
+        print("data" , data)
         headers = {"client-secret": os.environ.get('CLIENT_SECRET')}
         resp = requests.post(os.environ.get('CODE_EVALUATION_URL'), json=data, headers=headers)
         dict = json.loads(resp.text)
-
+ 
         status = 'NA'
-        success = False
+        success = False 
         errorMsg = ''
         output = ''
-
+        print("dict ====>" , dict)
         while True:
             resp = requests.get(dict['status_update_url'], headers=headers)
             dict = json.loads(resp.text)
             request_status = dict['request_status']
             compile_status = dict['result']['compile_status']
+            print("compile_status" , dict)
 
             if(request_status['code'] == 'CODE_COMPILED' and compile_status != 'OK'):
                 errorMsg = compile_status
@@ -452,7 +456,7 @@ def submit_view(answer, language, testcases):
         if(status != 'NA'):
             resp = requests.get(output_file_path, headers=headers)
             output = resp.text.rstrip()
-
+            print({resp , output})
         if output == validOutput:
             testcaseResults.append(True)
             passedTestcases += 1

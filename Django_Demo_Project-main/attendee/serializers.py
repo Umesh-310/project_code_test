@@ -49,7 +49,7 @@ class AttendExamCreateSerializer(serializers.ModelSerializer):
             attend_exam = AttendExam.objects.create(**validated_data)
             exam_questions = ExamQuestion.objects.filter(exam = exam).all()
             for exam_question in exam_questions:
-                AttendQuestion.objects.create(attend_exam=attend_exam, question=exam_question.question, number=exam_question.number,python_code = exam_question.question.python_init_code,javascript_code = exam_question.question.javascript_init_code)
+                AttendQuestion.objects.create(attend_exam=attend_exam, question=exam_question.question, number=exam_question.number,) #python_code = exam_question.question.python_init_code,javascript_code = exam_question.question.javascript_init_code
             return attend_exam
         
         except Exception as e:
@@ -99,7 +99,7 @@ class AttendExamUpdateSerializer(serializers.ModelSerializer):
 class AttendQuestionUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = AttendQuestion
-        fields = ['id', 'answer', 'python_code', 'javascript_code', 'answer_recorded_at', 'total_mark', 'percent_mark', 'total_passed_testcase', 'submited_at', 'is_submited', 'is_atended']
+        fields = ['id', 'answer', 'answer_recorded_at', 'total_mark', 'percent_mark', 'total_passed_testcase', 'submited_at', 'is_submited', 'is_atended'] # 'python_code', 'javascript_code', 
 
     def update(self, instance, validated_data):
         try:
@@ -107,8 +107,8 @@ class AttendQuestionUpdateSerializer(serializers.ModelSerializer):
                 instance.is_atended = validated_data.get('is_atended', instance.is_atended)
 
                 instance.answer = validated_data.get('answer', instance.answer)
-                instance.python_code = validated_data.get('python_code', instance.python_code)
-                instance.javascript_code = validated_data.get('javascript_code', instance.javascript_code)
+                # instance.python_code = validated_data.get('python_code', instance.python_code)
+                # instance.javascript_code = validated_data.get('javascript_code', instance.javascript_code)
                 
                 instance.answer_recorded_at = validated_data.get('answer_recorded_at', instance.answer_recorded_at)
                 instance.submited_at = validated_data.get('submited_at', instance.submited_at)

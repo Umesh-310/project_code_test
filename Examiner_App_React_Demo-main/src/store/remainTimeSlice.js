@@ -39,7 +39,7 @@ export const startRecording = async (dispatch) => {
       recorder: recorder,
       stream: stream,
       videoBlob: null,
-    }),
+    })
   );
 };
 
@@ -61,13 +61,13 @@ export const getRemainTime = async (
   exam,
   recorder,
   stream,
-  pasteCount,
+  pasteCount
 ) => {
   const startTime = new Date(data?.start_time).getTime();
   const maxEndTime = new Date(
     startTime +
       exam?.time_limit_hour * 60 * 60 * 1000 +
-      exam?.time_limit_minute * 60 * 1000,
+      exam?.time_limit_minute * 60 * 1000
   ).getTime();
   const currentTime = new Date();
   if (
@@ -84,7 +84,7 @@ export const getRemainTime = async (
       recorder,
       stream,
       pasteCount,
-      "Time Exceeded",
+      "Time Exceeded"
     );
   }
 
@@ -111,8 +111,11 @@ export const endAttendExam = async (
   recorder,
   stream,
   pasteCount,
-  status = "Submitted",
+  status = "Submitted"
 ) => {
+  console.log({
+    recorder,
+  });
   try {
     dispatch(END_ATTEND_EXAM_BEGIN());
     let access_token = loadCookies("access_token");
@@ -140,7 +143,7 @@ export const endAttendExam = async (
       response = await axios.patch(
         `/api/attendee/end_attend_exam/${attendExamId}/`,
         form_data,
-        { headers },
+        { headers }
       );
     } else {
       const body = {
@@ -150,7 +153,7 @@ export const endAttendExam = async (
       response = await axios.patch(
         `/api/attendee/end_attend_exam/${attendExamId}/`,
         body,
-        { headers },
+        { headers }
       );
     }
 

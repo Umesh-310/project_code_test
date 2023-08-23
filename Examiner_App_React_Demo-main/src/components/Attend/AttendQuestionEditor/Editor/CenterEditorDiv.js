@@ -6,12 +6,14 @@ import { sublime } from "@uiw/codemirror-theme-sublime";
 import { darcula } from "@uiw/codemirror-theme-darcula";
 import { python } from "@codemirror/lang-python";
 import { javascript } from "@codemirror/lang-javascript";
+import { php } from "@codemirror/lang-php";
 
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 
 const extensions = {
   PYTHON3: [python()],
   JAVASCRIPT_NODE: [javascript({ jsx: true })],
+  PHP: [php()],
 };
 
 const CenterEditorDiv = ({
@@ -33,7 +35,7 @@ const CenterEditorDiv = ({
   const onReset = async (e) => {
     if (
       window.confirm(
-        "Are you sure you want to reset back to the default code template? If you click OK you will lose your current code.",
+        "Are you sure you want to reset back to the default code template? If you click OK you will lose your current code."
       )
     ) {
       setInitialCode();
@@ -129,6 +131,7 @@ const CenterEditorDiv = ({
             >
               <MenuItem value={"PYTHON3"}>Python 3</MenuItem>
               <MenuItem value={"JAVASCRIPT_NODE"}>JavaScript(Nodejs)</MenuItem>
+              <MenuItem value={"PHP"}>PHP</MenuItem>
             </Select>
           </FormControl>
           <FormControl

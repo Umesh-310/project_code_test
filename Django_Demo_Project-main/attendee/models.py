@@ -15,7 +15,8 @@ ATTEND_QUESTION_NUMBER = (
 
 ATTEND_QUESTION_LANGUAGE = (
     ('JAVASCRIPT_NODE', "JAVASCRIPT_NODE"),
-    ("PYTHON3", "PYTHON3")
+    ("PYTHON3", "PYTHON3"),
+    ("PHP", "PHP"),
 )
 
 # Create your models here.
@@ -87,8 +88,8 @@ class AttendQuestion(SoftDelete):
 
     language = models.CharField(max_length=20, choices=ATTEND_QUESTION_LANGUAGE, default="PYTHON3")
     answer = models.TextField(max_length=5000, default=None, null=True, blank=True)
-    python_code = models.TextField(max_length=5000, default=None, null=True, blank=True)
-    javascript_code = models.TextField(max_length=5000, default=None, null=True, blank=True)
+    # python_code = models.TextField(max_length=5000, default=None, null=True, blank=True)
+    # javascript_code = models.TextField(max_length=5000, default=None, null=True, blank=True)
     answer_recorded_at = models.DateTimeField(default=None, null=True, blank=True)
 
     # mark = models.IntegerField(default=0)
