@@ -99,7 +99,7 @@ class AttendExamUpdateSerializer(serializers.ModelSerializer):
 class AttendQuestionUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = AttendQuestion
-        fields = ['id', 'answer', 'answer_recorded_at', 'total_mark', 'percent_mark', 'total_passed_testcase', 'submited_at', 'is_submited', 'is_atended'] # 'python_code', 'javascript_code', 
+        fields = ['id', 'answer', 'answer_recorded_at', 'total_mark', 'language' , 'percent_mark', 'total_passed_testcase', 'submited_at', 'is_submited', 'is_atended'] # 'python_code', 'javascript_code', 
 
     def update(self, instance, validated_data):
         try:
@@ -113,6 +113,7 @@ class AttendQuestionUpdateSerializer(serializers.ModelSerializer):
                 instance.answer_recorded_at = validated_data.get('answer_recorded_at', instance.answer_recorded_at)
                 instance.submited_at = validated_data.get('submited_at', instance.submited_at)
                 instance.is_submited = validated_data.get('is_submited', instance.is_submited)
+                instance.language = validated_data.get('language', instance.language)
                 instance.total_passed_testcase = validated_data.get('total_passed_testcase', instance.total_passed_testcase)
                 instance.total_mark = validated_data.get('total_passed_testcase', instance.total_mark)
                 instance.percent_mark = (int(instance.total_mark) * 100) / 5

@@ -17,6 +17,7 @@ ATTEND_QUESTION_LANGUAGE = (
     ('JAVASCRIPT_NODE', "JAVASCRIPT_NODE"),
     ("PYTHON3", "PYTHON3"),
     ("PHP", "PHP"),
+    ("JAVA14", "JAVA14"),
 )
 
 # Create your models here.
