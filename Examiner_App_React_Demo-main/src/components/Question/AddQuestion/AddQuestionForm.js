@@ -10,8 +10,6 @@ const WizardForm = ({ onCreateQue }) => {
     description: "",
     example: "",
     is_private: false,
-    python_init_code: "",
-    javascript_init_code: "",
   });
   const [testcase1, setTestcase1] = useState({ input: "", output: "" });
   const [testcase2, setTestcase2] = useState({ input: "", output: "" });
@@ -34,8 +32,6 @@ const WizardForm = ({ onCreateQue }) => {
       description: que.description,
       level: que.level,
       example: que.example,
-      python_init_code: que.python_init_code,
-      javascript_init_code: que.javascript_init_code,
       testcases: [
         { input: testcase1.input, output: testcase1.output, number: 1 },
         { input: testcase2.input, output: testcase2.output, number: 2 },
@@ -52,15 +48,15 @@ const WizardForm = ({ onCreateQue }) => {
       {page === 1 && (
         <Page1Question onSubmit={nextPageHandler} que={que} setQue={setQue} />
       )}
+      {/* {page === 2 && (
+          <Page2InitCode
+            previousPage={previousPageHandler}
+            onSubmit={nextPageHandler}
+            que={que}
+            setQue={setQue}
+          />
+        )} */}
       {page === 2 && (
-        <Page2InitCode
-          previousPage={previousPageHandler}
-          onSubmit={nextPageHandler}
-          que={que}
-          setQue={setQue}
-        />
-      )}
-      {page === 3 && (
         <Page3Testcase
           previousPage={previousPageHandler}
           onSubmit={onSubmitHandler}

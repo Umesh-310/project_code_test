@@ -1246,3 +1246,10 @@ h6 {
     padding-top: auto;
   }
 }
+
+.loadingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

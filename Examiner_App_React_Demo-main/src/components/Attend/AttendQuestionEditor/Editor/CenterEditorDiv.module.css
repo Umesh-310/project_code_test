@@ -1,0 +1,22 @@
+.selectOptions {
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+}
+.selectIcon {
+  min-width: 30px;
+  max-width: 30px;
+  height: 30px;
+}
+.selectOptions h4 {
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0;
+  padding: 0;
+}
+.leftBttonGroup {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

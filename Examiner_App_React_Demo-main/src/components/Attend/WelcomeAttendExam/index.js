@@ -7,6 +7,7 @@ import { loadCookies } from "../../../utils/Cookies";
 import AdbIcon from "@mui/icons-material/Adb";
 import { startRecording } from "../../../store/remainTimeSlice";
 import { useDispatch } from "react-redux";
+import { SET_EXAM_ID } from "../../../store/answerSlice";
 
 const WelcomeAttendExam = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const WelcomeAttendExam = () => {
   const getExamDetail = async () => {
     try {
       const response = await axios.get(
-        `/api/examiner/get_single_exam/${examId}`,
+        `/api/examiner/get_single_exam/${examId}`
       );
       if (response.status === 200) {
         setData(response.data.data);
@@ -42,12 +43,13 @@ const WelcomeAttendExam = () => {
       const response = await axios.post(
         `/api/attendee/register_for_attend_exam/`,
         body,
-        { headers },
+        { headers }
       );
 
       if (response.status === 201) {
         if (response?.data?.data?.extra?.start_now) {
           const attendExamId = response?.data?.data?.data.id;
+          dispatch(SET_EXAM_ID(attendExamId));
           await startRecording(dispatch);
           navigate(`/attend/attend_exam_detail/${attendExamId}`, {
             replace: true,

@@ -36,6 +36,7 @@ import ExaminerOnlyRoute from "./ExaminerOnlyRoute";
 import AttendeeOnlyRoute from "./AttendeeOnlyRoute";
 import { getCurrentUser } from "../store/authSlice";
 import AddHeaderFooter from "./AddHeaderFooter";
+import AttendQuestionEditorNew from "../components/Attend/AttendQuestionEditorNew";
 
 const ThemeRoutes = () => {
   const user = useSelector((state) => state.auth.user);
@@ -274,7 +275,16 @@ const ThemeRoutes = () => {
           path="/attend/attend_question_editor/:id"
           element={
             <AttendeeOnlyRoute>
-              <AttendQuestionEditorPage />
+              {/* <AttendQuestionEditorPage /> */}
+              <AttendQuestionEditorNew />
+            </AttendeeOnlyRoute>
+          }
+        />
+        <Route
+          path="/attend/attend_question_editor_new/:id"
+          element={
+            <AttendeeOnlyRoute>
+              <AttendQuestionEditorNew />
             </AttendeeOnlyRoute>
           }
         />

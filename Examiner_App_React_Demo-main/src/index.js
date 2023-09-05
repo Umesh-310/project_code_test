@@ -9,17 +9,22 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import store from "./store/store";
+import persistStore from "redux-persist/es/persistStore";
+import { PersistGate } from "redux-persist/integration/react";
 
+let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <ToastContainer />
-    <ReduxProvider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ReduxProvider>
-  </React.StrictMode>,
+  <React.Fragment>
+    <BrowserRouter>
+      <ToastContainer />
+      <ReduxProvider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </ReduxProvider>
+    </BrowserRouter>
+  </React.Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function

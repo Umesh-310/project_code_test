@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -7,8 +7,15 @@ import { toast } from "react-toastify";
 
 import { loadCookies } from "../../../utils/Cookies";
 import { endAttendExam, getRemainTime } from "../../../store/remainTimeSlice";
+import {
+  FULL_SCREEN_LEAVE,
+  SWITCH_WINDOW,
+  SWITCH_TAB,
+} from "../../../store/answerSlice";
 import PageTitle from "./PageTitle";
 import LeftInstruction from "./LeftInstruction";
+import DefalutModel from "../../Modal/DefalutModel";
+import { FULL_SCREEN_MESS, LogoText } from "../../../utils/utils";
 
 const AttendExamDetail = () => {
   const dispatch = useDispatch();
@@ -18,6 +25,7 @@ const AttendExamDetail = () => {
   const [data, setData] = useState();
   const [attendQuestions, setAttendQuestions] = useState([]);
   const [exam, setExam] = useState();
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   const recorder = useSelector((state) => state.remainTime.recorder);
   const stream = useSelector((state) => state.remainTime.stream);
@@ -34,7 +42,7 @@ const AttendExamDetail = () => {
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/attendee/get_single_attend_exam/${attendExamId}`,
-        { headers },
+        { headers }
       );
       if (response.status === 200) {
         if (response?.data?.data?.is_submited) {
@@ -54,7 +62,7 @@ const AttendExamDetail = () => {
             response?.data?.data?.exam,
             recorder,
             stream,
-            pasteCount,
+            pasteCount
           );
         }
       } else {
@@ -72,7 +80,7 @@ const AttendExamDetail = () => {
       attendExamId,
       recorder,
       stream,
-      pasteCount,
+      pasteCount
     );
   };
 
@@ -90,7 +98,7 @@ const AttendExamDetail = () => {
           exam,
           recorder,
           stream,
-          pasteCount,
+          pasteCount
         );
       }, 10000);
 
@@ -98,110 +106,180 @@ const AttendExamDetail = () => {
     }
   }, [remainTime]);
 
+  const enterFullScreen = () => {
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) {
+      /* Safari */
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      /* IE11 */
+      element.msRequestFullscreen();
+    }
+  };
+
+  const handleFullScreenChange = useCallback(() => {
+    !!!document.fullscreenElement && dispatch(FULL_SCREEN_LEAVE());
+    setIsFullScreen(!!document.fullscreenElement);
+  }, [dispatch]);
+
+  useEffect(() => {
+    setIsFullScreen(!!document.fullscreenElement);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("fullscreenchange", handleFullScreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullScreenChange);
+    };
+  }, [handleFullScreenChange]);
+
+  const handleVisibilityChange = useCallback(() => {
+    if (document.hidden) {
+      dispatch(SWITCH_TAB());
+    } else {
+      console.log("User returned to the page");
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [handleVisibilityChange]);
+
+  useEffect(() => {
+    const handleWindowBlur = () => {
+      dispatch(SWITCH_WINDOW());
+    };
+
+    window.addEventListener("blur", handleWindowBlur);
+
+    // Clean up the event listeners when the component unmounts
+    return () => {
+      window.removeEventListener("blur", handleWindowBlur);
+    };
+  }, [dispatch]);
+
   return (
-    <div className="row custom-main" style={{ margin: "50px" }}>
-      <div className="col-lg-1"></div>
-      <div className="col-lg-10">
-        <div className="card">
-          <div className="card-body">
-            <PageTitle data={exam} />
-            <div className="card-body pt-3">
-              <div className="row">
-                <div className="col-md-3">
-                  <LeftInstruction
-                    exam={exam}
-                    endAttendExamHandler={endAttendExamHandler}
-                  />
-                </div>
-                <div className="col-md-1"></div>
-                <div className="col-md-8">
-                  <div className="pagetitle">
-                    <h1>Questions</h1>
+    <>
+      <DefalutModel
+        open={!isFullScreen}
+        handleClose={() => console.log("first")}
+        onClick={() => enterFullScreen()}
+        Title={<LogoText />}
+        message={FULL_SCREEN_MESS}
+        arrgeBtn="Enter Full Screen"
+      />
+      <div className="row custom-main" style={{ margin: "50px" }}>
+        <div className="col-lg-1"></div>
+        <div className="col-lg-10">
+          <div className="card">
+            <div className="card-body">
+              <PageTitle data={exam} />
+              <div className="card-body pt-3">
+                <div className="row">
+                  <div className="col-md-3">
+                    <LeftInstruction
+                      exam={exam}
+                      endAttendExamHandler={endAttendExamHandler}
+                    />
                   </div>
-                  <hr />
-                  {attendQuestions.map((attendQuestion) => {
-                    return (
-                      <div
-                        className="card text-center"
-                        style={{}}
-                        key={attendQuestion?.id}
-                      >
-                        <div className="card-body">
-                          <div className="row m-0">
-                            <div className="col-md-4">
-                              <h5 className="card-text">
-                                {attendQuestion?.question?.title}
-                              </h5>
-                            </div>
-                            <div className="col-md-4">
-                              {attendQuestion?.question?.level === "Easy" ? (
-                                <h5
-                                  className="card-text badge bg-success"
-                                  style={{
-                                    fontSize: "18px",
-                                    fontWeight: "normal",
-                                  }}
-                                >
-                                  {attendQuestion?.question?.level}
+                  <div className="col-md-1"></div>
+                  <div className="col-md-8">
+                    <div className="pagetitle">
+                      <h1>Questions</h1>
+                    </div>
+                    <hr />
+                    {attendQuestions.map((attendQuestion) => {
+                      return (
+                        <div
+                          className="card text-center"
+                          style={{}}
+                          key={attendQuestion?.id}
+                        >
+                          <div className="card-body">
+                            <div className="row m-0">
+                              <div className="col-md-4">
+                                <h5 className="card-text">
+                                  {attendQuestion?.question?.title}
                                 </h5>
-                              ) : attendQuestion?.question?.level ===
-                                "Medium" ? (
-                                <h5
-                                  className="card-text badge bg-warning"
-                                  style={{
-                                    fontSize: "18px",
-                                    fontWeight: "normal",
-                                  }}
-                                >
-                                  {attendQuestion?.question?.level}
-                                </h5>
-                              ) : attendQuestion?.question?.level === "Hard" ? (
-                                <h5
-                                  className="card-text badge bg-danger"
-                                  style={{
-                                    fontSize: "18px",
-                                    fontWeight: "normal",
-                                  }}
-                                >
-                                  {attendQuestion?.question?.level}
-                                </h5>
-                              ) : (
-                                <></>
-                              )}
-                            </div>
-                            <div className="col-md-4">
-                              {attendQuestion?.is_submited ? (
-                                <button
-                                  type="button"
-                                  className="btn btn-secondary"
-                                  disabled
-                                >
-                                  Submmited
-                                </button>
-                              ) : (
-                                <Link
-                                  type="button"
-                                  className="btn btn-outline-primary"
-                                  to={`/attend/attend_question_editor/${attendQuestion.id}`}
-                                >
-                                  Begin Challenge
-                                </Link>
-                              )}
+                              </div>
+                              <div className="col-md-4">
+                                {attendQuestion?.question?.level === "Easy" ? (
+                                  <h5
+                                    className="card-text badge bg-success"
+                                    style={{
+                                      fontSize: "18px",
+                                      fontWeight: "normal",
+                                    }}
+                                  >
+                                    {attendQuestion?.question?.level}
+                                  </h5>
+                                ) : attendQuestion?.question?.level ===
+                                  "Medium" ? (
+                                  <h5
+                                    className="card-text badge bg-warning"
+                                    style={{
+                                      fontSize: "18px",
+                                      fontWeight: "normal",
+                                    }}
+                                  >
+                                    {attendQuestion?.question?.level}
+                                  </h5>
+                                ) : attendQuestion?.question?.level ===
+                                  "Hard" ? (
+                                  <h5
+                                    className="card-text badge bg-danger"
+                                    style={{
+                                      fontSize: "18px",
+                                      fontWeight: "normal",
+                                    }}
+                                  >
+                                    {attendQuestion?.question?.level}
+                                  </h5>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                              <div className="col-md-4">
+                                {attendQuestion?.is_submited ? (
+                                  <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    disabled
+                                  >
+                                    Submmited
+                                  </button>
+                                ) : (
+                                  <Link
+                                    type="button"
+                                    className="btn btn-outline-primary"
+                                    to={`/attend/attend_question_editor/${attendQuestion.id}`}
+                                  >
+                                    Begin Challenge
+                                  </Link>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="col-lg-1"></div>
-    </div>
+        <div className="col-lg-1"></div>
+      </div>
+    </>
   );
 };
 

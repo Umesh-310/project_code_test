@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import AdbIcon from "@mui/icons-material/Adb";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const EditorHeader = () => {
+const EditorHeader = ({ redirect }) => {
+  const Url = `${process.env.REACT_APP_BASE_URL}/attend/attend_exam_detail/${redirect}`;
   return (
     <>
       <header
@@ -27,7 +28,7 @@ const EditorHeader = () => {
         </div>
 
         <div className="d-flex align-items-center justify-content-between">
-          <Link to={-1} className="btn btn-primary">
+          <Link to={redirect ? Url : -1} className="btn btn-primary">
             <ArrowBackIcon /> Back to Assesment
           </Link>
         </div>

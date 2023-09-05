@@ -27,16 +27,42 @@ export const increasePasteCount = async (dispatch, pasteCount) => {
 };
 
 export const startRecording = async (dispatch) => {
+  /* 
+  const tabs = await browser.tabs.queryTabs({
+  active: true,
+});
+
+const tabId = tabs[0].id;
+
+const gdmOptions = {
+  video: {
+    displaySurface: "tab",
+    tabId: tabId,
+  },
+};
+  */
+  const gdmOptions = {
+    video: {
+      displaySurface: "application",
+    },
+    // preferCurrentTab: true,
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true,
+      sampleRate: 44100,
+      suppressLocalAudioPlayback: true,
+    },
+    surfaceSwitching: "include",
+    selfBrowserSurface: "include",
+    systemAudio: "exclude",
+  };
   const mediaDevices = navigator.mediaDevices;
-  const stream = await mediaDevices.getDisplayMedia({
-    video: true,
-    audio: true,
-  });
+  const stream = await mediaDevices.getDisplayMedia(gdmOptions);
   const recorder = new RecordRTCPromisesHandler(stream, { type: "video" });
   await recorder.startRecording();
   dispatch(
     START_RECORDING_SUCCESS({
-      recorder: recorder,
+      recorder: null, // recorder,
       stream: stream,
       videoBlob: null,
     })
@@ -94,7 +120,6 @@ export const getRemainTime = async (
   const tempSeconds =
     Math.floor((maxEndTime - currentTime) / 1000) - tempMinutes * 60;
   const tempMiliSeconds = maxEndTime - currentTime;
-
   const tempRemainTime = {
     mili_seconds: tempMiliSeconds,
     seconds: tempSeconds,
@@ -113,9 +138,6 @@ export const endAttendExam = async (
   pasteCount,
   status = "Submitted"
 ) => {
-  console.log({
-    recorder,
-  });
   try {
     dispatch(END_ATTEND_EXAM_BEGIN());
     let access_token = loadCookies("access_token");

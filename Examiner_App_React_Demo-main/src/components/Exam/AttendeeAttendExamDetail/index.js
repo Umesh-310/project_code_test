@@ -35,8 +35,9 @@ const AttendeeAttendExamDetailCard = () => {
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
         `/api/attendee/get_single_attend_exam_by_examiner/${attendExamId}`,
-        { headers },
+        { headers }
       );
+      console.log({ response });
       if (response.status === 200) {
         setData(response.data.data);
       } else {
@@ -71,7 +72,7 @@ const AttendeeAttendExamDetailCard = () => {
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
         `/api/attendee/mail_attend_exam_pdf/${attendExamId}`,
-        { headers },
+        { headers }
       );
 
       if (response.status === 200) {

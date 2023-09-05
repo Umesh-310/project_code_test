@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { sublime } from "@uiw/codemirror-theme-sublime";
+// import { sublime } from "@uiw/codemirror-theme-sublime";
 import { darcula } from "@uiw/codemirror-theme-darcula";
-import { python } from "@codemirror/lang-python";
-import { javascript } from "@codemirror/lang-javascript";
+// import { python } from "@codemirror/lang-python";
+// import { javascript } from "@codemirror/lang-javascript";
 
 import {
   getRemainTime,
@@ -28,8 +28,8 @@ const AttendQuestionEditor = () => {
   const [isReset, setIsReset] = useState(false);
   const [data, setData] = useState();
   const [attendExam, setAttendExam] = useState({});
-  const [attendQuestions, setAttendQuestions] = useState([]);
   const [exam, setExam] = useState();
+  const [attendQuestions, setAttendQuestions] = useState([]);
   const [isTimeLimit, setIsTimeLimit] = useState(false);
 
   const [language, setLanguage] = useState("PYTHON3");
@@ -69,6 +69,9 @@ const AttendQuestionEditor = () => {
         { headers }
       );
       if (response.status === 200) {
+        console.log({ data: response?.data?.data?.language || "not Found" });
+        const language_res =
+          response?.data?.data?.language || "JAVASCRIPT_NODE";
         if (reset) {
           setData({
             ...data,
@@ -77,19 +80,27 @@ const AttendQuestionEditor = () => {
               response?.data?.data?.question?.javascript_init_code,
           });
 
-          if (lang === "PYTHON3") {
-            setCode(response?.data?.data?.question?.python_init_code);
-          } else if (lang === "JAVASCRIPT_NODE") {
-            setCode(response?.data?.data?.question?.javascript_init_code);
+          if (language_res === "PYTHON3") {
+            setCode(
+              `name = input()                  # Reading input from STDIN\nprint('Hi, %s.' % name)         # Writing output to STDOUT`
+            );
+          } else if (language_res === "JAVASCRIPT_NODE") {
+            setCode(`const def(arg){\n\treturn arg;\n} def(input);`);
+          } else if (language_res === "PHP") {
+            setCode(
+              `<?php\n/*\n\n// Sample code to perform I/O:\n\n\nfscanf(STDIN, "%s\n", $name);           // Reading input from STDIN\necho "Hi, ".$name.".\n";                // Writing output to STDOUT\n\n// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail\n*/\n\n// Write your code here\n?>`
+            );
           }
         } else {
           setData(response?.data?.data);
-
-          if (lang === "PYTHON3") {
-            setCode(response?.data?.data?.python_code);
-          } else if (lang === "JAVASCRIPT_NODE") {
-            setCode(response?.data?.data?.javascript_code);
+          if (response?.data?.data?.answer) {
+            setCode(response?.data?.data?.answer);
           }
+          // if (language_res === "PYTHON3") {
+          //   setCode(response?.data?.data?.python_code);
+          // } else if (language_res === "JAVASCRIPT_NODE") {
+          //   setCode(response?.data?.data?.javascript_code);
+          // }
         }
         setIsReset(false);
 
@@ -233,10 +244,7 @@ const AttendQuestionEditor = () => {
         toast.error("No Active User");
         window.location.href = `${process.env.REACT_APP_BASE_URL}/attend_exam/check_start_exam/${attendExam?.exam?.id}`;
       }
-      const body =
-        language === "PYTHON3"
-          ? { python_code: updatedCode, answer: updatedCode }
-          : { javascript_code: updatedCode, answer: updatedCode };
+      const body = { language: language, answer: updatedCode };
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/attendee/update_attend_question/${attendQuestionId}/`,
