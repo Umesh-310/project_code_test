@@ -64,7 +64,7 @@ class Question(SoftDelete):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.title} : {self.level} : {self.created_by} : {self.is_deleted} : {self.is_updated} : {self.updated_at}'
+        return f'{self.title} : {self.level} : {self.id} : {self.created_by.name} : {self.is_deleted} : {self.is_updated}'
     
 class Testcase(SoftDelete):
     id = models.UUIDField(primary_key=True,default=uuid.uuid4)

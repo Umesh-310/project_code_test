@@ -56,7 +56,12 @@ class AttendExam(SoftDelete):
     attendee = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
-    total_cheat = models.IntegerField(default=0) 
+    # total_cheat = models.IntegerField(default=0) 
+    copy_detect = models.IntegerField(default=0) 
+    full_screen_leave = models.IntegerField(default=0) 
+    switched_tab = models.IntegerField(default=0) 
+    switched_window = models.IntegerField(default=0) 
+    
     total_mark = models.IntegerField(default=0)
     percent_mark = models.IntegerField(default=0)
     # start_time = models.DateTimeField(auto_now_add=True)
@@ -77,7 +82,7 @@ class AttendExam(SoftDelete):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.attendee} : {self.exam} : {self.is_active}: {self.percent_mark}"
+        return f"{self.attendee.email} : {self.exam.id} : {self.is_active}: {self.percent_mark}"
     
 
 
@@ -109,4 +114,4 @@ class AttendQuestion(SoftDelete):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.question} : {self.number} : {self.percent_mark} : {self.is_atended}"
+        return f"{self.question.title} : {self.number} : {self.percent_mark} : {self.is_atended} : {self.id}"

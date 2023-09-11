@@ -31,6 +31,7 @@ const AttendExamDetail = () => {
   const stream = useSelector((state) => state.remainTime.stream);
   const pasteCount = useSelector((state) => state.remainTime.pasteCount);
   const remainTime = useSelector((state) => state.remainTime.remainTime);
+  const cheatingData = useSelector((s) => s.answer);
 
   const getAttendExamDetail = async () => {
     try {
@@ -80,7 +81,7 @@ const AttendExamDetail = () => {
       attendExamId,
       recorder,
       stream,
-      pasteCount
+      cheatingData
     );
   };
 

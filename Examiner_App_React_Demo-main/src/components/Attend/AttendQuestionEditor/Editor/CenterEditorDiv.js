@@ -1,13 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-
-import CodeMirror from "@uiw/react-codemirror";
-import { python } from "@codemirror/lang-python";
-import { javascript } from "@codemirror/lang-javascript";
-import { php } from "@codemirror/lang-php";
-import { java } from "@codemirror/lang-java";
-import { cpp } from "@codemirror/lang-cpp";
-
 import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import loading_img from "../../../../assets/images/loading.jpg";
@@ -16,28 +7,36 @@ import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import { useDispatch, useSelector } from "react-redux";
 import { SAVE_MY_CODE, SET_LANGUAGE } from "../../../../store/answerSlice";
 import css from "./CenterEditorDiv.module.css";
-import {
-  pythonSvg,
-  javaSvg,
-  javascriptSvg,
-  rubyonrailsSvg,
-  phpSvg,
-  asp_netSvg,
-  cppSvg,
-  typescriptSvg,
-} from "../../../../utils/svgPack";
 import DefalutModel from "../../../Modal/DefalutModel";
-import { LogoText, REST_TEXT } from "../../../../utils/utils";
+import { LogoText, RESET_TEXT } from "../../../../utils/utils";
+import LanguageSelect from "./LanguageSelect";
+
+// //////////////////////////////////////////////////
+// https://github.com/securingsincity/react-ace/blob/master/docs/Ace.mdnpm i react-ace
+
+import AceEditor from "react-ace";
+
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-typescript";
+import "ace-builds/src-noconflict/mode-php";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/mode-c_cpp";
+
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-tomorrow";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 const extensions = {
-  PYTHON3: [python()],
-  JAVASCRIPT_NODE: [javascript({ jsx: true })],
-  PHP: [php()],
-  JAVA14: [java()],
-  // RUBY : [ruby()]
-  // C : [c()]
-  CPP17: [cpp()],
-  TYPESCRIPT: [javascript({ typescript: true, jsx: true })],
+  PYTHON3: "python",
+  JAVASCRIPT_NODE: "javascript",
+  PHP: "php",
+  JAVA14: "java",
+  TYPESCRIPT: "typescript",
+  CPP17: "c_cpp",
+  RUBY: "ruby",
+  C: "c_cpp",
 };
 
 const CenterEditorDiv = ({
@@ -50,7 +49,7 @@ const CenterEditorDiv = ({
   const [initialCode, setInitialCode] = useState(null);
   const [tempLanguage, setTempLanguage] = useState(language || "JAVA14");
   const [tempCode, setTempCode] = useState(code || "");
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("monokai");
   const [reset, setReset] = useState(false);
   const { answer } = useSelector((S) => S.answer);
   const dispatch = useDispatch();
@@ -111,7 +110,7 @@ const CenterEditorDiv = ({
         handleClose={() => setReset(false)}
         onClick={() => onReset()}
         Title={<LogoText />}
-        message={REST_TEXT}
+        message={RESET_TEXT}
         closeBtn="Cancel"
         arrgeBtn="Reset"
       />
@@ -126,65 +125,16 @@ const CenterEditorDiv = ({
             backgroundColor: "#2B2B2B",
           }}
         >
-          <>
-            <FormControl
-              sx={{ m: 1, minWidth: 120, backgroundColor: "#fff" }}
-              variant="filled"
-              color="success"
-            >
-              <InputLabel id="demo-simple-select-label">Language</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={tempLanguage}
-                label="Laguage"
-                onChange={onChangeLanguage}
-              >
-                <MenuItem value={"PYTHON3"}>
-                  <div className={css.selectOptions}>
-                    <span>{pythonSvg(css.selectIcon)}</span>
-                    <h4>Python</h4>
-                  </div>
-                </MenuItem>
-                <MenuItem value={"JAVASCRIPT_NODE"}>
-                  <div className={css.selectOptions}>
-                    <span>{javascriptSvg(css.selectIcon)}</span>
-                    <h4>JavaScript(Nodejs)</h4>
-                  </div>
-                </MenuItem>
-                <MenuItem value={"PHP"}>
-                  <div className={css.selectOptions}>
-                    <span>{phpSvg(css.selectIcon)}</span>
-                    <h4>Php</h4>
-                  </div>
-                </MenuItem>
-                <MenuItem value={"JAVA14"}>
-                  <div className={css.selectOptions}>
-                    <span>{javaSvg(css.selectIcon)}</span>
-                    <h4>Java 14</h4>
-                  </div>
-                </MenuItem>
-                <MenuItem value={"TYPESCRIPT"}>
-                  <div className={css.selectOptions}>
-                    <span>{typescriptSvg(css.selectIcon)}</span>
-                    <h4>typescript</h4>
-                  </div>
-                </MenuItem>
-                <MenuItem value={"CPP17"}>
-                  <div className={css.selectOptions}>
-                    <span>{cppSvg(css.selectIcon)}</span>
-                    <h4>Cpp</h4>
-                  </div>
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </>
+          <LanguageSelect
+            tempLanguage={tempLanguage}
+            onChangeLanguage={onChangeLanguage}
+          />
           <div className={css.leftBttonGroup}>
-            {theme === "dark" ? (
+            {theme === "monokai" ? (
               <button
                 className="btn btn-secondary m-3"
                 style={{ width: "auto", fontSize: "16px" }}
-                onClick={() => setTheme("light")}
+                onClick={() => setTheme("tomorrow")}
               >
                 <NightlightRoundIcon />
                 dark
@@ -198,7 +148,7 @@ const CenterEditorDiv = ({
                   color: "black",
                   backgroundColor: "#fff",
                 }}
-                onClick={() => setTheme("dark")}
+                onClick={() => setTheme("monokai")}
               >
                 <LightModeIcon />
                 Light
@@ -215,7 +165,7 @@ const CenterEditorDiv = ({
           </div>
         </div>
         <div id="code-mirror-id">
-          <CodeMirror
+          {/* <CodeMirror
             className="w-96 h-90"
             value={tempCode}
             height="90vh"
@@ -224,6 +174,31 @@ const CenterEditorDiv = ({
             extensions={extensions[tempLanguage]}
             onChange={updateCode}
             type="textarea"
+          /> */}
+          <AceEditor
+            placeholder="CoderTest"
+            mode={extensions[tempLanguage]}
+            theme={theme}
+            name="blah2"
+            onLoad={() => console.log("loading...")}
+            onChange={updateCode}
+            fontSize={16}
+            showPrintMargin={true}
+            showGutter={true}
+            highlightActiveLine={true}
+            value={tempCode}
+            // onCopy={(e) => console.log(e)}
+            // onPaste={onPasteFun}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: false,
+              showLineNumbers: true,
+              useWorker: false,
+              tabSize: 3,
+            }}
+            height="83vh"
+            width="665px"
           />
         </div>
       </div>

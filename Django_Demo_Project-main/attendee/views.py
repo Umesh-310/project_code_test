@@ -158,7 +158,8 @@ class EndAttendExamAPIView(APIView):
         
     def patch(self, request, pk, format=None):
         attend_exam = self.get_object(pk)
-        self.check_object_permissions(request, attend_exam)
+        print({'serializer' : "serializer"})
+        # self.check_object_permissions(request, attend_exam)
         data = request.data
         data['end_time'] = timezone.now() 
         data['is_active'] = False
@@ -558,7 +559,11 @@ def send_result_pdf_mail(attdend_exam_data,pk):
         'attend_exam_start_time' : attdend_exam_data['start_time'],
         'attend_exam_end_time' : attdend_exam_data['end_time'],
         'attend_exam_submited_at' : attdend_exam_data['submited_at'],
-        'attend_exam_total_cheat' : attdend_exam_data['total_cheat'],
+        # 'attend_exam_total_cheat' : attdend_exam_data['total_cheat'],
+        'attend_exam_copy_detect' : attdend_exam_data['copy_detect'],
+        'attend_exam_full_screen_leave' : attdend_exam_data['full_screen_leave'],
+        'attend_exam_switched_tab' : attdend_exam_data['switched_tab'],
+        'attend_exam_switched_window' : attdend_exam_data['switched_window'],
         'attend_questions' : attdend_exam_data['attend_questions'],
         'MEDIA_ROOT' : MEDIA_ROOT,
         'download_link' : os.environ.get('BACKEND_END_DOMAIN_LINK')+"api/attendee/download_attend_exam_result_pdf/"+pk,
@@ -640,7 +645,12 @@ class DownloadAttendExamResultPDFAPIView(APIView):
             'attend_exam_start_time' : attdend_exam_data['start_time'],
             'attend_exam_end_time' : attdend_exam_data['end_time'],
             'attend_exam_submited_at' : attdend_exam_data['submited_at'],
-            'attend_exam_total_cheat' : attdend_exam_data['total_cheat'],
+            # 'attend_exam_total_cheat' : attdend_exam_data['total_cheat'],
+            'attend_exam_copy_detect' : attdend_exam_data['copy_detect'],
+            'attend_exam_full_screen_leave' : attdend_exam_data['full_screen_leave'],
+            'attend_exam_switched_tab' : attdend_exam_data['switched_tab'],
+            'attend_exam_switched_window' : attdend_exam_data['switched_window'],
+
             'attend_questions' : attdend_exam_data['attend_questions'],
             'MEDIA_ROOT' : MEDIA_ROOT,
         }

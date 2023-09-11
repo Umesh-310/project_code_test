@@ -1,4 +1,4 @@
-const CheatingCard = ({ data }) => {
+const CheatingCard = ({ data, detect, lable }) => {
   return (
     <>
       <div className="card">
@@ -8,19 +8,19 @@ const CheatingCard = ({ data }) => {
             style={{ display: "flex", justifyContent: "space-between" }}
           >
             <li className="nav-item">
-              <h5 className="custom-form-label">Cheating</h5>
+              <h5 className="custom-form-label">{lable}</h5>
             </li>
           </ul>
         </div>
         <div className="card-body">
           <div className="row">
             <div className="col-12">
-              {data?.total_cheat > 0 ? (
+              {data > 0 ? (
                 <>
                   <h5 className="card-title" style={{ color: "red" }}>
                     Detected &nbsp;
                     <span className="badge bg-danger text-white">
-                      {data?.total_cheat} Paste
+                      {data} {detect && detect}
                     </span>
                   </h5>
                 </>

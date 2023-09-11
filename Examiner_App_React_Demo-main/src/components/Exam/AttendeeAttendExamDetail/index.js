@@ -144,14 +144,53 @@ const AttendeeAttendExamDetailCard = () => {
                     <div className="col-md-3 col-sm-6">
                       <ScoreCard data={data} />
                     </div>
-                    <div className="col-md-3 col-sm-6">
-                      <CheatingCard data={data} />
-                    </div>
                   </>
                 ) : (
                   <></>
                 )}
               </div>
+            </div>
+
+            <div className="col-lg-12">
+              {data?.end_time != null && (
+                <div className="row">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <h4 style={{ fontWeight: "bold", margin: "20px 0px" }}>
+                        Cheating Detail
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="col-md-3 col-sm-6">
+                    <CheatingCard
+                      data={data?.copy_detect}
+                      detect="Paste"
+                      lable="copy Detect"
+                    />
+                  </div>
+                  <div className="col-md-3 col-sm-6">
+                    <CheatingCard
+                      data={data?.full_screen_leave}
+                      detect="leave"
+                      lable="Leave Full Screen"
+                    />
+                  </div>
+                  <div className="col-md-3 col-sm-6">
+                    <CheatingCard
+                      data={data?.switched_tab}
+                      detect="leave"
+                      lable="Leave Tab"
+                    />
+                  </div>
+                  <div className="col-md-3 col-sm-6">
+                    <CheatingCard
+                      data={data?.switched_window}
+                      lable="Leave Window"
+                      detect="leave"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="row">
@@ -163,14 +202,12 @@ const AttendeeAttendExamDetailCard = () => {
           </div>
         </section>
         <section className="section p-3">
-          {data?.video ? (
+          {data?.video && (
             <div className="row">
               <div className="col-md-12">
                 <AttendExamVideoCard AttendExamVideo={data?.video} />
               </div>
             </div>
-          ) : (
-            <></>
           )}
         </section>
       </main>

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { loadCookies } from "../utils/Cookies";
 import { RecordRTCPromisesHandler } from "recordrtc";
+import { EMPTY_FULL_STATE } from "./answerSlice";
 
 const initialRemainTimeState = {
   isTimeLimit: false,
@@ -43,7 +44,7 @@ const gdmOptions = {
   */
   const gdmOptions = {
     video: {
-      displaySurface: "application",
+      displaySurface: "window",
     },
     // preferCurrentTab: true,
     audio: {
@@ -135,7 +136,7 @@ export const endAttendExam = async (
   attendExamId,
   recorder,
   stream,
-  pasteCount,
+  cheatingData,
   status = "Submitted"
 ) => {
   try {
@@ -159,8 +160,12 @@ export const endAttendExam = async (
         console.log("MP4FILE : ", mp4File);
 
         form_data.append("video", mp4File, mp4File.name);
-        form_data.append("total_cheat", pasteCount);
+        // form_data.append("total_cheat", pasteCount);
         form_data.append("status", status);
+        form_data.append("copy_detect", cheatingData.copyDetect);
+        form_data.append("full_screen_leave", cheatingData.fullScreenLeave);
+        form_data.append("switched_tab", cheatingData.switchedTab);
+        form_data.append("switched_window", cheatingData.switchedWindow);
       }
       response = await axios.patch(
         `/api/attendee/end_attend_exam/${attendExamId}/`,
@@ -169,7 +174,11 @@ export const endAttendExam = async (
       );
     } else {
       const body = {
-        total_cheat: pasteCount,
+        // total_cheat: pasteCount,
+        copy_detect: cheatingData.copyDetect,
+        full_screen_leave: cheatingData.fullScreenLeave,
+        switched_tab: cheatingData.switchedTab,
+        switched_window: cheatingData.switchedWindow,
         status: status,
       };
       response = await axios.patch(
@@ -182,6 +191,7 @@ export const endAttendExam = async (
     if (response.status === 200) {
       toast.success(response.data.extra);
       dispatch(END_ATTEND_EXAM_SUCCESS());
+      dispatch(EMPTY_FULL_STATE());
       navigate(`/attend/attend_exam_end/${attendExamId}`, { replace: true });
     } else {
       toast.error("Server Error");

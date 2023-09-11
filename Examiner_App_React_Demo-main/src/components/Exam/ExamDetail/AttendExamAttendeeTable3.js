@@ -76,7 +76,7 @@ const headCells = [
     align: "center",
   },
   {
-    id: "total_cheat",
+    id: "copy_detect",
     numeric: false,
     label: "Cheating",
     align: "center",
@@ -270,7 +270,7 @@ function EnhancedTable({ data: rows }) {
                               {row?.percent_mark} %
                             </TableCell>
                             <TableCell align="center">
-                              {row?.total_cheat > 0
+                              {row?.copy_detect > 0
                                 ? "Detected"
                                 : "Not Detected"}
                             </TableCell>

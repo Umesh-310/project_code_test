@@ -75,7 +75,7 @@ const headCells = [
     align: "center",
   },
   {
-    id: "total_cheat",
+    id: "copy_detect",
     numeric: false,
     label: "Cheating",
     align: "center",
@@ -155,12 +155,12 @@ function EnhancedTable({ data: rows }) {
   useEffect(() => {
     let rowsOnMount = stableSort(
       rows,
-      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
+      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY)
     );
 
     rowsOnMount = rowsOnMount.slice(
       0 * DEFAULT_ROWS_PER_PAGE,
-      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
+      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE
     );
     setVisibleRows(rowsOnMount);
   }, [rows]);
@@ -174,15 +174,15 @@ function EnhancedTable({ data: rows }) {
 
       const sortedRows = stableSort(
         rows,
-        getComparator(toggledOrder, newOrderBy),
+        getComparator(toggledOrder, newOrderBy)
       );
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
+        page * rowsPerPage + rowsPerPage
       );
       setVisibleRows(updatedRows);
     },
-    [order, orderBy, page, rowsPerPage, rows],
+    [order, orderBy, page, rowsPerPage, rows]
   );
 
   const handleChangePage = useCallback(
@@ -192,7 +192,7 @@ function EnhancedTable({ data: rows }) {
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         newPage * rowsPerPage,
-        newPage * rowsPerPage + rowsPerPage,
+        newPage * rowsPerPage + rowsPerPage
       );
 
       setVisibleRows(updatedRows);
@@ -206,7 +206,7 @@ function EnhancedTable({ data: rows }) {
       const newPaddingHeight = 33 * numEmptyRows;
       setPaddingHeight(newPaddingHeight);
     },
-    [order, orderBy, rowsPerPage, rows],
+    [order, orderBy, rowsPerPage, rows]
   );
 
   const handleChangeRowsPerPage = useCallback(
@@ -219,14 +219,14 @@ function EnhancedTable({ data: rows }) {
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         0 * updatedRowsPerPage,
-        0 * updatedRowsPerPage + updatedRowsPerPage,
+        0 * updatedRowsPerPage + updatedRowsPerPage
       );
 
       setVisibleRows(updatedRows);
       // There is no layout jump to handle on the first page.
       setPaddingHeight(0);
     },
-    [order, orderBy, rows],
+    [order, orderBy, rows]
   );
 
   if (rows?.length <= 0) {
@@ -274,7 +274,7 @@ function EnhancedTable({ data: rows }) {
                               {row?.percent_mark} %
                             </TableCell>
                             <TableCell align="center">
-                              {row?.total_cheat > 0
+                              {row?.copy_detect > 0
                                 ? "Detected"
                                 : "Not Detected"}
                             </TableCell>

@@ -15,6 +15,7 @@ import {
   FULL_SCREEN_ALERT_MESS,
   INIT_CODE,
   LogoText,
+  getCode,
 } from "../../../utils/utils";
 import CenterEditorDiv from "../AttendQuestionEditor/Editor/CenterEditorDiv";
 import css from "./AttendQuestionEditor.module.css";
@@ -26,7 +27,7 @@ import {
   FULL_SCREEN_LEAVE,
   SWITCH_WINDOW,
 } from "../../../store/answerSlice";
-
+import ResizableDiv from "../../../utils/ResizableDiv";
 const AttendQuestionEditorNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -100,10 +101,7 @@ const AttendQuestionEditorNew = () => {
             const initCode = INIT_CODE[language_res];
             setCode(initCode);
           } else {
-            const initCode = answer[attendQuestionId][language_res]
-              ? answer[attendQuestionId][language_res]
-              : INIT_CODE[language_res];
-            setCode(initCode);
+            setCode(getCode({ answer, attendQuestionId, language_res }));
           }
           setLoding(false);
 
@@ -131,6 +129,7 @@ const AttendQuestionEditorNew = () => {
           toast.error("Server Error");
         }
       } catch (error) {
+        setLoding(false);
         toast.error("Server Error");
         console.log({ error });
       }
@@ -156,7 +155,6 @@ const AttendQuestionEditorNew = () => {
   };
 
   const handlePaste = async (event) => {
-    console.log("first");
     if (isCopied) {
       const clipboardData =
         event.clipboardData ||
@@ -268,7 +266,7 @@ const AttendQuestionEditorNew = () => {
   const runCodeHandler = async (e, inputVal) => {
     setIsOutputLoading(true);
     try {
-      await updateAnswerCode(code);
+      await updateAnswerCode({ updatedCode: code, language: language });
       let access_token = loadCookies("access_token");
       if (!access_token) {
         toast.error("No Active User");
@@ -278,7 +276,11 @@ const AttendQuestionEditorNew = () => {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/attendee/run_code_view/`,
         {
-          answer: code,
+          answer: getCode({
+            answer,
+            attendQuestionId,
+            language_res: language,
+          }),
           testcases: testcases,
           language: language,
           filename: attendQuestionId,
@@ -308,7 +310,7 @@ const AttendQuestionEditorNew = () => {
     try {
       setIsOutputLoading(true);
       setTestcaseResults([]);
-      await updateAnswerCode(code);
+      await updateAnswerCode({ updatedCode: code, language: language });
       let access_token = loadCookies("access_token");
       if (!access_token) {
         toast.error("No Active User");
@@ -318,7 +320,11 @@ const AttendQuestionEditorNew = () => {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/attendee/run_testcase_view/`,
         {
-          answer: code,
+          answer: getCode({
+            answer,
+            attendQuestionId,
+            language_res: language,
+          }),
           testcases: testcases,
           language: language,
           filename: attendQuestionId,
@@ -349,7 +355,7 @@ const AttendQuestionEditorNew = () => {
   const submitCodeHandler = async () => {
     setIsFinalSubmitLoading(true);
     try {
-      await updateAnswerCode({ updatedCode: code, language: curLanguage });
+      await updateAnswerCode({ updatedCode: code, language: language });
       let access_token = loadCookies("access_token");
       if (!access_token) {
         toast.error("No Active User");
@@ -359,7 +365,11 @@ const AttendQuestionEditorNew = () => {
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/attendee/end_attend_question/${attendQuestionId}/`,
         {
-          answer: code,
+          answer: getCode({
+            answer,
+            attendQuestionId,
+            language_res: language,
+          }),
           testcases: testcases,
           language: language,
           filename: attendQuestionId,
@@ -369,9 +379,9 @@ const AttendQuestionEditorNew = () => {
 
       if (response.status === 200) {
         attendExamId
-          ? navigate(
-              `${process.env.REACT_APP_BASE_URL}/attend/attend_exam_detail/${attendExamId}`
-            )
+          ? navigate(`attend/attend_exam_detail/${attendExamId}`, {
+              replace: true,
+            })
           : navigate(-1);
       } else {
         toast.error("Server Error");
@@ -431,7 +441,7 @@ const AttendQuestionEditorNew = () => {
         message={"Copy Paste Detected from outside"}
         arrgeBtn="Okay"
       />
-      <EditorHeader redirect={attendExamId} />
+      <EditorHeader redirect={attendExamId} />  
       <div
         className={css.main}
         onCopy={handleCopy}

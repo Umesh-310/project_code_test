@@ -38,5 +38,15 @@ export const LogoText = () => (
 
 export const QUE_SUBMIT_MESSAGE =
   "Are You sure to Submit.\n You will not be Allowed to edit again.";
-export const REST_TEXT =
+export const RESET_TEXT =
   "Are you sure you want to reset back to the default code template? If you click OK you will lose your current code.";
+
+export const getCode = ({ answer, attendQuestionId, language_res }) => {
+  const code =
+    answer[attendQuestionId] && answer[attendQuestionId][language_res]
+      ? answer[attendQuestionId][language_res]
+      : INIT_CODE?.[language_res]
+      ? INIT_CODE[language_res]
+      : "";
+  return code;
+};

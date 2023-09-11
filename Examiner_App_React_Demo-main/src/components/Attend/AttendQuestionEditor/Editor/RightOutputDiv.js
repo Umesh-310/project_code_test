@@ -38,6 +38,7 @@ const RightOutputDiv = ({
         handleClose={() => setConfirmModal(false)}
         onClick={() => {
           setIsFinalSubmit(true);
+          setConfirmModal(false);
         }}
         Title={<LogoText />}
         message={QUE_SUBMIT_MESSAGE}

@@ -29,7 +29,7 @@ class AttendExamSerializer(serializers.ModelSerializer):
     attend_questions  = serializers.SerializerMethodField()
     class Meta:
         model = AttendExam
-        fields = ['id', 'attendee', 'exam', 'total_mark', 'percent_mark', 'total_cheat', 'attend_questions', 'start_time', 'end_time', 'video', 'submited_at', 'is_submited', 'is_active','is_qualified','status']
+        fields = ['id', 'attendee', 'exam', 'total_mark', 'percent_mark', 'copy_detect', 'full_screen_leave' ,'switched_tab' , 'switched_window', 'attend_questions', 'start_time', 'end_time', 'video', 'submited_at', 'is_submited', 'is_active','is_qualified','status']
 
     def get_attend_questions(self, obj):
         attend_questions = obj.attendquestion_set.all()
@@ -60,12 +60,16 @@ class AttendExamCreateSerializer(serializers.ModelSerializer):
 class AttendExamUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = AttendExam
-        fields = ['id', 'total_mark', 'percent_mark', 'is_qualified', 'status', 'total_cheat', 'start_time', 'end_time', 'video', 'submited_at', 'is_submited', 'is_active']
+        fields = ['id', 'total_mark', 'percent_mark', 'is_qualified', 'status', 'copy_detect', 'full_screen_leave' ,'switched_tab' , 'switched_window', 'start_time', 'end_time', 'video', 'submited_at', 'is_submited', 'is_active']
 
     def update(self, instance, validated_data):
         try:
             if instance.is_submited == False:
-                instance.total_cheat = validated_data.get('total_cheat', instance.total_cheat)
+                # instance.total_cheat = validated_data.get('total_cheat', instance.total_cheat)
+                instance.copy_detect = validated_data.get('copy_detect', instance.copy_detect)
+                instance.full_screen_leave = validated_data.get('full_screen_leave', instance.full_screen_leave)
+                instance.switched_tab = validated_data.get('switched_tab', instance.switched_tab)
+                instance.switched_window = validated_data.get('switched_window', instance.switched_window)
                 instance.end_time = validated_data.get('end_time', instance.end_time)
                 instance.is_active = False
                 instance.video = validated_data.get('video', instance.video)
