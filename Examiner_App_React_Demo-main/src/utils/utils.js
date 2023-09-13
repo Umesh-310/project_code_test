@@ -8,9 +8,52 @@ export const FULL_SCREEN_MESS =
 
 export const INIT_CODE = {
   PYTHON3: `name = input()\t\t\t# Reading input from STDIN\nprint('Hi, %s.' % name)\t\t# Writing output to STDOUT`,
-  JAVASCRIPT_NODE: `const def(arg){\n\treturn arg;\n} def(input);`,
-  PHP: `<?php\n/*\n\n// Sample code to perform I/O:\n\n\nfscanf(STDIN, "%s\n", $name);           // Reading input from STDIN\necho "Hi, ".$name.".\n";                // Writing output to STDOUT\n\n// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail\n*/\n\n// Write your code here\n?>`,
-  JAVA14: `JAVA`,
+  JAVASCRIPT_NODE: `process.stdin.resume(); 
+var i = 0, t = 0; 
+process.stdin.on('data', function (n) {
+        main(n.toString());
+        process.exit(); 
+}); 
+function main(arg) { 
+  return arg
+}`,
+  PHP: `<?php\n/*\n\n// Sample code to perform I/O:\n\n\nfscanf(STDIN, "%s\n", $name);           // Reading input from STDIN\necho "Hi, ".$name.".\n";\n?>`,
+  JAVA14: `import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+class MainClass {
+    public static void main(String args[] ) throws Exception {
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String name = br.readLine();                // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+    }
+}
+`,
+  TYPESCRIPT: `process.stdin.on('data', function (n: any) {
+        main(n.toString());
+        process.exit(); 
+}); 
+function main(arg: string) { 
+    console.log(arg)
+  return arg
+}`,
+  CPP17: `#include <iostream>
+using namespace std;
+int main() {
+	int num;
+	cin >> num;    //Reading input from STDIN
+	cout << "Input number is " << num << endl;	// Writing output to STDOUT
+}`,
+  RUBY: `name = gets.chomp     
+print "Hi, #{name}.\n"`,
+  C: `#include <stdio.h>
+
+int main(){
+	int num;
+	scanf("%d", &num);              	                  // Reading input from STDIN
+	printf("Input number is %d.\n", num);       // Writing output to STDOUT
+}`,
 };
 
 export const LogoText = () => (

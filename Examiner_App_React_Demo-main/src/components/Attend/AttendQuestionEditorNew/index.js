@@ -27,7 +27,6 @@ import {
   FULL_SCREEN_LEAVE,
   SWITCH_WINDOW,
 } from "../../../store/answerSlice";
-import ResizableDiv from "../../../utils/ResizableDiv";
 const AttendQuestionEditorNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -379,9 +378,10 @@ const AttendQuestionEditorNew = () => {
 
       if (response.status === 200) {
         attendExamId
-          ? navigate(`attend/attend_exam_detail/${attendExamId}`, {
-              replace: true,
-            })
+          ? // navigate(`attend/attend_exam_detail/${attendExamId}`, {
+            //     replace: true,
+            //   })
+            navigate(-1)
           : navigate(-1);
       } else {
         toast.error("Server Error");
@@ -441,7 +441,7 @@ const AttendQuestionEditorNew = () => {
         message={"Copy Paste Detected from outside"}
         arrgeBtn="Okay"
       />
-      <EditorHeader redirect={attendExamId} />  
+      <EditorHeader redirect={attendExamId} />
       <div
         className={css.main}
         onCopy={handleCopy}

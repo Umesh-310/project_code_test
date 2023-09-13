@@ -22,7 +22,7 @@ export const createQuestion = async (dispatch, body, navigate) => {
       headers,
     });
 
-    if (response.status == 201) {
+    if (response.status === 201) {
       toast.success(response.data.msg);
       dispatch(CREATE_QUESTION_SUCCESS());
       navigate("/question/my_question/");
@@ -49,7 +49,7 @@ export const getAllQuestion = async (dispatch, navigate, search) => {
     const headers = { Authorization: `Bearer ${access_token}` };
     const response = await axios.get(
       `/api/author/questionlist/?search=${search}`,
-      { headers },
+      { headers }
     );
     if (response.status == 200) {
       console.log(response.data);
@@ -74,13 +74,13 @@ export const GetMyQuestion = createAsyncThunk(
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
         `/api/author/questionlist_by_me/?search=${search}`,
-        { headers },
+        { headers }
       );
       return response.data;
     } catch (error) {
       return rejectWihValue(error);
     }
-  },
+  }
 );
 
 // export const getMyQuestion = async(dispatch, navigate,search) =>{

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Box, Button, Divider, Menu, MenuItem, Tooltip } from "@mui/material";
 import css from "./header.module.css";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = ({ showDrawerIcon, handleDrawer }) => {
@@ -239,8 +239,8 @@ const Header = ({ showDrawerIcon, handleDrawer }) => {
                 />
                 {[candidateGuide, examinerGuide].map((val, i) => {
                   return (
-                    <>
-                      <MenuItem sx={menuCss} key={i} onClick={handleClose}>
+                    <Fragment key={i}>
+                      <MenuItem sx={menuCss} onClick={handleClose}>
                         {val}
                       </MenuItem>
                       <Divider
@@ -248,7 +248,7 @@ const Header = ({ showDrawerIcon, handleDrawer }) => {
                           borderColor: "gray",
                         }}
                       />
-                    </>
+                    </Fragment>
                   );
                 })}
                 <MenuItem sx={menuCss} onClick={handleClose}>

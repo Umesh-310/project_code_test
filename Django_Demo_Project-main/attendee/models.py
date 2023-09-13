@@ -18,8 +18,11 @@ ATTEND_QUESTION_LANGUAGE = (
     ("PYTHON3", "PYTHON3"),
     ("PHP", "PHP"),
     ("JAVA14", "JAVA14"),
+    ("TYPESCRIPT","TYPESCRIPT"),
+    ("CPP17","CPP17"),
+    ("RUBY","RUBY"),
+    ("C","C")
 )
-
 # Create your models here.
 class NonDeleted(models.Manager):
     def get_queryset(self):
@@ -92,12 +95,12 @@ class AttendQuestion(SoftDelete):
     attend_exam = models.ForeignKey(AttendExam, on_delete=models.CASCADE, default=None, null=True, blank=True)
     number = models.IntegerField(choices=ATTEND_QUESTION_NUMBER, default=1)
 
-    language = models.CharField(max_length=20, choices=ATTEND_QUESTION_LANGUAGE, default="PYTHON3")
+    language = models.CharField(max_length=20, choices=ATTEND_QUESTION_LANGUAGE, default="JAVASCRIPT_NODE")
     answer = models.TextField(max_length=5000, default=None, null=True, blank=True)
     # python_code = models.TextField(max_length=5000, default=None, null=True, blank=True)
     # javascript_code = models.TextField(max_length=5000, default=None, null=True, blank=True)
     answer_recorded_at = models.DateTimeField(default=None, null=True, blank=True)
-
+    code_snippets = models.JSONField(default=None , null=True, blank=True)
     # mark = models.IntegerField(default=0)
     total_passed_testcase = models.IntegerField(default=0, null=True, blank=True)
     total_mark = models.IntegerField(default=0, null=True, blank=True)

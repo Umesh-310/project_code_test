@@ -250,7 +250,7 @@ class EndAttendQuestionAPIView(APIView):
         
     def put(self, request, pk, format=None):
         attend_question = self.get_object(pk)
-        self.check_object_permissions(request, attend_question)
+        # self.check_object_permissions(request, attend_question)
         data = request.data
 
         answer = data['answer']

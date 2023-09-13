@@ -36,15 +36,15 @@ const WizardForm = ({
       {page === 1 && (
         <Page1Question onSubmit={nextPageHandler} que={que} setQue={setQue} />
       )}
-      {page === 2 && (
+      {/* {page === 2 && (
         <Page2InitCode
           previousPage={previousPageHandler}
           onSubmit={nextPageHandler}
           que={que}
           setQue={setQue}
         />
-      )}
-      {page === 3 && (
+      )} */}
+      {page === 2 && (
         <Page3Testcase
           previousPage={previousPageHandler}
           onSubmit={onSubmitHandler}

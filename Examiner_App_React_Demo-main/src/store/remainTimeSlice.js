@@ -101,7 +101,7 @@ export const getRemainTime = async (
     maxEndTime - currentTime <= 120000 &&
     maxEndTime - currentTime >= 110000
   ) {
-    alert("Please Submit ASAP \nExam will end in 2 minutes...");
+    // alert("Please Submit ASAP \nExam will end in 2 minutes...");
   }
   if (maxEndTime - currentTime <= 0) {
     await endAttendExam(

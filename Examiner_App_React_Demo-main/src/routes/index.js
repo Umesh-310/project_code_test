@@ -281,14 +281,6 @@ const ThemeRoutes = () => {
           }
         />
         <Route
-          path="/attend/attend_question_editor_new/:id"
-          element={
-            <AttendeeOnlyRoute>
-              <AttendQuestionEditorNew />
-            </AttendeeOnlyRoute>
-          }
-        />
-        <Route
           path="/attend/attend_exam_end/:id"
           element={
             <AttendeeOnlyRoute>
