@@ -1,0 +1,57 @@
+.examCardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+}
+.ExamDate span {
+  color: #1b313d80;
+  font-size: 13px;
+}
+.examCardBottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed #1b313d80;
+  padding: 10px;
+}
+.copyLinkBtn {
+  color: #368bef;
+  cursor: pointer;
+  font-size: 14px;
+}
+.cardBody {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.qualified h2 {
+  font-weight: 800;
+  font-size: 24px;
+}
+.qualified,
+.challenges,
+.Attendee span {
+  font-size: 13px;
+  color: rgba(27, 49, 61, 0.5);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.challenges h2 {
+  font-weight: 500;
+  font-size: 16px;
+}
+.Attendee {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.Attendee h2 {
+  font-weight: 800;
+  font-size: 24px;
+}
+.check {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+}

@@ -9,12 +9,15 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+@import url("../font/static/Rubik-Regular.ttf");
 :root {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Rubik", sans-serif;
   background: #f6f9ff;
   color: #444444;
 }
@@ -35,7 +38,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  /* font-family: "Nunito", sans-serif; */
+  font-family: "Rubik", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -65,6 +69,10 @@ h6 {
   margin-bottom: 0;
   font-weight: 600;
   color: #012970;
+}
+.pagetitleFlex {
+  display: flex;
+  justify-content: space-between;
 }
 
 /*--------------------------------------------------------------
@@ -237,7 +245,8 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Rubik", sans-serif;
 }
 
 .card-title span {
@@ -257,7 +266,8 @@ h6 {
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Rubik", sans-serif;
   font-size: 20px;
 }
 
@@ -306,7 +316,8 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  /* font-family: "Nunito", sans-serif; */
+  font-family: "Rubik", sans-serif;
   color: #899bbd;
   font-weight: 600;
 }
@@ -373,7 +384,8 @@ h6 {
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  /* font-family: "Nunito", sans-serif; */
+  font-family: "Rubik", sans-serif;
 }
 
 /* .header {
@@ -988,7 +1000,8 @@ h6 {
 }
 
 .iconslist .label {
-  font-family: var(--bs-font-monospace);
+  /* font-family: var(--bs-font-monospace); */
+  font-family: "Rubik", sans-serif;
   display: inline-block;
   width: 100%;
   overflow: hidden;

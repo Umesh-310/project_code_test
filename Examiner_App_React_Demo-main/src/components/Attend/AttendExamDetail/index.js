@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, Fragment } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -16,6 +16,7 @@ import PageTitle from "./PageTitle";
 import LeftInstruction from "./LeftInstruction";
 import DefalutModel from "../../Modal/DefalutModel";
 import { FULL_SCREEN_MESS, LogoText } from "../../../utils/utils";
+import css from "./AttendExamDetail.module.css";
 
 const AttendExamDetail = () => {
   const dispatch = useDispatch();
@@ -29,11 +30,9 @@ const AttendExamDetail = () => {
 
   const recorder = useSelector((state) => state.remainTime.recorder);
   const stream = useSelector((state) => state.remainTime.stream);
-  const pasteCount = useSelector((state) => state.remainTime.pasteCount);
   const remainTime = useSelector((state) => state.remainTime.remainTime);
   const cheatingData = useSelector((s) => s.answer);
-
-  const getAttendExamDetail = async () => {
+  const getAttendExamDetail = useCallback(async () => {
     try {
       let access_token = loadCookies("access_token");
       if (!access_token) {
@@ -63,7 +62,7 @@ const AttendExamDetail = () => {
             response?.data?.data?.exam,
             recorder,
             stream,
-            pasteCount
+            cheatingData
           );
         }
       } else {
@@ -72,7 +71,7 @@ const AttendExamDetail = () => {
     } catch (error) {
       navigate(`/attend/attend_exam_end/${attendExamId}`, { replace: true });
     }
-  };
+  }, [attendExamId, cheatingData, dispatch, navigate, recorder, stream]);
 
   const endAttendExamHandler = async () => {
     await endAttendExam(
@@ -87,7 +86,7 @@ const AttendExamDetail = () => {
 
   useEffect(() => {
     getAttendExamDetail();
-  }, []);
+  }, [getAttendExamDetail]);
 
   useEffect(() => {
     if (exam?.is_time_limit) {
@@ -99,13 +98,22 @@ const AttendExamDetail = () => {
           exam,
           recorder,
           stream,
-          pasteCount
+          cheatingData
         );
       }, 10000);
 
       return () => clearInterval(interval);
     }
-  }, [remainTime]);
+  }, [
+    data,
+    dispatch,
+    exam,
+    navigate,
+    cheatingData,
+    recorder,
+    remainTime,
+    stream,
+  ]);
 
   const enterFullScreen = () => {
     const element = document.documentElement;
@@ -196,21 +204,18 @@ const AttendExamDetail = () => {
                       <h1>Questions</h1>
                     </div>
                     <hr />
-                    {attendQuestions.map((attendQuestion) => {
-                      return (
-                        <div
-                          className="card text-center"
-                          style={{}}
-                          key={attendQuestion?.id}
-                        >
-                          <div className="card-body">
-                            <div className="row m-0">
-                              <div className="col-md-4">
+                    <div className={css.QutionCard}>
+                      {attendQuestions.map((attendQuestion, i) => {
+                        return (
+                          <Fragment key={i}>
+                            <div className={css.QuestionDetils}>
+                              {/* <div className="row m-0"> */}
+                              <div>
                                 <h5 className="card-text">
                                   {attendQuestion?.question?.title}
                                 </h5>
                               </div>
-                              <div className="col-md-4">
+                              <div>
                                 {attendQuestion?.question?.level === "Easy" ? (
                                   <h5
                                     className="card-text badge bg-success"
@@ -247,7 +252,7 @@ const AttendExamDetail = () => {
                                   <></>
                                 )}
                               </div>
-                              <div className="col-md-4">
+                              <div>
                                 {attendQuestion?.is_submited ? (
                                   <button
                                     type="button"
@@ -267,10 +272,11 @@ const AttendExamDetail = () => {
                                 )}
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                            <div className={css.dvider} />
+                          </Fragment>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -18,6 +18,8 @@ import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import { visuallyHidden } from "@mui/utils";
 
 import QuestionEditModal from "./QuestionEditModel";
+import { all_language_arr } from "../../../utils/utils";
+import { LevelBage } from "../../../utils/LevelBage";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -57,35 +59,47 @@ const headCells = [
     numeric: false,
     label: "Title",
     align: "left",
-    minWidth: 170,
+    minWidth: 165,
   },
   {
     id: "level",
     numeric: false,
     label: "Level",
     align: "center",
-    minWidth: 170,
+    minWidth: 165,
   },
   {
     id: "is_private",
     label: "Access",
-    minWidth: 170,
+    minWidth: 150,
     align: "center",
     format: (value) => {
       return value === true ? "Private" : "Public";
     },
   },
   {
+    id: "languages",
+    label: "Languages",
+    minWidth: 150,
+    align: "center",
+  },
+  {
+    id: "delete",
+    label: "Delete",
+    minWidth: 110,
+    align: "center",
+  },
+  {
     id: "action",
     numeric: false,
     label: "Action",
-    align: "right",
+    align: "center",
   },
 ];
 
 const DEFAULT_ORDER = "asc";
 const DEFAULT_ORDER_BY = "created_at";
-const DEFAULT_ROWS_PER_PAGE = 5;
+const DEFAULT_ROWS_PER_PAGE = 10;
 
 function EnhancedTableHead(props) {
   const { order, orderBy, rowCount, onRequestSort } = props;
@@ -151,12 +165,12 @@ function EnhancedTable({
   useEffect(() => {
     let rowsOnMount = stableSort(
       rows,
-      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
+      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY)
     );
 
     rowsOnMount = rowsOnMount.slice(
       0 * DEFAULT_ROWS_PER_PAGE,
-      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
+      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE
     );
     setVisibleRows(rowsOnMount);
   }, [rows]);
@@ -170,15 +184,15 @@ function EnhancedTable({
 
       const sortedRows = stableSort(
         rows,
-        getComparator(toggledOrder, newOrderBy),
+        getComparator(toggledOrder, newOrderBy)
       );
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
+        page * rowsPerPage + rowsPerPage
       );
       setVisibleRows(updatedRows);
     },
-    [order, orderBy, page, rowsPerPage, rows],
+    [order, orderBy, page, rowsPerPage, rows]
   );
 
   const handleChangePage = useCallback(
@@ -188,7 +202,7 @@ function EnhancedTable({
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         newPage * rowsPerPage,
-        newPage * rowsPerPage + rowsPerPage,
+        newPage * rowsPerPage + rowsPerPage
       );
 
       setVisibleRows(updatedRows);
@@ -202,7 +216,7 @@ function EnhancedTable({
       const newPaddingHeight = 33 * numEmptyRows;
       setPaddingHeight(newPaddingHeight);
     },
-    [order, orderBy, rowsPerPage, rows],
+    [order, orderBy, rowsPerPage, rows]
   );
 
   const handleChangeRowsPerPage = useCallback(
@@ -215,7 +229,7 @@ function EnhancedTable({
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         0 * updatedRowsPerPage,
-        0 * updatedRowsPerPage + updatedRowsPerPage,
+        0 * updatedRowsPerPage + updatedRowsPerPage
       );
 
       setVisibleRows(updatedRows);
@@ -223,7 +237,7 @@ function EnhancedTable({
       // There is no layout jump to handle on the first page.
       setPaddingHeight(0);
     },
-    [order, orderBy, rows],
+    [order, orderBy, rows]
   );
 
   if (rows.length <= 0) {
@@ -268,33 +282,7 @@ function EnhancedTable({
                           >
                             <TableCell component="th">{row.title}</TableCell>
                             <TableCell align="center">
-                              {row?.level === "Easy" && (
-                                <button
-                                  type="button"
-                                  className="btn btn-success rounded-pill"
-                                  disabled
-                                >
-                                  Easy
-                                </button>
-                              )}
-                              {row?.level === "Medium" && (
-                                <button
-                                  type="button"
-                                  className="btn btn-warning rounded-pill"
-                                  disabled
-                                >
-                                  Medium
-                                </button>
-                              )}
-                              {row?.level === "Hard" && (
-                                <button
-                                  type="button"
-                                  className="btn btn-danger rounded-pill"
-                                  disabled
-                                >
-                                  Hard
-                                </button>
-                              )}
+                              {<LevelBage level={row?.level} />}
                             </TableCell>
                             <TableCell
                               align="center"
@@ -303,6 +291,9 @@ function EnhancedTable({
                               }}
                             >
                               {row.is_private ? "Private" : "Public"}
+                            </TableCell>
+                            <TableCell align="center">
+                              {`${row?.exam_language.length}/${all_language_arr.length}`}
                             </TableCell>
                             <TableCell>
                               <button

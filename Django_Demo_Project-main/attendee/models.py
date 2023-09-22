@@ -77,8 +77,7 @@ class AttendExam(SoftDelete):
     is_qualified = models.BooleanField(default=False, null=True, blank=True)
 
     status = models.CharField(default='In Progress',max_length=20)
-
-
+    retake_exam=models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_updated = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

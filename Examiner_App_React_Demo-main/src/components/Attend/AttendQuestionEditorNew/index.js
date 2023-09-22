@@ -4,10 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { loadCookies } from "../../../utils/Cookies";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {
-  getRemainTime,
-  increasePasteCount,
-} from "../../../store/remainTimeSlice";
+import { getRemainTime } from "../../../store/remainTimeSlice";
 import EditorHeader from "../AttendQuestionEditor/EditorHeader";
 import LeftQuestionDiv from "../AttendQuestionEditor/Editor/LeftQuestionDiv";
 import DefalutModel from "../../Modal/DefalutModel";
@@ -32,6 +29,7 @@ const AttendQuestionEditorNew = () => {
   const navigate = useNavigate();
   const params = useParams();
   const attendQuestionId = params.id;
+  const cheatingData = useSelector((s) => s.answer);
   const {
     attendExamId,
     answer,
@@ -40,8 +38,7 @@ const AttendQuestionEditorNew = () => {
     curLanguage,
     copyDetect,
     fullScreenLeave,
-  } = useSelector((s) => s.answer);
-
+  } = cheatingData;
   console.table({
     answer,
     switchedTab,
@@ -72,7 +69,7 @@ const AttendQuestionEditorNew = () => {
 
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const { recorder, stream, pasteCount, remainTime } = useSelector(
+  const { recorder, stream, remainTime } = useSelector(
     (state) => state.remainTime
   );
 
@@ -121,7 +118,7 @@ const AttendQuestionEditorNew = () => {
               response?.data?.data?.attend_exam?.exam,
               recorder,
               stream,
-              pasteCount
+              cheatingData
             );
           }
         } else {
@@ -139,7 +136,7 @@ const AttendQuestionEditorNew = () => {
       dispatch,
       navigate,
       curLanguage,
-      pasteCount,
+      // cheatingData, // THINK
       recorder,
       stream,
     ]
@@ -149,7 +146,15 @@ const AttendQuestionEditorNew = () => {
     if (typeof window !== "undefined") {
       const selectedText = window.getSelection().toString();
       setCopiedText(selectedText);
+      console.log({ selectedText });
       setIsCopied(true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    // Handle the "Ctrl+X" keyboard shortcut for cut
+    if (event.ctrlKey && event.key === "x") {
+      // Simulate the cut event manually
+      handleCopy();
     }
   };
 
@@ -163,43 +168,14 @@ const AttendQuestionEditorNew = () => {
       if (copiedText !== pastedText) {
         dispatch(COPY_DETECT());
         setCopyModal(true);
-        await increasePasteCount(dispatch, pasteCount);
       }
     } else {
       dispatch(COPY_DETECT());
       setCopyModal(true);
-      await increasePasteCount(dispatch, pasteCount);
     }
   };
 
   const closeCopyModal = () => setCopyModal(false);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (exam?.is_time_limit) {
-        getRemainTime(
-          dispatch,
-          navigate,
-          attendExam,
-          exam,
-          recorder,
-          stream,
-          pasteCount
-        );
-      }
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [
-    dispatch,
-    navigate,
-    attendExam,
-    exam,
-    recorder,
-    remainTime,
-    stream,
-    pasteCount,
-  ]);
 
   useEffect(() => {
     getAttendQuestionDetail();
@@ -207,7 +183,6 @@ const AttendQuestionEditorNew = () => {
 
   useEffect(() => {
     setIsFullScreen(!!document.fullscreenElement);
-    // dispatch(EMPTY_FULL_STATE());
   }, []);
 
   const enterFullScreen = () => {
@@ -236,31 +211,34 @@ const AttendQuestionEditorNew = () => {
     };
   }, [handleFullScreenChange, isFullScreen]);
 
-  const updateAnswerCode = async ({ updatedCode, language }) => {
-    try {
-      let access_token = loadCookies("access_token");
-      if (!access_token) {
-        toast.error("No Active User");
-        window.location.href = `${process.env.REACT_APP_BASE_URL}/attend_exam/check_start_exam/${attendExam?.exam?.id}`;
-      }
-      const body = { language: language, answer: updatedCode };
-      const headers = { Authorization: `Bearer ${access_token}` };
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/attendee/update_attend_question/${attendQuestionId}/`,
-        body,
-        { headers }
-      );
+  const updateAnswerCode = useCallback(
+    async ({ updatedCode, language }) => {
+      try {
+        let access_token = loadCookies("access_token");
+        if (!access_token) {
+          toast.error("No Active User");
+          window.location.href = `${process.env.REACT_APP_BASE_URL}/attend_exam/check_start_exam/${attendExam?.exam?.id}`;
+        }
+        const body = { language: language, answer: updatedCode };
+        const headers = { Authorization: `Bearer ${access_token}` };
+        const response = await axios.put(
+          `${process.env.REACT_APP_API_URL}/api/attendee/update_attend_question/${attendQuestionId}/`,
+          body,
+          { headers }
+        );
 
-      if (response.status === 200) {
-        // setCode(response?.data?.data?.answer);
-      } else {
+        if (response.status === 200) {
+          // setCode(response?.data?.data?.answer);
+        } else {
+          toast.error("Server Error");
+        }
+      } catch (error) {
         toast.error("Server Error");
+        console.log({ error });
       }
-    } catch (error) {
-      toast.error("Server Error");
-      console.log({ error });
-    }
-  };
+    },
+    [attendExam?.exam?.id, attendQuestionId]
+  );
 
   const runCodeHandler = async (e, inputVal) => {
     setIsOutputLoading(true);
@@ -351,7 +329,7 @@ const AttendQuestionEditorNew = () => {
     setIsOutputLoading(false);
   };
 
-  const submitCodeHandler = async () => {
+  const submitCodeHandler = useCallback(async () => {
     setIsFinalSubmitLoading(true);
     try {
       await updateAnswerCode({ updatedCode: code, language: language });
@@ -388,7 +366,46 @@ const AttendQuestionEditorNew = () => {
       }
     } catch (error) {}
     setIsFinalSubmitLoading(false);
-  };
+  }, [
+    answer,
+    attendExam?.exam?.id,
+    attendExamId,
+    attendQuestionId,
+    code,
+    language,
+    navigate,
+    testcases,
+    updateAnswerCode,
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (exam?.is_time_limit) {
+        getRemainTime(
+          dispatch,
+          navigate,
+          attendExam,
+          exam,
+          recorder,
+          stream,
+          cheatingData,
+          submitCodeHandler
+        );
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [
+    dispatch,
+    navigate,
+    attendExam,
+    exam,
+    recorder,
+    remainTime,
+    stream,
+    cheatingData,
+    submitCodeHandler,
+  ]);
 
   const handleVisibilityChange = useCallback(() => {
     if (document.hidden) {
@@ -445,7 +462,8 @@ const AttendQuestionEditorNew = () => {
       <div
         className={css.main}
         onCopy={handleCopy}
-        onCut={handleCopy}
+        // onCut={handleCopy}
+        onKeyDown={handleKeyDown}
         onPaste={handlePaste}
         id="TEXT_EDITOR"
       >

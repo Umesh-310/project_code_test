@@ -37,6 +37,7 @@ import AttendeeOnlyRoute from "./AttendeeOnlyRoute";
 import { getCurrentUser } from "../store/authSlice";
 import AddHeaderFooter from "./AddHeaderFooter";
 import AttendQuestionEditorNew from "../components/Attend/AttendQuestionEditorNew";
+import EditExam from "../components/Exam/EditExam";
 
 const ThemeRoutes = () => {
   const user = useSelector((state) => state.auth.user);
@@ -225,6 +226,16 @@ const ThemeRoutes = () => {
             <ExaminerOnlyRoute user={user}>
               <AddHeaderFooter siderBar={true}>
                 <ExamDetailPage />
+              </AddHeaderFooter>
+            </ExaminerOnlyRoute>
+          }
+        />
+        <Route
+          path="/exam/exam_detail/:id/edit"
+          element={
+            <ExaminerOnlyRoute user={user}>
+              <AddHeaderFooter siderBar={true}>
+                <EditExam />
               </AddHeaderFooter>
             </ExaminerOnlyRoute>
           }

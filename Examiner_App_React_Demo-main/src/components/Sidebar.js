@@ -59,35 +59,12 @@ const Sidebar = ({ toggle, closeDrawer }) => {
             {user?.is_examiner && (
               <>
                 <li className="nav-item">
-                  <a
-                    className="nav-link collapsed"
-                    data-bs-target="#exams-nav"
-                    data-bs-toggle="collapse"
-                    href="#exams-nav"
-                  >
-                    <i className="bi bi-question-square"></i>
-                    <span>Exams</span>
-                    <i className="bi bi-chevron-down ms-auto"></i>
-                  </a>
-                  <ul
-                    id="exams-nav"
-                    className="nav-content collapse"
-                    data-bs-parent="#sidebar-nav"
-                  >
-                    <li>
-                      <Link to="/exam/all_exam">
-                        <i className="bi bi-card-list"></i>
-                        <span>All Exams</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/exam/create_exam_option">
-                        <i className="bi bi-pencil-square"></i>
-                        <span>Create New Exam</span>
-                      </Link>
-                    </li>
-                  </ul>
+                  <Link to="/exam/all_exam" className="nav-link collapsed">
+                    <i className="bi bi-card-list"></i>
+                    <span>Assessments</span>
+                  </Link>
                 </li>
+
               </>
             )}
           </>

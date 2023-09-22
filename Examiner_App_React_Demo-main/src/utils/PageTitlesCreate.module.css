@@ -1,0 +1,4 @@
+.pagetitleFlex {
+  display: flex;
+  justify-content: space-between;
+}

@@ -3,14 +3,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { CSVLink } from "react-csv";
-
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import PageTitle from "./PageTitle";
 import { loadCookies } from "../../../utils/Cookies";
 import ExamLinkMailCard from "./ExamLinkMailCard";
 import ExamDetailCard from "./ExamDetailCard";
+import PageTitlesCreate from "../../../utils/PageTitlesCreate";
+import { Button } from "@mui/material";
+import { ButtonCss } from "../../../utils/utils";
 
 const AttendExamAttendeeTable3 = lazy(() =>
-  import("./AttendExamAttendeeTable3"),
+  import("../../Dashboard/AttendExamAttendeeTable3")
 );
 
 const ExamDetail = () => {
@@ -36,33 +39,11 @@ const ExamDetail = () => {
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
         `/api/examiner/get_single_exam_by_examiner/${examId}`,
-        { headers },
+        { headers }
       );
       if (response.status === 200) {
         setData(response.data.data);
         setCsvData(response.data.data?.attend_exam);
-      } else {
-        toast.error("Server Error");
-      }
-    } catch (error) {}
-  };
-
-  const onExamUpdateHandler = async (body) => {
-    try {
-      let access_token = loadCookies("access_token");
-      if (!access_token) {
-        navigate("/auth/login");
-      }
-      const headers = { Authorization: `Bearer ${access_token}` };
-      let response;
-      response = await axios.put(
-        `/api/examiner/update_exam/${body.id}/`,
-        body,
-        { headers },
-      );
-
-      if (response.status === 200) {
-        toast.success(response.data.msg);
       } else {
         toast.error("Server Error");
       }
@@ -80,7 +61,7 @@ const ExamDetail = () => {
       response = await axios.post(
         `/api/examiner/mail_exam_link/${body.id}/`,
         body,
-        { headers },
+        { headers }
       );
 
       if (response.status === 200) {
@@ -95,10 +76,38 @@ const ExamDetail = () => {
     getExamDetail();
   }, []);
 
+  const breadcrumb = [
+    { url: "/account/dashboard", title: "Home" },
+    { url: "/exam/all_exam", title: "Exams" },
+    {
+      url: `/exam/exam_detail/${examId}`,
+      title: "Exam Detail",
+    },
+  ];
+
   return (
     <>
       <main id="main" className="main">
-        <PageTitle examId={examId} />
+        <PageTitlesCreate
+          title="Exam Detail"
+          breadcrumb={breadcrumb}
+          showLeftMenuBtn
+        >
+          <Button
+            variant="contained"
+            sx={ButtonCss}
+            onClick={() => navigate(`/exam/exam_detail/${examId}/edit`)}
+          >
+            <DriveFileRenameOutlineIcon
+              sx={{
+                color: "inherit",
+                fontSize: "18px",
+                marginRight: "6px",
+              }}
+            />
+            edit
+          </Button>
+        </PageTitlesCreate>
         <section className="section">
           <div className="row">
             <div className="col-lg-12">
@@ -141,7 +150,10 @@ const ExamDetail = () => {
               {data?.attend_exam?.length > 0 ? (
                 <>
                   <Suspense fallback={<div>Loading</div>}>
-                    <AttendExamAttendeeTable3 data={data?.attend_exam} />
+                    <AttendExamAttendeeTable3
+                      data={data?.attend_exam}
+                      showExam={false}
+                    />
                   </Suspense>
                 </>
               ) : (

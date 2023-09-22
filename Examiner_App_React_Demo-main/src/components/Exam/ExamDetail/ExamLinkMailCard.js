@@ -1,21 +1,27 @@
 import { useState } from "react";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { toast } from "react-toastify";
+
+//icons
+import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { ButtonCss } from "../../../utils/utils";
+import { Button } from "@mui/material";
 
 const ExamLinkMailCard = ({ data: row, onExamLinkMailHanlder }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const activeBtn = Boolean(email.trim());
 
   const CopyToClipboardHandler = (e, row) => {
     e.preventDefault();
     navigator.clipboard.writeText(row.exam_link);
-    toast.info("Exam Link Coppied to Clipboard..");
+    toast.info("Exam Link Copied to Clipboard..");
   };
 
   const sendMailHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    let curEmail = email.trim();
+    let curEmail = email.trim().toLowerCase();
     if (curEmail === "") {
       toast.error("Please enter email addresses to send exam link.");
     } else {
@@ -78,38 +84,47 @@ const ExamLinkMailCard = ({ data: row, onExamLinkMailHanlder }) => {
             style={{ display: "flex", justifyContent: "space-around" }}
           >
             {loading ? (
-              <button className="btn btn-primary" type="button" disabled>
+              // <button className="btn btn-primary" type="button" disabled>
+              <Button variant="contained" sx={ButtonCss} disabled>
                 <span
                   className="spinner-border spinner-border-sm"
                   role="status"
                   aria-hidden="true"
                 ></span>
                 Loading...
-              </button>
+              </Button>
             ) : row?.is_active ? (
-              <button
-                type="button"
-                className="btn btn-primary"
+              <Button
+                variant="contained"
                 onClick={sendMailHandler}
+                type="button"
+                disabled={!activeBtn}
+                sx={ButtonCss}
               >
-                Send Mail
-              </button>
+                <ForwardToInboxIcon
+                  sx={{ fontSize: "20px", marginRight: "10px" }}
+                />
+                Send invite link
+              </Button>
             ) : (
-              <button type="button" className="btn btn-primary" disabled>
+              <Button variant="contained" sx={ButtonCss} disabled>
                 Can't Send Mail
-              </button>
+              </Button>
             )}
             {row.is_active ? (
               <>
                 OR
-                <button
-                  className="btn btn-outline-primary"
+                <Button
+                  variant="outlined"
                   onClick={(e) => {
                     CopyToClipboardHandler(e, row);
                   }}
                 >
-                  <ContentCopyIcon /> Copy Exam Link
-                </button>
+                  <ContentCopyIcon
+                    sx={{ fontSize: "20px", marginRight: "10px" }}
+                  />
+                  Copy public invite link
+                </Button>
               </>
             ) : null}
           </div>

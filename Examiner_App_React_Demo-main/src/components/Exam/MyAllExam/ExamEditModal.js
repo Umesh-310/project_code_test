@@ -1,7 +1,7 @@
 import { useEffect, useState, memo } from "react";
 import { Link } from "react-router-dom";
 
-import EditIcon from "@mui/icons-material/Edit";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 
 import EditExamWithSelectedQuestionForm from "./EditExamWithSelectedQuestionForm";
 
@@ -27,12 +27,12 @@ const ExamEditModal = ({ row, onExamUpdateHandler }) => {
   };
 
   const addQuestion = (e, id) => {
-    setExam({ ...exam, ["total_question"]: exam.total_question + 1 });
+    setExam({ ...exam, total_question: exam.total_question + 1 });
     setSelectedQue([...selectedQue, id]);
   };
 
   const removeQuestion = (e, id) => {
-    setExam({ ...exam, ["total_question"]: exam.total_question - 1 });
+    setExam({ ...exam, total_question: exam.total_question - 1 });
     setSelectedQue(selectedQue.filter((el) => el !== id));
   };
 
@@ -63,24 +63,24 @@ const ExamEditModal = ({ row, onExamUpdateHandler }) => {
   useEffect(() => {
     setExam({
       ...exam,
-      ["id"]: row.id,
-      ["title"]: row.title,
-      ["description"]: row.description,
-      ["passing_percent_mark"]: row.passing_percent_mark,
-      ["total_question"]: row.total_question,
-      ["is_time_limit"]: row.is_time_limit,
-      ["time_limit_hour"]: row.time_limit_hour,
-      ["time_limit_minute"]: row.time_limit_minute,
-      ["start_time"]: row.start_time?.toString().slice(0, 16),
-      ["end_time"]: row.end_time?.toString().slice(0, 16),
-      ["exam_link"]: row.exam_link,
+      id: row.id,
+      title: row.title,
+      description: row.description,
+      passing_percent_mark: row.passing_percent_mark,
+      total_question: row.total_question,
+      is_time_limit: row.is_time_limit,
+      time_limit_hour: row.time_limit_hour,
+      time_limit_minute: row.time_limit_minute,
+      start_time: row.start_time?.toString().slice(0, 16),
+      end_time: row.end_time?.toString().slice(0, 16),
+      exam_link: row.exam_link,
     });
 
     setIsTimeLimit(row.is_time_limit);
     setSelectedQue(
       row.questions.map((que) => {
         return que.question;
-      }),
+      })
     );
   }, []);
 
@@ -88,13 +88,13 @@ const ExamEditModal = ({ row, onExamUpdateHandler }) => {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn"
         data-bs-toggle="modal"
         data-bs-target={`#modalDialogScrollable-${exam.id}`}
       >
-        <Link to="" style={{ color: "white" }}>
-          <EditIcon />
-        </Link>
+        <DriveFileRenameOutlineIcon
+          sx={{ color: "#0c1f4d", fontSize: "18px" }}
+        />
       </button>
       <div
         className="modal fade"

@@ -28,7 +28,7 @@ const ForgotPasswordSide = () => {
     event.preventDefault();
     setIsLoading(true);
     const data = new FormData(event.currentTarget);
-    const enteredEmail = data.get("email").trim();
+    const enteredEmail = data.get("email").trim().toLowerCase();
     if (enteredEmail.length > 0) {
       await forgotPassword(dispatch, { email: enteredEmail });
     } else {

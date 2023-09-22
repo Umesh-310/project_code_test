@@ -4,10 +4,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import PageTitle from "./PageTitle";
+import PageTitlesCreate from "../../../utils/PageTitlesCreate";
 import { loadCookies } from "../../../utils/Cookies";
 import { GetMyQuestion } from "../../../store/questionSlice";
 const QuestionTable3 = lazy(() => import("./QuestionTable3"));
+
+const breadcrumb = [
+  { url: "/account/dashboard", title: "Home" },
+  { url: "/question/my_question", title: "My Questions" },
+];
 
 const MyQuestion = () => {
   let dispatch = useDispatch();
@@ -36,12 +41,12 @@ const MyQuestion = () => {
         response = await axios.put(
           `/api/author/restore_question/${que.id}/`,
           {},
-          { headers },
+          { headers }
         );
       } else {
         response = await axios.delete(
           `/api/author/delete_question/${que.id}/`,
-          { headers },
+          { headers }
         );
       }
 
@@ -65,7 +70,7 @@ const MyQuestion = () => {
       const response = await axios.patch(
         `/api/author/update_question/${que.id}/`,
         que,
-        { headers },
+        { headers }
       );
 
       if (response.status === 200) {
@@ -88,7 +93,7 @@ const MyQuestion = () => {
       response = await axios.patch(
         `/api/author/update_testcase/${testcase.id}/`,
         testcase,
-        { headers },
+        { headers }
       );
 
       if (response.status === 200) {
@@ -105,7 +110,7 @@ const MyQuestion = () => {
     testcase2,
     testcase3,
     testcase4,
-    testcase5,
+    testcase5
   ) => {
     await onQuestionUpdateHandler(e, que);
     await onTestcaseUpdateHandler(e, testcase1);
@@ -123,7 +128,7 @@ const MyQuestion = () => {
   return (
     <>
       <main id="main" className="main custom-main">
-        <PageTitle />
+        <PageTitlesCreate title="My Questions" breadcrumb={breadcrumb} />
         <section className="section">
           <div className="row">
             <div className="col-lg-12">

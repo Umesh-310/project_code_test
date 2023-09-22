@@ -142,23 +142,33 @@ const Header = ({ showDrawerIcon, handleDrawer }) => {
                     <span>{user?.name}</span>
                   </MenuItem>
                   <Divider sx={{ borderColor: "gray" }} />
-                  <MenuItem onClick={handleCloseMenu}>
-                    <Link
-                      to="/account/profile"
-                      className={css.navText}
+
+                  <Link to="/account/dashboard" className={css.navText}>
+                    <MenuItem
+                      onClick={handleCloseMenu}
+                      style={{ display: "flex", gap: "5px" }}
+                    >
+                      <i className="bi bi-grid"></i>
+                      <span>Dashboard</span>
+                    </MenuItem>
+                  </Link>
+
+                  <Divider sx={{ borderColor: "gray" }} />
+                  <Link to="/account/profile" className={css.navText}>
+                    <MenuItem
+                      onClick={handleCloseMenu}
                       style={{ display: "flex", gap: "5px" }}
                     >
                       <i className="bi bi-person"></i>
                       <span>My Profile</span>
-                    </Link>
-                  </MenuItem>
+                    </MenuItem>
+                  </Link>
                   <Divider sx={{ borderColor: "gray" }} />
-                  <NavLink
-                    className={css.navText}
-                    to="/auth/logout"
-                    style={{ display: "flex", gap: "5px" }}
-                  >
-                    <MenuItem onClick={handleCloseMenu}>
+                  <NavLink className={css.navText} to="/auth/logout">
+                    <MenuItem
+                      onClick={handleCloseMenu}
+                      style={{ display: "flex", gap: "5px" }}
+                    >
                       <i className="bi bi-box-arrow-right"></i>
                       <span>LogOut</span>
                     </MenuItem>

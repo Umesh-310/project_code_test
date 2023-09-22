@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 const Page1Exam = ({ onSubmit, exam, setExam }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const onChangeHanlder = (e) => {
     let inputName = e.target.name;
@@ -10,13 +11,18 @@ const Page1Exam = ({ onSubmit, exam, setExam }) => {
     if (e.target.name === "total_question") {
       inputValue = parseInt(e.target.value);
     }
+    if (e.target.name === "passing_percent_mark" && inputValue > 100) {
+      setError("please enter valid passing percent");
+    } else {
+      setError("");
+    }
     setExam({ ...exam, [inputName]: inputValue });
   };
 
   const validateFormHandler = () => {
     const curTitle = exam?.title?.trim();
     const curDescription = exam?.description?.trim();
-    if (curTitle === "" || curDescription === "") {
+    if (curTitle === "" || curDescription === "" ) {
       return false;
     } else {
       return true;
@@ -62,6 +68,27 @@ const Page1Exam = ({ onSubmit, exam, setExam }) => {
           </div>
           <div className="row mb-3">
             <label
+              htmlFor="passing_percent_mark"
+              className="col-md-4 col-lg-3 col-form-label custom-form-label-secondary"
+            >
+              Passing Percent Mark
+            </label>
+            <div className="col-md-8 col-lg-9">
+              {error && <code>{error}</code>}
+              <input
+                name="passing_percent_mark"
+                type="number"
+                className="form-control"
+                id="passing_percent_mark"
+                value={exam.passing_percent_mark}
+                onChange={onChangeHanlder}
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label
               htmlFor="description"
               className="col-md-4 col-lg-3 col-form-label  custom-form-label-secondary"
             >
@@ -75,26 +102,6 @@ const Page1Exam = ({ onSubmit, exam, setExam }) => {
                 style={{ maxHeight: "150px" }}
                 value={exam.description}
                 onChange={onChangeHanlder}
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <label
-              htmlFor="passing_percent_mark"
-              className="col-md-4 col-lg-3 col-form-label custom-form-label-secondary"
-            >
-              Passing Percent Mark
-            </label>
-            <div className="col-md-8 col-lg-9">
-              <input
-                name="passing_percent_mark"
-                type="number"
-                className="form-control"
-                id="passing_percent_mark"
-                value={exam.passing_percent_mark}
-                onChange={onChangeHanlder}
-                min="0"
-                max="100"
               />
             </div>
           </div>

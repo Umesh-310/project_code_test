@@ -5,6 +5,12 @@ import { useDispatch } from "react-redux";
 import PageTitle from "./PageTitle";
 import AddQuestionForm from "./AddQuestionForm";
 import { createQuestion } from "../../../store/questionSlice";
+import PageTitlesCreate from "../../../utils/PageTitlesCreate";
+
+const breadcrumb = [
+  { url: "/account/dashboard", title: "Home" },
+  { url: "/question/add_question", title: "Add New Question" },
+];
 
 const AddQuestion = () => {
   const navigate = useNavigate();
@@ -18,7 +24,7 @@ const AddQuestion = () => {
   return (
     <>
       <main id="main" className="main custom-main">
-        <PageTitle />
+        <PageTitlesCreate title="Add New Question" breadcrumb={breadcrumb} />
         <section className="section">
           <div className="row">
             <div className="col-lg-12">

@@ -1,0 +1,16 @@
+.gridBox {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px #0004;
+}
+.flex {
+  display: flex;
+}
+.headingText {
+  color: #1b313d99;
+  font-size: 18px !important;
+}
+.boxArea {
+  padding: 10px 20px;
+}

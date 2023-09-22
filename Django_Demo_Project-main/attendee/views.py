@@ -101,6 +101,9 @@ class CreateAttendExamAPIView(APIView):
             data = request.data
             data['start_time'] = timezone.now()
             data['is_active'] = True
+            check = AttendExam.objects.filter(exam=request.data["exam"]).filter(attendee=self.request.user)
+            if check:
+                data['retake_exam'] = True
             serializer = AttendExamCreateSerializer(data=data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)

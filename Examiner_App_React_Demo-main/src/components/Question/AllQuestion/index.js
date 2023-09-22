@@ -5,6 +5,12 @@ import { useNavigate } from "react-router-dom";
 import PageTitle from "./PageTitle";
 import QuestionTable3 from "./QuestionTable3";
 import { getAllQuestion } from "../../../store/questionSlice";
+import PageTitlesCreate from "../../../utils/PageTitlesCreate";
+
+const breadcrumb = [
+  { url: "/account/dashboard", title: "Home" },
+  { url: "/question/all_question", title: "All Questions" },
+];
 
 const AllQuestion = () => {
   let dispatch = useDispatch();
@@ -28,7 +34,7 @@ const AllQuestion = () => {
   return (
     <>
       <main id="main" className="main custom-main">
-        <PageTitle />
+        <PageTitlesCreate title="All Questions" breadcrumb={breadcrumb} />
         <section className="section">
           <div className="row">
             <div className="col-lg-12">

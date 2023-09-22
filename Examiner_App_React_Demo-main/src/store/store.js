@@ -35,17 +35,8 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }),
 });
-// const store = configureStore({
-//   reducer: {
-//     auth: authSlice,
-//     question: questionSlice,
-//     remainTime: remainTimeSlice,
-//   },
-// });
 setupListeners(store.dispatch);
 export default store;

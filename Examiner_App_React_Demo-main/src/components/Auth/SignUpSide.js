@@ -27,7 +27,7 @@ const SignUpSide = () => {
   const formSubmitHandler = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const enteredEmail = data.get("email").trim();
+    const enteredEmail = data.get("email").trim().toLowerCase();
     const enteredName = data.get("name").trim();
     const enteredPassword = data.get("password").trim();
     const enteredPassword2 = data.get("password2").trim();
@@ -47,7 +47,7 @@ const SignUpSide = () => {
             password: enteredPassword,
             password2: enteredPassword2,
           },
-          navigate,
+          navigate
         );
       } else {
         toast.error("Password and ReType Password Mismatch");

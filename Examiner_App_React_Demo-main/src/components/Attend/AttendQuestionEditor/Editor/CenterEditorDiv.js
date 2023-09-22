@@ -12,7 +12,7 @@ import { LogoText, RESET_TEXT } from "../../../../utils/utils";
 import LanguageSelect from "./LanguageSelect";
 
 // //////////////////////////////////////////////////
-// https://github.com/securingsincity/react-ace/blob/master/docs/Ace.mdnpm i react-ace
+// https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md npm i react-ace
 
 import AceEditor from "react-ace";
 
@@ -165,16 +165,6 @@ const CenterEditorDiv = ({
           </div>
         </div>
         <div id="code-mirror-id">
-          {/* <CodeMirror
-            className="w-96 h-90"
-            value={tempCode}
-            height="90vh"
-            theme={theme}
-            name="codeMirror"
-            extensions={extensions[tempLanguage]}
-            onChange={updateCode}
-            type="textarea"
-          /> */}
           <AceEditor
             placeholder="CoderTest"
             mode={extensions[tempLanguage]}
@@ -187,8 +177,6 @@ const CenterEditorDiv = ({
             showGutter={true}
             highlightActiveLine={true}
             value={tempCode}
-            // onCopy={(e) => console.log(e)}
-            // onPaste={onPasteFun}
             setOptions={{
               enableBasicAutocompletion: true,
               enableLiveAutocompletion: true,

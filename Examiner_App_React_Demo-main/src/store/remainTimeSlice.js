@@ -63,7 +63,7 @@ const gdmOptions = {
   await recorder.startRecording();
   dispatch(
     START_RECORDING_SUCCESS({
-      recorder: null, // recorder,
+      recorder: recorder,
       stream: stream,
       videoBlob: null,
     })
@@ -88,7 +88,8 @@ export const getRemainTime = async (
   exam,
   recorder,
   stream,
-  pasteCount
+  cheatingData,
+  submitCodeHandler
 ) => {
   const startTime = new Date(data?.start_time).getTime();
   const maxEndTime = new Date(
@@ -104,13 +105,16 @@ export const getRemainTime = async (
     // alert("Please Submit ASAP \nExam will end in 2 minutes...");
   }
   if (maxEndTime - currentTime <= 0) {
+    if (submitCodeHandler) {
+      await submitCodeHandler();
+    }
     await endAttendExam(
       dispatch,
       navigate,
       data?.id,
       recorder,
       stream,
-      pasteCount,
+      cheatingData,
       "Time Exceeded"
     );
   }

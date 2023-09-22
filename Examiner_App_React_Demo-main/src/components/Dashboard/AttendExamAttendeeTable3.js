@@ -13,9 +13,14 @@ import {
   TableRow,
   TableSortLabel,
   Paper,
+  Tooltip,
 } from "@mui/material";
-import LaunchIcon from "@mui/icons-material/Launch";
 import { visuallyHidden } from "@mui/utils";
+import moment from "moment";
+import { headCells } from "../../utils/utils";
+// icons
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import WarningIcon from "@mui/icons-material/Warning";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -33,10 +38,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -49,57 +50,13 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-  {
-    id: "name",
-    numeric: false,
-    label: "Name",
-    align: "left",
-  },
-  {
-    id: "email",
-    numeric: false,
-    label: "Email",
-    align: "center",
-    minWidth: 170,
-  },
-  {
-    id: "status",
-    label: "Status",
-    align: "center",
-  },
-  {
-    id: "percent_mark",
-    numeric: false,
-    label: "Score",
-    align: "center",
-  },
-  {
-    id: "copy_detect",
-    numeric: false,
-    label: "Cheating",
-    align: "center",
-  },
-  {
-    id: "exam",
-    numeric: false,
-    label: "Exam",
-    align: "center",
-  },
-  {
-    id: "action",
-    numeric: false,
-    label: "Action",
-    align: "right",
-  },
-];
-
 const DEFAULT_ORDER = "desc";
 const DEFAULT_ORDER_BY = "created_at";
 const DEFAULT_ROWS_PER_PAGE = 10;
 
 function EnhancedTableHead(props) {
-  const { order, orderBy, rowCount, onRequestSort } = props;
+  const { order, orderBy, rowCount, onRequestSort, showExam = true } = props;
+  console.log({ showExam });
   const createSortHandler = (newOrderBy) => (event) => {
     onRequestSort(event, newOrderBy);
   };
@@ -107,31 +64,37 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            style={{
-              minWidth: headCell.minWidth,
-              fontWeight: 900,
-              fontSize: "18px",
-            }}
-            key={headCell.id}
-            align={headCell.align}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
+        {headCells.map((headCell) => {
+          if (!showExam && headCell.id === "exam") return null;
+          if (showExam && headCell.id === "time_taken") return null;
+          return (
+            <TableCell
+              style={{
+                minWidth: headCell.minWidth,
+                fontWeight: 900,
+                fontSize: "18px",
+              }}
+              key={headCell.id}
+              align={headCell.align}
+              sortDirection={orderBy === headCell.id ? order : false}
             >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : "asc"}
+                onClick={createSortHandler(headCell.id)}
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <Box component="span" sx={visuallyHidden}>
+                    {order === "desc"
+                      ? "sorted descending"
+                      : "sorted ascending"}
+                  </Box>
+                ) : null}
+              </TableSortLabel>
+            </TableCell>
+          );
+        })}
       </TableRow>
     </TableHead>
   );
@@ -144,7 +107,37 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-function EnhancedTable({ data: rows }) {
+const getTimeTaken = (created, end) => {
+  // Parse the time strings using Moment.js
+  const created_at = moment(created);
+  const end_time = moment(end);
+
+  // Calculate the duration difference
+  const duration = moment.duration(end_time.diff(created_at));
+
+  // Get the hours and minutes
+  const hours = duration.hours();
+  const minutes = duration.minutes();
+
+  // Format the time difference
+  let formattedTime = "";
+  if (!isNaN(minutes) || !isNaN(hours)) {
+    if (hours > 0) {
+      if (minutes > 0) {
+        formattedTime = `${hours}h ${minutes}m`;
+      } else {
+        formattedTime = `${hours}h`;
+      }
+    } else {
+      formattedTime = `${minutes}m`;
+    }
+    return formattedTime;
+  } else {
+    return "-";
+  }
+};
+
+function EnhancedTable({ data: rows, showExam = true }) {
   const [order, setOrder] = useState(DEFAULT_ORDER);
   const [orderBy, setOrderBy] = useState(DEFAULT_ORDER_BY);
   const [page, setPage] = useState(0);
@@ -231,7 +224,7 @@ function EnhancedTable({ data: rows }) {
 
   if (rows?.length <= 0) {
     return (
-      <Box sx={{ width: "100%", textAlign: "center" }}>
+      <Box sx={{ width: "100%", textAlign: "left" }}>
         <h3> No Data Found</h3>
       </Box>
     );
@@ -247,6 +240,7 @@ function EnhancedTable({ data: rows }) {
             >
               <EnhancedTableHead
                 order={order}
+                showExam={showExam}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
                 rowCount={rows?.length}
@@ -254,6 +248,20 @@ function EnhancedTable({ data: rows }) {
               <TableBody>
                 {visibleRows
                   ? visibleRows?.map((row, index) => {
+                      const cheatingCheck =
+                        row?.copy_detect +
+                          row?.full_screen_leave +
+                          row?.switched_tab +
+                          row?.switched_window >
+                        0;
+                      const passFail =
+                        row?.is_qualified ||
+                        row?.exam?.passing_percent_mark <= row?.percent_mark;
+
+                      const time_taken = getTimeTaken(
+                        row?.created_at,
+                        row?.end_time
+                      );
                       return (
                         <Fragment key={row?.id}>
                           <TableRow
@@ -266,29 +274,49 @@ function EnhancedTable({ data: rows }) {
                             <TableCell component="th">
                               {row?.attendee?.name}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="left">
                               {row?.attendee?.email}
+                              {row?.retake_exam && (
+                                <WarningIcon
+                                  color="error"
+                                  sx={{ marginLeft: "5px", fontSize: "22px" }}
+                                />
+                              )}
                             </TableCell>
-                            <TableCell align="center">{row?.status}</TableCell>
-                            <TableCell align="center">
-                              {row?.percent_mark} %
+                            <TableCell align="left">{row?.status}</TableCell>
+                            <TableCell align="left">
+                              {moment(row?.start_time).format("MMM D")}
                             </TableCell>
-                            <TableCell align="center">
-                              {row?.copy_detect > 0
-                                ? "Detected"
-                                : "Not Detected"}
+                            <TableCell
+                              align="left"
+                              sx={{ color: passFail ? "green" : "gray" }}
+                            >
+                              {row?.percent_mark}%
                             </TableCell>
-                            <TableCell align="center">
-                              <Link to={`/exam/exam_detail/${row?.exam?.id}`}>
-                                {row?.exam?.title}
-                              </Link>
+                            <TableCell
+                              align="left"
+                              sx={{ color: cheatingCheck ? "red" : "gray" }}
+                            >
+                              {cheatingCheck ? "Detected" : "Not Detected"}
                             </TableCell>
+                            {showExam && (
+                              <TableCell align="left">
+                                <Link to={`/exam/exam_detail/${row?.exam?.id}`}>
+                                  {row?.exam?.title}
+                                </Link>
+                              </TableCell>
+                            )}
+                            {!showExam && (
+                              <TableCell align="center">{time_taken}</TableCell>
+                            )}
                             <TableCell align="center">
                               <Link
-                                className="btn btn-primary"
+                                // className="btn btn-primary"
                                 to={`/exam/attendee_attend_exam_detail/${row?.id}`}
                               >
-                                <LaunchIcon />
+                                <Tooltip title="View report" arrow>
+                                  <AssessmentIcon />
+                                </Tooltip>
                               </Link>
                             </TableCell>
                           </TableRow>
@@ -309,7 +337,7 @@ function EnhancedTable({ data: rows }) {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[1, 2, 5, 10, 25]}
+            rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={rows?.length}
             rowsPerPage={rowsPerPage}

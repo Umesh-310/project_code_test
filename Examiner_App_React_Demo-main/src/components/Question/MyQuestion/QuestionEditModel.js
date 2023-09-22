@@ -22,6 +22,7 @@ const QuestionEditModal = ({
     is_deleted: false,
     python_init_code: "",
     javascript_init_code: "",
+    exam_language: [],
   });
   const [testcase1, setTestcase1] = useState({ input: "", output: "" });
   const [testcase2, setTestcase2] = useState({ input: "", output: "" });
@@ -38,11 +39,10 @@ const QuestionEditModal = ({
       testcase2,
       testcase3,
       testcase4,
-      testcase5,
+      testcase5
     );
     setLoading(false);
   };
-
   useEffect(() => {
     setQue({
       id: row.id,
@@ -52,8 +52,7 @@ const QuestionEditModal = ({
       example: row.example,
       is_private: row.is_private,
       is_deleted: row.is_deleted,
-      python_init_code: row.python_init_code,
-      javascript_init_code: row.javascript_init_code,
+      exam_language: row?.exam_language,
     });
     setTestcase1({
       id: row.testcases[0].id,

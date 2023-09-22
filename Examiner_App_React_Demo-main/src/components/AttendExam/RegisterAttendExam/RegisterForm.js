@@ -16,7 +16,7 @@ const RegisterForm = ({ exam, registerAttendeeHandler }) => {
 
   const validate = () => {
     const curName = user.name.trim();
-    const curEmail = user.email.trim();
+    const curEmail = user.email.trim().toLocaleLowerCase();
     if (curName === "" || curEmail === "") {
       toast.error("Please Enter All Details");
       return false;

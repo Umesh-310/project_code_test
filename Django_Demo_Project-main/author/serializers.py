@@ -21,7 +21,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     is_deleted = DefaultEmptyBooleanField(required=False)
     class Meta:
         model = Question
-        fields = ['id', 'title', 'description', 'example', 'level', 'testcases', 'is_active', 'is_private', 'is_deleted', 'python_init_code', 'javascript_init_code', 'created_by']
+        fields = ['id', 'title', 'description', 'example', 'level', 'exam_language', 'testcases', 'is_active', 'is_private', 'is_deleted', 'python_init_code', 'javascript_init_code', 'created_by']
         
     def get_testcases(self,obj):
         testcases = obj.testcase_set.all()
@@ -35,7 +35,7 @@ class QuestionCreateSerializer(serializers.ModelSerializer):
     is_private = DefaultEmptyBooleanField(required=False)
     class Meta:
         model = Question
-        fields = ['id', 'title', 'description', 'example', 'level', 'testcases', 'created_by', 'python_init_code', 'javascript_init_code','is_private']
+        fields = ['id', 'title', 'description', 'exam_language', 'example', 'level', 'testcases', 'created_by', 'python_init_code', 'javascript_init_code','is_private']
 
     def create(self, validated_data):
         try:

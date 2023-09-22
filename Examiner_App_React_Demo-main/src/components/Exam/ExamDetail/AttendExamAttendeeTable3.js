@@ -13,10 +13,11 @@ import {
   TableSortLabel,
   Paper,
 } from "@mui/material";
-import LaunchIcon from "@mui/icons-material/Launch";
 import { visuallyHidden } from "@mui/utils";
-
 import { Link } from "react-router-dom";
+// icons
+import ReportIcon from "@mui/icons-material/Report";
+import LaunchIcon from "@mui/icons-material/Launch";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -91,7 +92,9 @@ const headCells = [
 
 const DEFAULT_ORDER = "desc";
 const DEFAULT_ORDER_BY = "percent_mark";
-const DEFAULT_ROWS_PER_PAGE = 5;
+const DEFAULT_ROWS_PER_PAGE = 10;
+
+// delete
 
 function EnhancedTableHead(props) {
   const { order, orderBy, rowCount, onRequestSort } = props;
@@ -150,12 +153,12 @@ function EnhancedTable({ data: rows }) {
   useEffect(() => {
     let rowsOnMount = stableSort(
       rows,
-      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
+      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY)
     );
 
     rowsOnMount = rowsOnMount.slice(
       0 * DEFAULT_ROWS_PER_PAGE,
-      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
+      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE
     );
     setVisibleRows(rowsOnMount);
   }, [rows]);
@@ -169,15 +172,15 @@ function EnhancedTable({ data: rows }) {
 
       const sortedRows = stableSort(
         rows,
-        getComparator(toggledOrder, newOrderBy),
+        getComparator(toggledOrder, newOrderBy)
       );
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
+        page * rowsPerPage + rowsPerPage
       );
       setVisibleRows(updatedRows);
     },
-    [order, orderBy, page, rowsPerPage, rows],
+    [order, orderBy, page, rowsPerPage, rows]
   );
 
   const handleChangePage = useCallback(
@@ -187,7 +190,7 @@ function EnhancedTable({ data: rows }) {
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         newPage * rowsPerPage,
-        newPage * rowsPerPage + rowsPerPage,
+        newPage * rowsPerPage + rowsPerPage
       );
 
       setVisibleRows(updatedRows);
@@ -201,7 +204,7 @@ function EnhancedTable({ data: rows }) {
       const newPaddingHeight = 33 * numEmptyRows;
       setPaddingHeight(newPaddingHeight);
     },
-    [order, orderBy, rowsPerPage, rows],
+    [order, orderBy, rowsPerPage, rows]
   );
 
   const handleChangeRowsPerPage = useCallback(
@@ -214,7 +217,7 @@ function EnhancedTable({ data: rows }) {
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
       const updatedRows = sortedRows.slice(
         0 * updatedRowsPerPage,
-        0 * updatedRowsPerPage + updatedRowsPerPage,
+        0 * updatedRowsPerPage + updatedRowsPerPage
       );
 
       setVisibleRows(updatedRows);
@@ -222,7 +225,7 @@ function EnhancedTable({ data: rows }) {
       // There is no layout jump to handle on the first page.
       setPaddingHeight(0);
     },
-    [order, orderBy, rows],
+    [order, orderBy, rows]
   );
 
   if (rows?.length <= 0) {
@@ -264,6 +267,12 @@ function EnhancedTable({ data: rows }) {
                             </TableCell>
                             <TableCell align="center">
                               {row?.attendee?.email}
+                              {row?.retake_exam && (
+                                <ReportIcon
+                                  color="error"
+                                  sx={{ marginLeft: "5px" }}
+                                />
+                              )}
                             </TableCell>
                             <TableCell align="center">{row?.status}</TableCell>
                             <TableCell align="center">
@@ -301,7 +310,7 @@ function EnhancedTable({ data: rows }) {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[1, 2, 5, 10, 25]}
+            rowsPerPageOptions={[5, 10, 25]}
             component="div"
             count={rows?.length}
             rowsPerPage={rowsPerPage}

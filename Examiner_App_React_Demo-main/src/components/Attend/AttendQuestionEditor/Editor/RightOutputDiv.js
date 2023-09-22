@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
@@ -133,13 +133,12 @@ const RightOutputDiv = ({
                 }}
               >
                 <h6 style={{ fontWeight: "bold", textAlign: "center" }}>
-                  {" "}
-                  RUNNING SAMPLE TEST CASES{" "}
+                  RUNNING SAMPLE TEST CASES
                 </h6>
                 <hr />
                 {testcaseResults.map((res, i) => {
                   return (
-                    <>
+                    <Fragment key={i}>
                       <h6>== Input ==</h6>
                       <h6>{res.input}</h6>
                       <h6>== Ouput ==</h6>
@@ -152,12 +151,12 @@ const RightOutputDiv = ({
                         <h6>
                           &lt;&lt; Wrong &gt;&gt;
                           <br />
-                          &lt;&lt; Expected Ouput : {testcases[i].output}{" "}
+                          &lt;&lt; Expected Ouput : {testcases[i].output}
                           &gt;&gt;
                         </h6>
                       )}
                       <hr />
-                    </>
+                    </Fragment>
                   );
                 })}
                 <h6 style={{ textAlign: "center" }}> 3 TEST CASES HIDDEN </h6>

@@ -29,7 +29,7 @@ class AttendExamSerializer(serializers.ModelSerializer):
     attend_questions  = serializers.SerializerMethodField()
     class Meta:
         model = AttendExam
-        fields = ['id', 'attendee', 'exam', 'total_mark', 'percent_mark', 'copy_detect', 'full_screen_leave' ,'switched_tab' , 'switched_window', 'attend_questions', 'start_time', 'end_time', 'video', 'submited_at', 'is_submited', 'is_active','is_qualified','status']
+        fields = ['id', 'attendee', 'exam', 'total_mark', 'retake_exam', 'percent_mark', 'copy_detect', 'full_screen_leave' ,'switched_tab' , 'switched_window', 'attend_questions', 'start_time', 'end_time', 'video', 'submited_at', 'is_submited', 'is_active','is_qualified','status']
 
     def get_attend_questions(self, obj):
         attend_questions = obj.attendquestion_set.all()
@@ -41,7 +41,7 @@ class AttendExamCreateSerializer(serializers.ModelSerializer):
     attendee = serializers.ReadOnlyField(source='attendee.email')
     class Meta:
         model = AttendExam
-        fields = ['id', 'exam', 'attendee', 'start_time', 'submited_at', 'is_submited', 'is_active']
+        fields = ['id', 'exam', 'attendee', 'start_time', 'retake_exam', 'submited_at', 'is_submited', 'is_active']
 
     def create(self, validated_data):
         try:

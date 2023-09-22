@@ -1,4 +1,6 @@
 import AdbIcon from "@mui/icons-material/Adb";
+import { Switch } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const FULL_SCREEN_ALERT_MESS =
   'Exiting Full Screen Mode during the exam will auto-submit your answers, leading to disqualification.\nPlease press "Stay" to continue the exam and remain in Full Screen Mode.';
@@ -79,6 +81,16 @@ export const LogoText = () => (
   </div>
 );
 
+export const ButtonCss = {
+  backgroundColor: "#0c1f4d",
+  padding: "5px 5px",
+  "&:hover": {
+    backgroundColor: "transparent",
+    border: "1px solid #0c1f4d",
+    color: "#0c1f4d",
+  },
+};
+
 export const QUE_SUBMIT_MESSAGE =
   "Are You sure to Submit.\n You will not be Allowed to edit again.";
 export const RESET_TEXT =
@@ -93,3 +105,139 @@ export const getCode = ({ answer, attendQuestionId, language_res }) => {
       : "";
   return code;
 };
+
+export const all_language_arr = [
+  { key: "JAVASCRIPT_NODE", value: "javascript" },
+  { key: "PYTHON3", value: "python" },
+  { key: "PHP", value: "php" },
+  { key: "JAVA14", value: "java" },
+  { key: "TYPESCRIPT", value: "typescript" },
+  { key: "CPP17", value: "cpp" },
+  { key: "RUBY", value: "ruby" },
+  { key: "C", value: "c" },
+];
+
+export const IOSSwitch = styled((props) => (
+  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+  width: 38,
+  height: 22,
+  padding: 0,
+  "& .MuiSwitch-switchBase": {
+    padding: 0,
+    margin: 1,
+    transitionDuration: "300ms",
+    "&.Mui-checked": {
+      transform: "translateX(16px)",
+      color: "#fff",
+      "& + .MuiSwitch-track": {
+        backgroundColor: theme.palette.mode === "dark" ? "#2ECA45" : "#65C466",
+        opacity: 1,
+        border: 0,
+      },
+      "&.Mui-disabled + .MuiSwitch-track": {
+        opacity: 0.5,
+      },
+    },
+    "&.Mui-focusVisible .MuiSwitch-thumb": {
+      color: "#33cf4d",
+      border: "6px solid #fff",
+    },
+    "&.Mui-disabled .MuiSwitch-thumb": {
+      color:
+        theme.palette.mode === "light"
+          ? theme.palette.grey[100]
+          : theme.palette.grey[600],
+    },
+    "&.Mui-disabled + .MuiSwitch-track": {
+      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
+    },
+  },
+  "& .MuiSwitch-thumb": {
+    boxSizing: "border-box",
+    width: 20,
+    height: 20,
+  },
+  "& .MuiSwitch-track": {
+    borderRadius: 26 / 2,
+    backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
+    opacity: 1,
+    transition: theme.transitions.create(["background-color"], {
+      duration: 500,
+    }),
+  },
+}));
+
+export const headCells = [
+  {
+    id: "name",
+    numeric: false,
+    label: "Name",
+    align: "left",
+  },
+  {
+    id: "email",
+    numeric: false,
+    label: "Email",
+    align: "left",
+    minWidth: 170,
+  },
+  {
+    id: "status",
+    label: "Status",
+    align: "left",
+  },
+  {
+    id: "join",
+    label: "Join",
+    align: "left",
+  },
+  {
+    id: "percent_mark",
+    numeric: false,
+    label: "Score",
+    align: "left",
+  },
+  {
+    id: "copy_detect",
+    numeric: false,
+    label: "Cheating",
+    align: "left",
+  },
+  {
+    id: "time_taken",
+    numeric: false,
+    label: "Time Taken",
+    align: "left",
+  },
+  {
+    id: "exam",
+    numeric: false,
+    label: "Exam",
+    align: "left",
+  },
+  {
+    id: "action",
+    numeric: false,
+    label: "Action",
+    align: "center",
+  },
+];
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <button
+  type="button"
+  className={row.is_deleted ? `btn btn-warning` : `btn btn-danger`}
+  onClick={(e) => {
+    deletionHandler(e, row);
+  }}
+  style={{ margin: "0px 10px" }}
+>
+  {row?.is_deleted ? (
+    <RestoreFromTrashIcon style={{ color: "white" }} />
+  ) : (
+    <DeleteIcon style={{ color: "white" }} />
+  )}
+</button>; */
+}

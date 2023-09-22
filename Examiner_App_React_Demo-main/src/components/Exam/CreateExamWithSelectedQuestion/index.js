@@ -4,8 +4,16 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 import CreateExamWithSelectedQuestionForm from "./CreateExamWithSelectedQuestionForm";
-import PageTitle from "./PageTitle";
 import { loadCookies } from "../../../utils/Cookies";
+import PageTitlesCreate from "../../../utils/PageTitlesCreate";
+const breadcrumb = [
+  { url: "/account/dashboard", title: "Home" },
+  { url: "/exam/all_exam", title: "Exams" },
+  {
+    url: "/exam/create_exam_with_selected_question",
+    title: "Create New Exam with Selected Question",
+  },
+];
 
 const CreateExamWithSelectedQuestion = () => {
   const navigate = useNavigate();
@@ -20,7 +28,7 @@ const CreateExamWithSelectedQuestion = () => {
       const response = await axios.post(
         `/api/examiner/create_exam_with_selected_questions/`,
         body,
-        { headers },
+        { headers }
       );
 
       if (response.status === 201) {
@@ -37,7 +45,10 @@ const CreateExamWithSelectedQuestion = () => {
   return (
     <>
       <main id="main" className="main">
-        <PageTitle />
+        <PageTitlesCreate
+          title="Create New Exam with Selected Question"
+          breadcrumb={breadcrumb}
+        />
         <section className="section">
           <div className="row">
             <div className="col-lg-12">

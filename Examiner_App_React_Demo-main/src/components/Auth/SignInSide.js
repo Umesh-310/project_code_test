@@ -32,7 +32,7 @@ const SignInSide = () => {
     event.preventDefault();
     setIsLoading(true);
     const data = new FormData(event.currentTarget);
-    const enteredEmail = data.get("email").trim();
+    const enteredEmail = data.get("email").trim().toLowerCase();
     const enteredPassword = data.get("password").trim();
 
     if (enteredEmail.length > 0 && enteredPassword.length > 0) {
@@ -43,7 +43,7 @@ const SignInSide = () => {
           password: enteredPassword,
           returnSecureToken: true,
         },
-        navigate,
+        navigate
       );
     } else {
       toast.error("Pleas Enter All Details");

@@ -41,7 +41,7 @@ const Page2ExamTime = ({
     const validate = validateFormHandler();
     if (!validate) {
       toast.warning(
-        "You have Selected Limited Time. Please Enter Time Limit Also.",
+        "You have Selected Limited Time. Please Enter Time Limit Also."
       );
     } else {
       await onSubmit();
@@ -53,7 +53,7 @@ const Page2ExamTime = ({
     <>
       <div className="">
         <h3 className="custom-modal-title mb-3">
-          Exam Time Details{" "}
+          Exam Time Details
           <span
             style={{ color: "blue", fontSize: "16px", fontWeight: "normal" }}
           >

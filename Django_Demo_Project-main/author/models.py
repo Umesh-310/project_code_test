@@ -17,6 +17,7 @@ QUESTION_LEVEL_CHOICES = (
     ('Medium', 'medium'),
     ('Hard', 'hard'),
 )
+DEFAULT_LANG = ["JAVASCRIPT_NODE","PYTHON3","PHP","JAVA14","TYPESCRIPT","CPP17","RUBY","C"]
 
     
 class NonDeleted(models.Manager):
@@ -57,6 +58,7 @@ class Question(SoftDelete):
     python_init_code = models.TextField(max_length=5000, default=None, null=True, blank = True)
     javascript_init_code = models.TextField(max_length=5000, default=None, null=True, blank = True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    exam_language = models.JSONField(default=DEFAULT_LANG)
     is_private = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_updated = models.BooleanField(default=False)

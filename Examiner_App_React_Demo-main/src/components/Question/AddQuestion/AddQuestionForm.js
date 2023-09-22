@@ -10,6 +10,7 @@ const WizardForm = ({ onCreateQue }) => {
     description: "",
     example: "",
     is_private: false,
+    exam_language: [],
   });
   const [testcase1, setTestcase1] = useState({ input: "", output: "" });
   const [testcase2, setTestcase2] = useState({ input: "", output: "" });
@@ -32,6 +33,7 @@ const WizardForm = ({ onCreateQue }) => {
       description: que.description,
       level: que.level,
       example: que.example,
+      exam_language: que.exam_language,
       testcases: [
         { input: testcase1.input, output: testcase1.output, number: 1 },
         { input: testcase2.input, output: testcase2.output, number: 2 },
