@@ -11,6 +11,29 @@
   color: #1b313d99;
   font-size: 18px !important;
 }
+.smallHeadingText {
+  color: #1b313d99;
+  font-size: 14px !important;
+  margin-bottom: 10px !important;
+}
 .boxArea {
   padding: 10px 20px;
+}
+.topHeading {
+  border-bottom: 1px solid #9e9e9e94;
+  padding: 10px !important;
+}
+.topHeadingText {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+.BottomBtnGroup {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+.bottomPart {
+  padding: 20px;
+  display: flex;
+  flex-direction: row-reverse;
 }

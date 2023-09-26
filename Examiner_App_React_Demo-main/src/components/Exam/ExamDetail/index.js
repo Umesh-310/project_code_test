@@ -89,7 +89,7 @@ const ExamDetail = () => {
     <>
       <main id="main" className="main">
         <PageTitlesCreate
-          title="Exam Detail"
+          title="Assessments Detail"
           breadcrumb={breadcrumb}
           showLeftMenuBtn
         >

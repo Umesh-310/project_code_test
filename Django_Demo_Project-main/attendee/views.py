@@ -63,7 +63,7 @@ def check_exam_start_fun(exam_id):
         converted_temp_exam_end_time = temp_exam_end_time + timedelta(hours=5,minutes=30)
 
 
-        if converted_start_time != None :
+        if exam.is_date_limit == True and converted_start_time != None :
             if converted_start_time > converted_temp_exam_start_time :
                 start_now = False
                 start_now_msg = 'not_started'
@@ -76,7 +76,7 @@ def check_exam_start_fun(exam_id):
             else:
                 pass
 
-        extra = {'start_now':start_now, 'start_now_msg': start_now_msg, 'start_at': converted_start_time, 'end_at': converted_end_time, 'time_limit_hour' : exam.time_limit_hour,  'time_limit_minute' : exam.time_limit_minute, 'is_time_limit' : exam.is_time_limit }
+        extra = {'start_now':start_now, 'start_now_msg': start_now_msg, 'start_at': converted_start_time, 'end_at': converted_end_time, 'time_limit_hour' : exam.time_limit_hour,  'time_limit_minute' : exam.time_limit_minute, 'is_time_limit' : exam.is_time_limit , 'is_date_limit' : exam.is_date_limit }
     
     else:
         start_now = False

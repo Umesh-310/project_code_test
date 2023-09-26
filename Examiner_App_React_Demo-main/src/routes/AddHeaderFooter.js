@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Footer, Header, Sidebar } from "../components";
+import Smartlook from "smartlook-client";
 
 const AddHeaderFooter = ({ siderBar = false, children }) => {
+  Smartlook.pause();
   const [drawer, setDrawer] = useState(true);
   const handleDrawer = () => setDrawer((p) => !p);
   const closeDrawer = () => setDrawer(false);

@@ -1,6 +1,17 @@
 import AdbIcon from "@mui/icons-material/Adb";
 import { Switch } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import {
+  cSvg,
+  cppSvg,
+  javaSvg,
+  javascriptSvg,
+  phpSvg,
+  pythonSvg,
+  rubyonrailsSvg,
+  typescriptSvg,
+} from "./svgPack";
+import css from "./LanguageSelect.module.css";
 
 export const FULL_SCREEN_ALERT_MESS =
   'Exiting Full Screen Mode during the exam will auto-submit your answers, leading to disqualification.\nPlease press "Stay" to continue the exam and remain in Full Screen Mode.';
@@ -95,6 +106,9 @@ export const QUE_SUBMIT_MESSAGE =
   "Are You sure to Submit.\n You will not be Allowed to edit again.";
 export const RESET_TEXT =
   "Are you sure you want to reset back to the default code template? If you click OK you will lose your current code.";
+
+export const assessmentOC_text = (check) =>
+  `Are you sure you want to ${check ? "open" : "close"} this assessment?`;
 
 export const getCode = ({ answer, attendQuestionId, language_res }) => {
   const code =
@@ -224,6 +238,75 @@ export const headCells = [
   },
 ];
 
+export const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+export const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+export const modules = {
+  toolbar: [
+    [{ size: ["small", false, "large", "huge"] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    // ["link", "image"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+      { align: [] },
+    ],
+    [
+      {
+        color: [
+          "#000000",
+          "#e60000",
+          "#ff9900",
+          "#ffff00",
+          "#008a00",
+          "#0066cc",
+          "#9933ff",
+          "#ffffff",
+          "#facccc",
+          "#ffebcc",
+          "#ffffcc",
+          "#cce8cc",
+          "#cce0f5",
+          "#ebd6ff",
+          "#bbbbbb",
+          "#f06666",
+          "#ffc266",
+          "#ffff66",
+          "#66b966",
+          "#66a3e0",
+          "#c285ff",
+          "#888888",
+          "#a10000",
+          "#b26b00",
+          "#b2b200",
+          "#006100",
+          "#0047b2",
+          "#6b24b2",
+          "#444444",
+          "#5c0000",
+          "#663d00",
+          "#666600",
+          "#003700",
+          "#002966",
+          "#3d1466",
+          "custom-color",
+        ],
+      },
+    ],
+  ],
+};
+export const languagesSvg = {
+  JAVASCRIPT_NODE: javascriptSvg(css.chipIcon),
+  PYTHON3: pythonSvg(css.chipIcon),
+  PHP: phpSvg(css.chipIcon),
+  JAVA14: javaSvg(css.chipIcon),
+  TYPESCRIPT: typescriptSvg(css.chipIcon),
+  CPP17: cppSvg(css.chipIcon),
+  RUBY: rubyonrailsSvg(css.chipIcon),
+  C: cSvg(css.chipIcon),
+};
 // eslint-disable-next-line no-lone-blocks
 {
   /* <button

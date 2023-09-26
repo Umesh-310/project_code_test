@@ -293,7 +293,7 @@ function EnhancedTable({
                               {row.is_private ? "Private" : "Public"}
                             </TableCell>
                             <TableCell align="center">
-                              {`${row?.exam_language.length}/${all_language_arr.length}`}
+                              {`${row?.question_language.length}/${all_language_arr.length}`}
                             </TableCell>
                             <TableCell>
                               <button

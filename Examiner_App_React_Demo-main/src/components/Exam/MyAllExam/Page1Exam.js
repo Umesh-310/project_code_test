@@ -51,9 +51,9 @@ const Page1Exam = ({ onSubmit, exam, setExam }) => {
             </label>
             <div className="col-md-8 col-lg-9">
               <input
-                name="title"
                 type="text"
                 className="form-control"
+                name="title"
                 id="title"
                 value={exam.title}
                 onChange={onChangeHanlder}
@@ -87,9 +87,9 @@ const Page1Exam = ({ onSubmit, exam, setExam }) => {
             </label>
             <div className="col-md-8 col-lg-9">
               <input
-                name="passing_percent_mark"
                 type="number"
                 className="form-control"
+                name="passing_percent_mark"
                 id="passing_percent_mark"
                 value={exam.passing_percent_mark}
                 onChange={onChangeHanlder}

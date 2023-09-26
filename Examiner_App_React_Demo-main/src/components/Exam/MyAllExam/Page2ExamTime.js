@@ -30,7 +30,7 @@ const Page2ExamTime = ({
         return true;
       }
     } else {
-      setExam({ ...exam, ["time_limit_hour"]: 0, ["time_limit_minute"]: 0 });
+      setExam({ ...exam, time_limit_hour: 0, time_limit_minute: 0 });
       return true;
     }
   };
@@ -72,10 +72,10 @@ const Page2ExamTime = ({
             </label>
             <div className="col-md-8 col-lg-9  form-switch">
               <input
-                name="is_time_limit"
                 className="form-check-input"
                 type="checkbox"
                 id="is_time_limit"
+                name="is_time_limit"
                 checked={exam?.is_time_limit && "checked"}
                 onChange={onChangeHanlder}
                 onClick={onIsTimeLimitChange}
@@ -91,7 +91,7 @@ const Page2ExamTime = ({
                 Time Limit
               </label>
               <div className="col-md-2 col-lg-2">
-                Hours{" "}
+                Hours
                 <input
                   name="time_limit_hour"
                   type="number"
@@ -145,11 +145,11 @@ const Page2ExamTime = ({
             </label>
             <div className="col-md-4 col-lg-4">
               <input
+                id="end_time"
                 name="end_time"
+                value={exam.end_time}
                 type="datetime-local"
                 className="form-control"
-                id="end_time"
-                value={exam.end_time}
                 onChange={onChangeHanlder}
               />
             </div>

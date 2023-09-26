@@ -7,6 +7,7 @@ import { loadCookies } from "../../../utils/Cookies";
 import ExamCardTable from "./ExamCardTable";
 import PageTitlesCreate from "../../../utils/PageTitlesCreate";
 import SideMenuBtn from "./SideMenuBtn";
+import { activateExamHandler } from "../../../utils/Api";
 
 const breadcrumb = [
   { url: "/account/dashboard", title: "Home" },
@@ -29,10 +30,14 @@ const MyAllExam = () => {
       });
       if (response.status === 200) {
         setData(response.data);
+        return true;
       } else {
         toast.error("Server Error");
+        return false;
       }
-    } catch (error) {}
+    } catch (error) {
+      return false;
+    }
   };
 
   const onExamUpdateHandler = async (body) => {
@@ -49,6 +54,7 @@ const MyAllExam = () => {
       );
 
       if (response.status === 200) {
+        // EXAM Update success Message
         toast.success(response.data.msg);
         getMyAllExam();
       } else {
@@ -92,34 +98,13 @@ const MyAllExam = () => {
 
   const activationHandler = async (e, exam) => {
     e.preventDefault();
-    try {
-      let access_token = loadCookies("access_token");
-      if (!access_token) {
-        navigate("/auth/login");
-      }
-      const headers = { Authorization: `Bearer ${access_token}` };
-      let response;
-      if (exam.is_active) {
-        response = await axios.put(
-          `/api/examiner/deactivate_exam/${exam.id}/`,
-          {},
-          { headers }
-        );
-      } else {
-        response = await axios.put(
-          `/api/examiner/activate_exam/${exam.id}/`,
-          {},
-          { headers }
-        );
-      }
-
-      if (response.status === 200) {
-        toast.success(response.data.msg);
-        getMyAllExam();
-      } else {
-        toast.error("Server Error");
-      }
-    } catch (error) {}
+    const response = await activateExamHandler(exam, navigate);
+    if (response.status === 200) {
+      toast.success(response.data.msg);
+      getMyAllExam();
+    } else {
+      toast.error("Server Error");
+    }
   };
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
-import DefalutModel from "../../../Modal/DefalutModel";
+import DefaultModel from "../../../Modal/DefaultModel";
 import { QUE_SUBMIT_MESSAGE, LogoText } from "../../../../utils/utils";
 
 const RightOutputDiv = ({
@@ -33,7 +33,7 @@ const RightOutputDiv = ({
 
   return (
     <>
-      <DefalutModel
+      <DefaultModel
         open={confirmModal}
         handleClose={() => setConfirmModal(false)}
         onClick={() => {

@@ -6,6 +6,7 @@ import uuid
 from account.models import User
 from author.models import Question
 
+DEFAULT_LANG = ["JAVASCRIPT_NODE","PYTHON3","PHP","JAVA14","TYPESCRIPT","CPP17","RUBY","C"]
 
 class NonDeletedDeactivate(models.Manager):
     def get_queryset(self):
@@ -48,8 +49,10 @@ class Exam(SoftDelete):
     start_time = models.DateTimeField(default=None, blank=True, null=True)
     end_time = models.DateTimeField(default=None, blank=True, null=True)
     exam_link = models.TextField(max_length=500, default=None, null=True, blank=True)
+    exam_language = models.JSONField(default=DEFAULT_LANG)
     
     is_time_limit = models.BooleanField(default=False)
+    is_date_limit = models.BooleanField(default=False)
     time_limit_hour = models.IntegerField(default=0)
     time_limit_minute = models.IntegerField(default=0)
     total_question = models.IntegerField(default=0)

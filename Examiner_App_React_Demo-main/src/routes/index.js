@@ -294,7 +294,7 @@ const ThemeRoutes = () => {
         <Route
           path="/attend/attend_exam_end/:id"
           element={
-            <AttendeeOnlyRoute>
+            <AttendeeOnlyRoute sessionReader={false}>
               <AttendExamEndPage />
             </AttendeeOnlyRoute>
           }

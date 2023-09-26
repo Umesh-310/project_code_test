@@ -7,7 +7,7 @@ import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import { useDispatch, useSelector } from "react-redux";
 import { SAVE_MY_CODE, SET_LANGUAGE } from "../../../../store/answerSlice";
 import css from "./CenterEditorDiv.module.css";
-import DefalutModel from "../../../Modal/DefalutModel";
+import DefaultModel from "../../../Modal/DefaultModel";
 import { LogoText, RESET_TEXT } from "../../../../utils/utils";
 import LanguageSelect from "./LanguageSelect";
 
@@ -105,7 +105,7 @@ const CenterEditorDiv = ({
     </div>
   ) : (
     <>
-      <DefalutModel
+      <DefaultModel
         open={reset}
         handleClose={() => setReset(false)}
         onClick={() => onReset()}

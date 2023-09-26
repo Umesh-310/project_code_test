@@ -22,7 +22,7 @@ class ExamSerializer(serializers.ModelSerializer):
     created_by = UserProfileSerializer()
     class Meta:
         model = Exam
-        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted']
+        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','is_date_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted']
     
     def get_questions(self,obj):
         questions = obj.examquestion_set.all()
@@ -48,7 +48,7 @@ class ExamListSerializer(serializers.ModelSerializer):
     attend_exam = serializers.SerializerMethodField()
     class Meta:
         model = Exam
-        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted','total_attendee','created_at','attend_exam']
+        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','is_date_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted','total_attendee','created_at','attend_exam']
     
     def get_questions(self,obj):
         questions = obj.examquestion_set.all()
@@ -76,7 +76,7 @@ class ExamCreateSerializer(serializers.ModelSerializer):
     questions = ExamQuestionSerializer(many= True)
     class Meta:
         model = Exam
-        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active']
+        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','is_date_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active']
 
     def create(self, validated_data):
         try:
@@ -108,7 +108,7 @@ class ExamByMeSerializer(serializers.ModelSerializer):
     questions = serializers.SerializerMethodField()
     class Meta:
         model = Exam
-        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted']
+        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit','is_date_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted']
     
     def get_questions(self,obj):
         questions = obj.examquestion_set.all()

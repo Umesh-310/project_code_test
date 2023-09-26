@@ -58,7 +58,7 @@ class Question(SoftDelete):
     python_init_code = models.TextField(max_length=5000, default=None, null=True, blank = True)
     javascript_init_code = models.TextField(max_length=5000, default=None, null=True, blank = True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    exam_language = models.JSONField(default=DEFAULT_LANG)
+    question_language = models.JSONField(default=DEFAULT_LANG)
     is_private = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_updated = models.BooleanField(default=False)

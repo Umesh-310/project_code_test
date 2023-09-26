@@ -22,7 +22,7 @@ const QuestionEditModal = ({
     is_deleted: false,
     python_init_code: "",
     javascript_init_code: "",
-    exam_language: [],
+    question_language: [],
   });
   const [testcase1, setTestcase1] = useState({ input: "", output: "" });
   const [testcase2, setTestcase2] = useState({ input: "", output: "" });
@@ -52,7 +52,7 @@ const QuestionEditModal = ({
       example: row.example,
       is_private: row.is_private,
       is_deleted: row.is_deleted,
-      exam_language: row?.exam_language,
+      question_language: row?.question_language,
     });
     setTestcase1({
       id: row.testcases[0].id,

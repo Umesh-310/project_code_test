@@ -18,7 +18,7 @@ const NotFound = () => {
               alt="Page Not Found"
             />
             <div className="credits">
-              Designed by <a href="/">Chandani Singh</a>
+              Designed by <a href="/">Team Lanet</a>
             </div>
           </section>
         </div>

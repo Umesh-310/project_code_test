@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { getRemainTime } from "../../../store/remainTimeSlice";
 import EditorHeader from "../AttendQuestionEditor/EditorHeader";
 import LeftQuestionDiv from "../AttendQuestionEditor/Editor/LeftQuestionDiv";
-import DefalutModel from "../../Modal/DefalutModel";
+import DefaultModel from "../../Modal/DefaultModel";
 import {
   FULL_SCREEN_ALERT_MESS,
   INIT_CODE,
@@ -24,6 +24,8 @@ import {
   FULL_SCREEN_LEAVE,
   SWITCH_WINDOW,
 } from "../../../store/answerSlice";
+import Smartlook from "smartlook-client";
+
 const AttendQuestionEditorNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -72,6 +74,43 @@ const AttendQuestionEditorNew = () => {
   const { recorder, stream, remainTime } = useSelector(
     (state) => state.remainTime
   );
+  const user = useSelector((state) => state.auth.user);
+  ////////////////////////////////////////////////////////////////
+
+  Smartlook.init("fcd973a1cf80555e022df8d67a61832f8361d1a2", undefined, () =>
+    console.log("Smartlook is now initialized")
+  );
+
+  Smartlook.record({
+    emails: true,
+    forms: true,
+    numbers: true,
+    ips: true,
+    api: true,
+  });
+
+  if (attendQuestionId && user?.id) {
+    // Smartlook.identify(attendQuestionId, {
+    //   name: user.name,
+    //   email: user.email,
+    //   questionId: attendQuestionId,
+    //   userId: user.id,
+    // });
+  }
+  useEffect(() => {
+    Smartlook.restart();
+  }, [attendQuestionId]);
+
+  const projectKey = Smartlook.key;
+  const url = Smartlook.playUrl;
+  const recordId = Smartlook.recordId;
+  const sessionId = Smartlook.sessionId;
+  const visitorId = Smartlook.visitorId;
+  const version = Smartlook.version;
+
+  console.log({ projectKey, url, recordId, sessionId, visitorId, version });
+
+  ////////////////////////////////////////////////////////////////
 
   const getAttendQuestionDetail = useCallback(
     async (reset = false) => {
@@ -356,7 +395,7 @@ const AttendQuestionEditorNew = () => {
 
       if (response.status === 200) {
         attendExamId
-          ? // navigate(`attend/attend_exam_detail/${attendExamId}`, {
+          ? // navigate(`attend/  /${attendExamId}`, {
             //     replace: true,
             //   })
             navigate(-1)
@@ -438,7 +477,7 @@ const AttendQuestionEditorNew = () => {
 
   return (
     <>
-      <DefalutModel
+      <DefaultModel
         open={!isFullScreen}
         handleClose={() => console.log("first")}
         onClick={() => {
@@ -450,7 +489,7 @@ const AttendQuestionEditorNew = () => {
         arrgeBtn="Stya"
       />
 
-      <DefalutModel
+      <DefaultModel
         open={copyModal}
         handleClose={closeCopyModal}
         onClick={closeCopyModal}

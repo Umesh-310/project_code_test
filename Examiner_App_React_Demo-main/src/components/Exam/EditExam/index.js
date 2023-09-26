@@ -27,6 +27,7 @@ const EditExam = (props) => {
     passing_percent_mark: 0,
     total_question: 0,
     is_time_limit: false,
+    is_date_limit: false,
     time_limit_hour: 0,
     time_limit_minute: 0,
     start_time: null,
@@ -44,6 +45,10 @@ const EditExam = (props) => {
   const breadcrumb = [
     { url: "/account/dashboard", title: "Home" },
     { url: "/exam/all_exam", title: "Exams" },
+    {
+      url: `/exam/exam_detail/${examId}`,
+      title: "Exam Detail",
+    },
     {
       url: `/exam/exam_detail/${examId}/edit`,
       title: "Edit Exam",
@@ -80,6 +85,8 @@ const EditExam = (props) => {
       start_time: exam.start_time,
       end_time: exam.end_time,
       questions: questions,
+      exam_language: exam.exam_language,
+      is_date_limit: exam.is_date_limit,
     };
     await onUpdateExam(body);
   };
@@ -123,19 +130,21 @@ const EditExam = (props) => {
       );
       if (response.status === 200) {
         const row = response.data.data;
-        setExam({
-          ...exam,
-          ...row,
-          start_time: row.start_time?.toString().slice(0, 16),
-          end_time: row.end_time?.toString().slice(0, 16),
-        });
+        if (row.id !== exam.id) {
+          setExam({
+            ...exam,
+            ...row,
+            start_time: row.start_time?.toString().slice(0, 16),
+            end_time: row.end_time?.toString().slice(0, 16),
+          });
 
-        setIsTimeLimit(row.is_time_limit);
-        setSelectedQue(
-          row.questions.map((que) => {
-            return que.question;
-          })
-        );
+          setIsTimeLimit(row.is_time_limit);
+          setSelectedQue(
+            row.questions.map((que) => {
+              return que.question;
+            })
+          );
+        }
       } else {
         toast.error("Server Error");
       }
@@ -146,7 +155,7 @@ const EditExam = (props) => {
   }, [getExamDetail]);
   return (
     <main id="main" className="main custom-main">
-      <PageTitlesCreate title="My Questions" breadcrumb={breadcrumb} />
+      <PageTitlesCreate title="Edit Assessments" breadcrumb={breadcrumb} />
       <section className="section">
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -169,7 +178,16 @@ const EditExam = (props) => {
             Item Two
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            <ExamSetting />
+            <ExamSetting
+              exam={exam}
+              setExam={setExam}
+              selectedQue={selectedQue}
+              addQuestion={addQuestion}
+              removeQuestion={removeQuestion}
+              onSubmitHandler={onSubmitHandler}
+              isTimeLimit={isTimeLimit}
+              onIsTimeLimitChange={onIsTimeLimitChange}
+            />
           </CustomTabPanel>
         </Box>
       </section>

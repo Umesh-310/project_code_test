@@ -6,7 +6,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import React from "react";
 
-const DefalutModel = (props) => {
+const DefaultModel = (props) => {
   const {
     open,
     handleClose,
@@ -42,4 +42,4 @@ const DefalutModel = (props) => {
   );
 };
 
-export default DefalutModel;
+export default DefaultModel;

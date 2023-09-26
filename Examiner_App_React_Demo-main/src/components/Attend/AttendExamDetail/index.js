@@ -14,7 +14,7 @@ import {
 } from "../../../store/answerSlice";
 import PageTitle from "./PageTitle";
 import LeftInstruction from "./LeftInstruction";
-import DefalutModel from "../../Modal/DefalutModel";
+import DefaultModel from "../../Modal/DefaultModel";
 import { FULL_SCREEN_MESS, LogoText } from "../../../utils/utils";
 import css from "./AttendExamDetail.module.css";
 
@@ -176,7 +176,7 @@ const AttendExamDetail = () => {
 
   return (
     <>
-      <DefalutModel
+      <DefaultModel
         open={!isFullScreen}
         handleClose={() => console.log("first")}
         onClick={() => enterFullScreen()}

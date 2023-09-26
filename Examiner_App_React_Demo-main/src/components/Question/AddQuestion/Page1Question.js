@@ -1,69 +1,23 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
-import { all_language_arr } from "../../../utils/utils";
-import {
-  cSvg,
-  cppSvg,
-  javaSvg,
-  javascriptSvg,
-  phpSvg,
-  pythonSvg,
-  rubyonrailsSvg,
-  typescriptSvg,
-} from "../../../utils/svgPack";
-import css from "../../Question/MyQuestion/MyQuestion.module.css";
+import { all_language_arr, languagesSvg } from "../../../utils/utils";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 1,
-    },
-  },
-};
+import LanguageSelect from "../../../utils/LanguageSelect";
 
-function getStyles(lang, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(lang) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 const LanguageValues = all_language_arr.map((val) => val.key);
-
-const svgs = {
-  JAVASCRIPT_NODE: javascriptSvg(css.chipIcon),
-  PYTHON3: pythonSvg(css.chipIcon),
-  PHP: phpSvg(css.chipIcon),
-  JAVA14: javaSvg(css.chipIcon),
-  TYPESCRIPT: typescriptSvg(css.chipIcon),
-  CPP17: cppSvg(css.chipIcon),
-  RUBY: rubyonrailsSvg(css.chipIcon),
-  C: cSvg(css.chipIcon),
-};
 
 const Page1Question = ({ onSubmit, que, setQue }) => {
   const [loading, setLoading] = useState(false);
-  const theme = useTheme();
   const [language, setLanguage] = useState(LanguageValues);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    console.log({ value });
     if (value.includes("select-all")) {
       setLanguage(LanguageValues);
-    } else if (value.includes("deseclect-all")) {
+    } else if (value.includes("deselect-all")) {
       setLanguage([]);
     } else {
       setLanguage(typeof value === "string" ? value.split(",") : value);
@@ -98,7 +52,7 @@ const Page1Question = ({ onSubmit, que, setQue }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setQue({ ...que, exam_language: language });
+    setQue({ ...que, question_language: language });
     setLoading(true);
     const validate = validateFormHandler();
     if (!validate) {
@@ -110,7 +64,13 @@ const Page1Question = ({ onSubmit, que, setQue }) => {
   };
 
   const ChipLogo = (value) => {
-    return <Chip icon={svgs[value.key]} key={value.key} label={value.value} />;
+    return (
+      <Chip
+        icon={languagesSvg[value.key]}
+        key={value.key}
+        label={value.value}
+      />
+    );
   };
 
   return (
@@ -203,51 +163,7 @@ const Page1Question = ({ onSubmit, que, setQue }) => {
               Exam Language
             </label>
             <div className="col-md-8 col-lg-9">
-              <FormControl sx={{ width: 1 }}>
-                <Select
-                  id="demo-multiple-chip"
-                  multiple
-                  value={language}
-                  name="exam_language"
-                  placeholder="language"
-                  onChange={handleChange}
-                  renderValue={(selected) => (
-                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                      {all_language_arr.map((value) => {
-                        if (selected.includes(value.key))
-                          return ChipLogo(value);
-                        else {
-                          return <></>;
-                        }
-                      })}
-                    </Box>
-                  )}
-                  MenuProps={MenuProps}
-                >
-                  <MenuItem
-                    value={"select-all"}
-                    style={getStyles("select-all", language, theme)}
-                  >
-                    {"Select All"}
-                  </MenuItem>
-                  <MenuItem
-                    value={"deseclect-all"}
-                    style={getStyles("deseclect-all", language, theme)}
-                  >
-                    {"Deseclect All"}
-                  </MenuItem>
-                  {all_language_arr.map((lang) => (
-                    <MenuItem
-                      key={lang}
-                      value={lang.key}
-                      style={getStyles(lang, language, theme)}
-                    >
-                      <div className={css.menuItemSvg}>{svgs[lang.key]}</div>
-                      {lang.value}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <LanguageSelect handleChange={handleChange} language={language} />
             </div>
           </div>
 

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+//delete
+
 const PageTitle = () => {
   return (
     <>
@@ -12,9 +14,6 @@ const PageTitle = () => {
             </li>
             <li className="breadcrumb-item">
               <Link to="/exam/all_exam">Exams</Link>
-            </li>
-            <li className="breadcrumb-item active">
-              <Link to="/exam/create_exam_option">Create New Exam Options</Link>
             </li>
             <li className="breadcrumb-item active">
               <Link to="/exam/create_exam_with_random_question">

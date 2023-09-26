@@ -211,7 +211,7 @@ class RetriveExamDetailByExaminerAPIView(APIView):
     # renderer_classes = [ExamRenderer]
     permission_classes = [IsAuthenticated]
     def get_object(self, pk):
-        try:
+        try:    
             return Exam.objects.get(pk=pk)
         except Exam.DoesNotExist:
             raise Http404

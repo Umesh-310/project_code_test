@@ -51,7 +51,7 @@ const RegisterForm = ({ exam, registerAttendeeHandler }) => {
           id="name"
           value={user.name}
           onChange={onChangeHanlder}
-          placeholder="Enter Name eg : Chandani Singh"
+          placeholder="Enter Name eg : John Doe"
           autoComplete="off"
         />
       </div>
