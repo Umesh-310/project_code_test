@@ -23,16 +23,29 @@ import LanguageSelect from "../../../../utils/LanguageSelect.js";
 import css from "../EditExam.module.css";
 import {
   all_language_arr,
+  assessmentOC_text,
   hours,
   minutes,
   modules,
 } from "../../../../utils/utils";
-import { deletionExamHandler } from "../../../../utils/Api.js";
+import {
+  activateExamHandler,
+  deletionExamHandler,
+} from "../../../../utils/Api.js";
+import { useNavigate } from "react-router-dom";
+import ConfirmModel from "../../../Modal/ConfirmModel.js";
+import DefaultModel from "../../../Modal/DefaultModel.js";
 const LanguageValues = all_language_arr.map((val) => val.key);
 
 const SettingPageOne = (props) => {
-  const { exam, setExam, isTimeLimit, onIsTimeLimitChange } = props;
+  const { exam, setExam, isTimeLimit, onIsTimeLimitChange, getExamDetail } =
+    props;
   const [language, setLanguage] = useState(LanguageValues);
+  const [confOpen, setConfOpen] = useState(false);
+  const [defOpen, setDefOpen] = useState(false);
+  const [error, setError] = useState("");
+  const [deleteConf, setDeleteConf] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (exam?.exam_language && exam?.exam_language?.length !== 0) {
@@ -72,18 +85,63 @@ const SettingPageOne = (props) => {
       setExam({ ...exam, exam_language: tempLanguage });
     }
   };
+
+  const handleConfirmOpen = () => setConfOpen(true);
+  const handelDefaultModel = () => setDefOpen(true);
+
+  const setDeleteTitle = ({ target }) => {
+    const value = target.value;
+    setDeleteConf(value);
+    setError("");
+  };
+  const onOpenCloseExam = async () => {
+    setDefOpen(false);
+    const response = await activateExamHandler(exam, navigate);
+    if (response && response?.status === 200) {
+      toast.success(response.data.msg);
+      getExamDetail();
+    } else {
+      toast.error("Server Error");
+    }
+  };
+
   const onDeleteExam = async () => {
-    // const response = deletionExamHandler(exam, navigator);
-    // if (response.status === 200) {
-    //   toast.success(response.data.msg);
-    // } else {
-    //   toast.error("Server Error");
-    // }
-    // SET THE EXAM LOGIC
+    const title = exam.title.toLocaleUpperCase();
+    if (title === deleteConf) {
+      setConfOpen(false);
+      const response = await deletionExamHandler(exam, navigate);
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+        navigate("/exam/all_exam");
+      } else {
+        toast.error("Server Error");
+      }
+    } else {
+      setError("Type the Correct Title to confirm the deletion");
+    }
   };
 
   return (
     <Box className={css.gridBox}>
+      <ConfirmModel
+        open={confOpen}
+        handleClose={() => setConfOpen(false)}
+        onClick={onDeleteExam}
+        message={`To CONFIRM the deletion, please type the exam title [${exam?.title.toLocaleUpperCase()}] in capital letters.`}
+        closeBtn="cancel"
+        arrgeBtn="CONFIRM"
+        onChange={setDeleteTitle}
+        placeholder="CONFIRM"
+        error={error}
+      />
+      <DefaultModel
+        open={defOpen}
+        handleClose={() => setDefOpen(false)}
+        onClick={onOpenCloseExam}
+        message={assessmentOC_text(!exam?.is_active)}
+        closeBtn="Cancel"
+        arrgeBtn={!exam?.is_active ? "Activate" : "Deactivate"}
+      />
       <Box className={css.topHeading}>
         <Typography className={css.topHeadingText}>
           Assessment settings
@@ -177,7 +235,7 @@ const SettingPageOne = (props) => {
               name="is_date_limit"
               checked={exam?.is_date_limit && "checked"}
               onChange={onChangeHanlder}
-              onClick={onIsTimeLimitChange}
+              // onClick={onIsTimeLimitChange}
             />
           }
           label="Is Date Limit"
@@ -243,18 +301,31 @@ const SettingPageOne = (props) => {
         </Typography>
         <LanguageSelect handleChange={handleLangChange} language={language} />
       </Box>
+      <Divider component="p" sx={{ margin: "4px 0px" }} />
       <Box className={css.boxArea}>
         <Typography className={css.headingText}>Danger zone</Typography>
         <Box className={css.BottomBtnGroup}>
+          {!exam?.is_deleted ? (
+            <Button
+              onClick={handleConfirmOpen}
+              sx={{ fontWeight: 800 }}
+              color="error"
+              variant="outlined"
+            >
+              Delete
+            </Button>
+          ) : (
+            <Button
+              onClick={handleConfirmOpen}
+              sx={{ fontWeight: 800 }}
+              color="warning"
+              variant="outlined"
+            >
+              Restore
+            </Button>
+          )}
           <Button
-            onClick={onDeleteExam}
-            sx={{ fontWeight: 800 }}
-            color="error"
-            variant="outlined"
-          >
-            Delete
-          </Button>
-          <Button
+            onClick={handelDefaultModel}
             sx={{
               color: "gray",
               fontWeight: 800,
@@ -266,7 +337,8 @@ const SettingPageOne = (props) => {
             }}
             variant="outlined"
           >
-            Close
+            {exam?.is_active && "Close"}
+            {!exam?.is_active && "Open"}
           </Button>
         </Box>
       </Box>
