@@ -22,8 +22,6 @@ import { Box } from "@mui/material";
 import moment from "moment";
 import {
   IOSSwitch,
-  LogoText,
-  RESET_TEXT,
   assessmentOC_text,
 } from "../../../utils/utils";
 import DefaultModel from "../../Modal/DefaultModel";
@@ -59,10 +57,9 @@ const ExamCard = (props) => {
         open={open}
         handleClose={closeModel}
         onClick={modelOnClick}
-        Title={<LogoText />}
         message={assessmentOC_text(!row?.is_active)}
         closeBtn="Cancel"
-        arrgeBtn={!row?.is_active ? "activate" : "Deactivate"}
+        arrgeBtn={!row?.is_active ? "Activate" : "Deactivate"}
       />
       <Card>
         <CardContent>
@@ -71,15 +68,13 @@ const ExamCard = (props) => {
               {row.title}
             </Typography>
             <Box>
-              <button
-                type="button"
-                className="btn"
+              <Button
                 onClick={() => navigate(`/exam/exam_detail/${row.id}/edit`)}
               >
                 <DriveFileRenameOutlineIcon
                   sx={{ color: "#0c1f4d", fontSize: "18px" }}
                 />
-              </button>
+              </Button>
               <Link
                 className="btn btn-outline-primary"
                 to={`/exam/exam_detail/${row.id}`}

@@ -117,7 +117,7 @@ const MyAllExam = () => {
         <PageTitlesCreate
           title="All Assessments"
           breadcrumb={breadcrumb}
-          showLeftMenuBtn
+          showRightMenuBtn
         >
           <SideMenuBtn />
         </PageTitlesCreate>

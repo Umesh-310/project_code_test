@@ -91,7 +91,7 @@ const ExamDetail = () => {
         <PageTitlesCreate
           title="Assessments Detail"
           breadcrumb={breadcrumb}
-          showLeftMenuBtn
+          showRightMenuBtn
         >
           <Button
             variant="contained"

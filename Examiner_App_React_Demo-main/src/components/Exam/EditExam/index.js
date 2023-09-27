@@ -4,9 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { loadCookies } from "../../../utils/Cookies";
-import { Box, Tab, Tabs, Tooltip } from "@mui/material";
+import { Box, Button, Tab, Tabs, Tooltip } from "@mui/material";
 import CustomTabPanel from "../../../utils/CustomTabPanel";
 import ExamSetting from "./ExamSetting";
+import { ButtonCss } from "../../../utils/utils";
+import EditExamChallenges from "./EditExamChallenges";
 
 function a11yProps(index) {
   return {
@@ -19,7 +21,7 @@ const EditExam = (props) => {
   // const { row } = props;
   const params = useParams();
   const navigate = useNavigate();
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(0);
   const [exam, setExam] = useState({
     id: "",
     title: "",
@@ -33,7 +35,11 @@ const EditExam = (props) => {
     start_time: null,
     end_time: null,
     questions: [],
+    is_active: false,
+    is_deleted: false,
+    allow_redo_exam: null,
   });
+  console.log({ exam });
   const [isTimeLimit, setIsTimeLimit] = useState(false);
   const [selectedQue, setSelectedQue] = useState([]);
 
@@ -87,6 +93,7 @@ const EditExam = (props) => {
       questions: questions,
       exam_language: exam.exam_language,
       is_date_limit: exam.is_date_limit,
+      allow_redo_exam: exam.allow_redo_exam,
     };
     await onUpdateExam(body);
   };
@@ -116,7 +123,7 @@ const EditExam = (props) => {
   const onUpdateExam = async (body) => {
     await onExamUpdateHandler(body);
   };
-  console.log({ exam });
+
   const getExamDetail = useCallback(async () => {
     try {
       let access_token = loadCookies("access_token");
@@ -149,13 +156,53 @@ const EditExam = (props) => {
         toast.error("Server Error");
       }
     } catch (error) {}
-  }, [exam, examId, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [examId, navigate]);
+
   useEffect(() => {
     getExamDetail();
   }, [getExamDetail]);
+
+  const [loading, setLoading] = useState(false);
+
+  const validateFormHandler = async () => {
+    setLoading(true);
+    const curTitle = exam?.title?.trim();
+    const curDescription = exam?.description?.trim();
+    if (isTimeLimit) {
+      let curTimeLimitHour = exam.time_limit_hour;
+      let curTimeLimitMinute = exam.time_limit_minute;
+
+      if (curTimeLimitHour === 0 && curTimeLimitMinute === 0) {
+        toast.warning(
+          "You have Selected Limited Time. Please Enter Time Limit Also."
+        );
+      } else {
+        await onSubmitHandler();
+      }
+    } else if (curTitle === "" || curDescription === "") {
+      toast.error("Please enter all details...");
+    } else {
+      setExam({ ...exam, time_limit_hour: 0, time_limit_minute: 0 });
+      await onSubmitHandler();
+    }
+    setLoading(false);
+  };
+
   return (
     <main id="main" className="main custom-main">
-      <PageTitlesCreate title="Edit Assessments" breadcrumb={breadcrumb} />
+      <PageTitlesCreate
+        title="Edit Assessments"
+        breadcrumb={breadcrumb}
+        showRightMenuBtn
+      >
+        <Button
+          onClick={validateFormHandler}
+          sx={{ ...ButtonCss, color: "#fff" }}
+        >
+          Save
+        </Button>
+      </PageTitlesCreate>
       <section className="section">
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -172,7 +219,17 @@ const EditExam = (props) => {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            CHALLENGES
+            <EditExamChallenges
+              exam={exam}
+              setExam={setExam}
+              selectedQue={selectedQue}
+              addQuestion={addQuestion}
+              removeQuestion={removeQuestion}
+              onSubmitHandler={onSubmitHandler}
+              isTimeLimit={isTimeLimit}
+              getExamDetail={getExamDetail}
+              onIsTimeLimitChange={onIsTimeLimitChange}
+            />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
             Item Two
@@ -181,11 +238,9 @@ const EditExam = (props) => {
             <ExamSetting
               exam={exam}
               setExam={setExam}
-              selectedQue={selectedQue}
-              addQuestion={addQuestion}
-              removeQuestion={removeQuestion}
               onSubmitHandler={onSubmitHandler}
               isTimeLimit={isTimeLimit}
+              getExamDetail={getExamDetail}
               onIsTimeLimitChange={onIsTimeLimitChange}
             />
           </CustomTabPanel>

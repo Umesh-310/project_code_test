@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import css from "./PageTitlesCreate.module.css";
 
 const PageTitlesCreate = (props) => {
-  const { title, breadcrumb, showLeftMenuBtn = false, children } = props;
+  const { title, breadcrumb, showRightMenuBtn = false, children } = props;
 
   return (
     <>
@@ -22,7 +22,7 @@ const PageTitlesCreate = (props) => {
             </ol>
           </nav>
         </div>
-        {showLeftMenuBtn && <div>{children}</div>}
+        {showRightMenuBtn && <div>{children}</div>}
       </div>
     </>
   );

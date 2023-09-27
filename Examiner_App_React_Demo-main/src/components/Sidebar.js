@@ -65,6 +65,12 @@ const Sidebar = ({ toggle, closeDrawer }) => {
                   </Link>
                 </li>
 
+                <li className="nav-item">
+                  <Link to="#" className="nav-link collapsed">
+                    <i className="bi bi-card-list"></i>
+                    <span>Recently deleted</span>
+                  </Link>
+                </li>
               </>
             )}
           </>
