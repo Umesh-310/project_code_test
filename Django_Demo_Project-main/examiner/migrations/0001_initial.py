@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('start_time', models.DateTimeField(blank=True, default=None, null=True)),
                 ('end_time', models.DateTimeField(blank=True, default=None, null=True)),
                 ('exam_link', models.TextField(blank=True, default=None, max_length=500, null=True)),
-                ('is_time_limit', models.BooleanField(default=False)),
+                ('is_time_limit', 'allow_redo_exam', models.BooleanField(default=False)),
                 ('time_limit_hour', models.IntegerField(default=0)),
                 ('time_limit_minute', models.IntegerField(default=0)),
                 ('total_question', models.IntegerField(default=0)),

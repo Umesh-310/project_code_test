@@ -56,6 +56,7 @@ class Exam(SoftDelete):
     time_limit_hour = models.IntegerField(default=0)
     time_limit_minute = models.IntegerField(default=0)
     total_question = models.IntegerField(default=0)
+    allow_redo_exam = models.BooleanField(default=False)
 
     is_active = models.BooleanField(default=True)
     is_updated = models.BooleanField(default=False)

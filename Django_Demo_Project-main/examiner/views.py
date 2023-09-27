@@ -212,7 +212,7 @@ class RetriveExamDetailByExaminerAPIView(APIView):
     permission_classes = [IsAuthenticated]
     def get_object(self, pk):
         try:    
-            return Exam.objects.get(pk=pk)
+            return Exam.everything.get(pk=pk)
         except Exam.DoesNotExist:
             raise Http404
     
@@ -271,11 +271,11 @@ class DeleteExamAPIView(APIView):
             raise Http404
         
     def delete(self, request, pk, format=None):
-        Exam = self.get_object(pk)
-        self.check_object_permissions(request, Exam)
-        Exam.soft_delete()
-        Exam.is_updated = True
-        Exam.save()
+        exam = self.get_object(pk)
+        self.check_object_permissions(request, exam)
+        exam.soft_delete()
+        exam.is_updated = True
+        exam.save()
         return Response({'msg': 'Exam Deleted Successfully'}, status=status.HTTP_200_OK)
 
 
