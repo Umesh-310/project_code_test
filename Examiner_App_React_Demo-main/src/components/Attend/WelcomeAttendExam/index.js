@@ -60,7 +60,6 @@ const WelcomeAttendExam = () => {
           });
         }
       } else {
-        console.log(response);
         toast.error("Server Error");
       }
     } catch (error) {
@@ -70,7 +69,6 @@ const WelcomeAttendExam = () => {
 
   useEffect(() => {
     getExamDetail();
-    console.log("From WelcomeAttendExam");
   }, []);
 
   return (

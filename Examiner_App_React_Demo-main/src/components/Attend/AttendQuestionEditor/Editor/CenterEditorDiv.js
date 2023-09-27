@@ -79,7 +79,7 @@ const CenterEditorDiv = ({
 
   const updateCode = (e) => {
     if (e !== tempCode) {
-      console.log("inside updateCoide", e);
+      console.log("inside updateCode", e);
       dispatch(
         SAVE_MY_CODE({
           [attendQuestionId]: {

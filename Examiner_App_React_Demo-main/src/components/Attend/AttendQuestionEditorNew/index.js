@@ -183,7 +183,6 @@ const AttendQuestionEditorNew = () => {
     if (typeof window !== "undefined") {
       const selectedText = window.getSelection().toString();
       setCopiedText(selectedText);
-      console.log({ selectedText });
       setIsCopied(true);
     }
   };

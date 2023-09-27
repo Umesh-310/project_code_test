@@ -69,7 +69,6 @@ const AttendQuestionEditor = () => {
         { headers }
       );
       if (response.status === 200) {
-        console.log({ data: response?.data?.data?.language || "not Found" });
         const language_res =
           response?.data?.data?.language || "JAVASCRIPT_NODE";
         if (reset) {

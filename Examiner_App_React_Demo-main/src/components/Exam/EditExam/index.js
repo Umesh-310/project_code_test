@@ -39,7 +39,6 @@ const EditExam = (props) => {
     is_deleted: false,
     allow_redo_exam: null,
   });
-  console.log({ exam });
   const [isTimeLimit, setIsTimeLimit] = useState(false);
   const [selectedQue, setSelectedQue] = useState([]);
 

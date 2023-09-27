@@ -56,7 +56,6 @@ const DEFAULT_ROWS_PER_PAGE = 10;
 
 function EnhancedTableHead(props) {
   const { order, orderBy, rowCount, onRequestSort, showExam = true } = props;
-  console.log({ showExam });
   const createSortHandler = (newOrderBy) => (event) => {
     onRequestSort(event, newOrderBy);
   };

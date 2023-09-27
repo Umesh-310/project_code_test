@@ -27,7 +27,6 @@ export const activateExamHandler = async (exam, navigate) => {
 };
 
 export const deletionExamHandler = async (exam, navigate) => {
-  console.log({ exam });
   try {
     let access_token = loadCookies("access_token");
     if (!access_token) {
