@@ -161,7 +161,6 @@ export const endAttendExam = async (
         const mp4File = new File([videoBlob], `${attendExamId}.mp4`, {
           type: "video/mp4",
         });
-        console.log("MP4FILE : ", mp4File);
 
         form_data.append("video", mp4File, mp4File.name);
         // form_data.append("total_cheat", pasteCount);

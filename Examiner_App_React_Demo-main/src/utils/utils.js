@@ -24,8 +24,8 @@ export const INIT_CODE = {
   JAVASCRIPT_NODE: `process.stdin.resume(); 
 var i = 0, t = 0; 
 process.stdin.on('data', function (n) {
-        main(n.toString());
-        process.exit(); 
+    console.log(main(n.toString()));
+    process.exit(); 
 }); 
 function main(arg) { 
   return arg
@@ -44,11 +44,10 @@ class MainClass {
 }
 `,
   TYPESCRIPT: `process.stdin.on('data', function (n: any) {
-        main(n.toString());
+        console.log(main(n.toString()));
         process.exit(); 
 }); 
 function main(arg: string) { 
-    console.log(arg)
   return arg
 }`,
   CPP17: `#include <iostream>
