@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import DefaultModel from "../../../Modal/DefaultModel";
-import { QUE_SUBMIT_MESSAGE, LogoText } from "../../../../utils/utils";
+import { QUE_SUBMIT_MESSAGE } from "../../../../utils/utils";
 
 const RightOutputDiv = ({
   isFinalSubmitLoading,
@@ -40,7 +40,6 @@ const RightOutputDiv = ({
           setIsFinalSubmit(true);
           setConfirmModal(false);
         }}
-        Title={<LogoText />}
         message={QUE_SUBMIT_MESSAGE}
         closeBtn="cancel"
         arrgeBtn="submit"

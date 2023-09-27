@@ -5,16 +5,18 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import React from "react";
+import { LogoText } from "../../utils/utils";
 
 const DefaultModel = (props) => {
   const {
     open,
     handleClose,
     onClick,
-    Title,
+    Title = <LogoText />,
     message,
     closeBtn = "",
     arrgeBtn = "Agree",
+    children = <></>,
   } = props;
 
   return (
@@ -29,6 +31,7 @@ const DefaultModel = (props) => {
         <DialogContentText id="alert-dialog-description">
           {message}
         </DialogContentText>
+        {children}
       </DialogContent>
       <DialogActions>
         {closeBtn && <Button onClick={handleClose}>{closeBtn}</Button>}

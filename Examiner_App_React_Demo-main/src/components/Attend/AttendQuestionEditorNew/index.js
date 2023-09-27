@@ -11,7 +11,6 @@ import DefaultModel from "../../Modal/DefaultModel";
 import {
   FULL_SCREEN_ALERT_MESS,
   INIT_CODE,
-  LogoText,
   getCode,
 } from "../../../utils/utils";
 import CenterEditorDiv from "../AttendQuestionEditor/Editor/CenterEditorDiv";
@@ -19,7 +18,6 @@ import css from "./AttendQuestionEditor.module.css";
 import RightOutputDiv from "../AttendQuestionEditor/Editor/RightOutputDiv";
 import {
   COPY_DETECT,
-  EMPTY_FULL_STATE,
   SWITCH_TAB,
   FULL_SCREEN_LEAVE,
   SWITCH_WINDOW,
@@ -483,7 +481,6 @@ const AttendQuestionEditorNew = () => {
         onClick={() => {
           enterFullScreen();
         }}
-        Title={<LogoText />}
         message={FULL_SCREEN_ALERT_MESS}
         closeBtn="Leave"
         arrgeBtn="Stya"
@@ -493,7 +490,6 @@ const AttendQuestionEditorNew = () => {
         open={copyModal}
         handleClose={closeCopyModal}
         onClick={closeCopyModal}
-        Title={<LogoText />}
         message={"Copy Paste Detected from outside"}
         arrgeBtn="Okay"
       />

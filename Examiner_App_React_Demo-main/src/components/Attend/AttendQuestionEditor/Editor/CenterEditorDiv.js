@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SAVE_MY_CODE, SET_LANGUAGE } from "../../../../store/answerSlice";
 import css from "./CenterEditorDiv.module.css";
 import DefaultModel from "../../../Modal/DefaultModel";
-import { LogoText, RESET_TEXT } from "../../../../utils/utils";
+import { RESET_TEXT } from "../../../../utils/utils";
 import LanguageSelect from "./LanguageSelect";
 
 // //////////////////////////////////////////////////
@@ -109,7 +109,6 @@ const CenterEditorDiv = ({
         open={reset}
         handleClose={() => setReset(false)}
         onClick={() => onReset()}
-        Title={<LogoText />}
         message={RESET_TEXT}
         closeBtn="Cancel"
         arrgeBtn="Reset"

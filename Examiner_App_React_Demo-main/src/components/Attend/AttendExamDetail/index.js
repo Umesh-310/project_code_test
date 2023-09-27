@@ -15,7 +15,7 @@ import {
 import PageTitle from "./PageTitle";
 import LeftInstruction from "./LeftInstruction";
 import DefaultModel from "../../Modal/DefaultModel";
-import { FULL_SCREEN_MESS, LogoText } from "../../../utils/utils";
+import { FULL_SCREEN_MESS } from "../../../utils/utils";
 import css from "./AttendExamDetail.module.css";
 
 const AttendExamDetail = () => {
@@ -180,7 +180,6 @@ const AttendExamDetail = () => {
         open={!isFullScreen}
         handleClose={() => console.log("first")}
         onClick={() => enterFullScreen()}
-        Title={<LogoText />}
         message={FULL_SCREEN_MESS}
         arrgeBtn="Enter Full Screen"
       />
