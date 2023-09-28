@@ -1,7 +1,7 @@
 from django.urls import path
 
 from author.views import CreateQuestionAPIView, RetriveQuestionDetailAPIView
-from author.views import RetriveQuestionDetailByMeAPIView, UpdateQuestionAPIView, UpdateTestcaseAPIView, DeleteQuestionAPIView, RestoreQuestionAPIView, RetriveQuestionByMeAPIView, QuestionListAPIView
+from author.views import RetriveQuestionDetailByMeAPIView, AllQuestionsAPIView, UpdateQuestionAPIView, UpdateTestcaseAPIView, DeleteQuestionAPIView, RestoreQuestionAPIView, RetriveQuestionByMeAPIView, QuestionListAPIView
 from author.views import GetTotalQuestionAPIView
 
 app_name = 'mainadmin'
@@ -9,8 +9,9 @@ app_name = 'mainadmin'
 urlpatterns = [
     path('get_single_question/<str:pk>/', RetriveQuestionDetailAPIView.as_view(), name="get_single_question"),
     path('questionlist/', QuestionListAPIView.as_view(), name="questionlist"),
-
+    
     # for object realated own Author
+    path('all_questionlist/', AllQuestionsAPIView.as_view(), name="all_questionlist"),
     path('create_question/', CreateQuestionAPIView.as_view(), name="create_question"),
     path('get_single_question_by_me/<str:pk>/', RetriveQuestionDetailByMeAPIView.as_view(), name="get_single_question_by_me"),
     path('questionlist_by_me/', RetriveQuestionByMeAPIView.as_view(), name="questionlist_by_me"),

@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
 from rest_framework import filters, pagination
+from django.db.models import Q
 
 from author.renderers import QuestionRenderer
 from author.serializers import QuestionSerializer, QuestionCreateSerializer, QuestionUpdateSerializer, TestcaseUpdateSerializer
@@ -35,23 +36,6 @@ class QuestionListAPIView(ListAPIView):
     # pagination_class = MyPageNumberPagination
 
 
-# create new Question    
-class CreateQuestionAPIView(APIView):
-    # renderer_classes = [QuestionRenderer]
-    permission_classes = [IsAuthenticated, IsAuthorPermission]
-    message = "You are not Authenticated to access to permission"
-    
-    def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
-
-    def post(self, request, format=None):
-        serializer = QuestionCreateSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        serializer.save()
-        return Response({'msg': 'Question Created Successfully','data': serializer.data}, status=status.HTTP_201_CREATED)
-    
-
 # list question by me
 class RetriveQuestionByMeAPIView(ListAPIView):
     # renderer_classes = [QuestionRenderer]
@@ -69,6 +53,42 @@ class RetriveQuestionByMeAPIView(ListAPIView):
         user = self.request.user
         return Question.everything.filter(created_by = user)
 
+# all question [public and your privet]
+class AllQuestionsAPIView(ListAPIView):
+
+    permission_classes = [IsAuthenticated, IsAuthorPermission]
+    serializer_class = QuestionSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    filterset_fields = ['level','is_active','created_by','is_deleted']
+    ordering = ['-created_at']     # default order
+    ordering_fields = ['created_by','created_at','updated_at','level','is_active']
+    # search_fields = ['^title', 'description', '=level']
+    search_fields = ['title', 'description', 'level']
+
+    def get_queryset(self):
+        user = self.request.user
+        all_questions = Question.everything.filter(Q(created_by=user) | Q(is_private=False))
+        # public_questions = Question.objects.filter(is_private=False)
+        # my_questions = Question.everything.filter(created_by=user)
+        # all_questions = public_questions.union(my_questions)
+        return all_questions
+
+# create new Question    
+class CreateQuestionAPIView(APIView):
+    # renderer_classes = [QuestionRenderer]
+    permission_classes = [IsAuthenticated, IsAuthorPermission]
+    message = "You are not Authenticated to access to permission"
+    
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+    def post(self, request, format=None):
+        serializer = QuestionCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        serializer.save()
+        return Response({'msg': 'Question Created Successfully','data': serializer.data}, status=status.HTTP_201_CREATED)
+    
 
 # get single Question
 class RetriveQuestionDetailByMeAPIView(APIView):
