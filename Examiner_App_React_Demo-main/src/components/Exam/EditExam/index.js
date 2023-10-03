@@ -9,6 +9,7 @@ import CustomTabPanel from "../../../utils/CustomTabPanel";
 import ExamSetting from "./ExamSetting";
 import { ButtonCss } from "../../../utils/utils";
 import EditExamChallenges from "./EditExamChallenges";
+import { onExamQueUpdateHandler } from "../../../utils/Api";
 
 function a11yProps(index) {
   return {
@@ -41,6 +42,7 @@ const EditExam = (props) => {
   });
   const [isTimeLimit, setIsTimeLimit] = useState(false);
   const [selectedQue, setSelectedQue] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -64,26 +66,55 @@ const EditExam = (props) => {
     setIsTimeLimit(!isTimeLimit);
   };
 
-  const addQuestion = (e, id) => {
-    setExam({ ...exam, total_question: exam.total_question + 1 });
-    setSelectedQue([...selectedQue, id]);
+  const addQuestion = async (question) => {
+    const len = selectedQue.length + 1;
+    const body = {
+      question: question.id,
+      exam: exam.id,
+      number: len,
+    };
+
+    const response = await onExamQueUpdateHandler(true, body);
+    if (response?.status === 200) {
+      // toast.success(response.data.msg);
+    } else if (response && response?.data?.msg) {
+      toast.warn(response.data.msg);
+    } else {
+      toast.error("Server Error");
+    }
   };
 
-  const removeQuestion = (e, id) => {
-    setExam({ ...exam, total_question: exam.total_question - 1 });
-    setSelectedQue(selectedQue.filter((el) => el !== id));
+  const removeQuestion = async (id) => {
+    if (selectedQue.length > 1) {
+      const body = {
+        question: id,
+        exam: exam.id,
+        number: 0,
+      };
+      const response = await onExamQueUpdateHandler(false, body);
+      if (response?.status === 200) {
+        // toast.success(response.data.msg);
+      } else if (response && response?.data?.msg) {
+        toast.warn(response.data.msg);
+      } else {
+        toast.error("Server Error");
+      }
+    } else {
+      toast.warning("need to add one Question at lest...");
+    }
   };
 
   const onSubmitHandler = async () => {
     const questions = selectedQue.map((que, i) => {
-      return { question: que, number: i + 1 };
+      return { question: que.id, number: i + 1 };
     });
+
     let body = {
       id: exam.id,
       title: exam.title,
       description: exam.description,
       passing_percent_mark: exam.passing_percent_mark,
-      total_question: exam.total_question,
+      total_question: questions.length, //exam.total_question,
       is_time_limit: exam.is_time_limit,
       time_limit_hour: exam.is_time_limit ? exam.time_limit_hour : 0,
       time_limit_minute: exam.is_time_limit ? exam.time_limit_minute : 0,
@@ -145,11 +176,7 @@ const EditExam = (props) => {
           });
 
           setIsTimeLimit(row.is_time_limit);
-          setSelectedQue(
-            row.questions.map((que) => {
-              return que.question;
-            })
-          );
+          setSelectedQue(row.questions);
         }
       } else {
         toast.error("Server Error");
@@ -161,8 +188,6 @@ const EditExam = (props) => {
   useEffect(() => {
     getExamDetail();
   }, [getExamDetail]);
-
-  const [loading, setLoading] = useState(false);
 
   const validateFormHandler = async () => {
     setLoading(true);
@@ -181,6 +206,8 @@ const EditExam = (props) => {
       }
     } else if (curTitle === "" || curDescription === "") {
       toast.error("Please enter all details...");
+    } else if (selectedQue.length > 1) {
+      toast.warning("Please select at lest 1 question...");
     } else {
       setExam({ ...exam, time_limit_hour: 0, time_limit_minute: 0 });
       await onSubmitHandler();
@@ -219,15 +246,11 @@ const EditExam = (props) => {
           </Box>
           <CustomTabPanel value={value} index={0}>
             <EditExamChallenges
-              exam={exam}
-              setExam={setExam}
               selectedQue={selectedQue}
               addQuestion={addQuestion}
               removeQuestion={removeQuestion}
               onSubmitHandler={onSubmitHandler}
-              isTimeLimit={isTimeLimit}
               getExamDetail={getExamDetail}
-              onIsTimeLimitChange={onIsTimeLimitChange}
             />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
