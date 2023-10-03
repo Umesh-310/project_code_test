@@ -85,6 +85,9 @@ const SettingPageOne = (props) => {
       setExam({ ...exam, exam_language: tempLanguage });
     }
   };
+  const descriptionChange = (event) => {
+    setExam({ ...exam, description: event });
+  };
 
   const handleConfirmOpen = () => setConfOpen(true);
   const handelDefaultModel = () => setDefOpen(true);
@@ -167,7 +170,7 @@ const SettingPageOne = (props) => {
           modules={modules}
           placeholder="write your content ...."
           value={exam.description}
-          onChange={(e) => console.log(e)}
+          onChange={descriptionChange}
         />
       </Box>
       <Divider component="p" sx={{ margin: "4px 0px" }} />
