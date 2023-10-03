@@ -23,13 +23,16 @@ const MyQuestion = () => {
     await getMyQue(e.target.value);
   };
 
-  const getMyQue = useCallback(async (search = "") => {
-    // await GetMyQuestion(dispatch, navigate,search)
-    dispatch(GetMyQuestion(search));
-  }, []);
+  const getMyQue = useCallback(
+    async (search = "") => {
+      // await GetMyQuestion(dispatch, navigate,search)
+      dispatch(GetMyQuestion(search));
+    },
+    [dispatch]
+  );
 
-  const deletionHandler = async (e, que) => {
-    e.preventDefault();
+  const deletionHandler = async (que) => {
+    // e.preventDefault();
     try {
       let access_token = loadCookies("access_token");
       if (!access_token) {

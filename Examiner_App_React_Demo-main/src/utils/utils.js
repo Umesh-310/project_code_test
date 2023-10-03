@@ -119,17 +119,6 @@ export const getCode = ({ answer, attendQuestionId, language_res }) => {
   return code;
 };
 
-export const all_language_arr = [
-  { key: "JAVASCRIPT_NODE", value: "javascript" },
-  { key: "PYTHON3", value: "python" },
-  { key: "PHP", value: "php" },
-  { key: "JAVA14", value: "java" },
-  { key: "TYPESCRIPT", value: "typescript" },
-  { key: "CPP17", value: "cpp" },
-  { key: "RUBY", value: "ruby" },
-  { key: "C", value: "c" },
-];
-
 export const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
@@ -238,7 +227,9 @@ export const headCells = [
 ];
 
 export const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
 export const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
 export const modules = {
   toolbar: [
     [{ size: ["small", false, "large", "huge"] }],
@@ -296,6 +287,18 @@ export const modules = {
     ],
   ],
 };
+
+export const all_language_arr = [
+  { key: "JAVASCRIPT_NODE", value: "javascript" },
+  { key: "PYTHON3", value: "python" },
+  { key: "PHP", value: "php" },
+  { key: "JAVA14", value: "java" },
+  { key: "TYPESCRIPT", value: "typescript" },
+  { key: "CPP17", value: "cpp" },
+  { key: "RUBY", value: "ruby" },
+  { key: "C", value: "c" },
+];
+
 export const languagesSvg = {
   JAVASCRIPT_NODE: javascriptSvg(css.chipIcon),
   PYTHON3: pythonSvg(css.chipIcon),
@@ -305,6 +308,24 @@ export const languagesSvg = {
   CPP17: cppSvg(css.chipIcon),
   RUBY: rubyonrailsSvg(css.chipIcon),
   C: cSvg(css.chipIcon),
+};
+
+export const language_obj = {
+  JAVASCRIPT_NODE: "javascript",
+  PYTHON3: "python",
+  PHP: "php",
+  JAVA14: "java",
+  TYPESCRIPT: "typescript",
+  CPP17: "cpp",
+  RUBY: "ruby",
+  C: "c",
+};
+
+export const questionCard_Type = {
+  LIBRARY: "library",
+  CHALLENGES: "challenges",
+  ALL_QUESTION: "all_questions",
+  MY_QUESTION: "my_questions",
 };
 // eslint-disable-next-line no-lone-blocks
 {
