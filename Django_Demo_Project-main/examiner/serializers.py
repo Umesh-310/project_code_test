@@ -61,7 +61,7 @@ class ExamListSerializer(serializers.ModelSerializer):
     attend_exam = serializers.SerializerMethodField()
     class Meta:
         model = Exam
-        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','start_time','end_time','is_time_limit', 'allow_redo_exam','is_date_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted','total_attendee','created_at','attend_exam']
+        fields = ['id','title','description', 'passing_percent_mark', 'exam_link','exam_language','start_time','end_time','is_time_limit', 'allow_redo_exam','is_date_limit','time_limit_hour','time_limit_minute','total_question','questions','created_by','is_active', 'is_deleted','total_attendee','created_at','attend_exam']
     
     def get_questions(self,obj):
         questions = obj.examquestion_set.all()
