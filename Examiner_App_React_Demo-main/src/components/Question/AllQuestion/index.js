@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-import PageTitle from "./PageTitle";
 import QuestionTable3 from "./QuestionTable3";
-import { getAllQuestion } from "../../../store/questionSlice";
+import { GetAllPublicQuestion } from "../../../store/questionSlice";
 import PageTitlesCreate from "../../../utils/PageTitlesCreate";
 
 const breadcrumb = [
@@ -14,22 +11,15 @@ const breadcrumb = [
 
 const AllQuestion = () => {
   let dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  let allQue = useSelector((state) => state.question.allQuestion);
+  const { allPublicQuestion, loading } = useSelector((state) => state.question);
 
   const onSearchChange = async (e) => {
-    await getAllQue(e.target.value);
-  };
-
-  const getAllQue = async (search = "") => {
-    await getAllQuestion(dispatch, navigate, search);
+    dispatch(GetAllPublicQuestion(e.target.value));
   };
 
   useEffect(() => {
-    getAllQue();
-    setData(allQue);
-  }, []);
+    dispatch(GetAllPublicQuestion());
+  }, [dispatch]);
 
   return (
     <>
@@ -70,7 +60,7 @@ const AllQuestion = () => {
                       </div>
                     </div>
                   </div>
-                  <QuestionTable3 data={allQue} />
+                  <QuestionTable3 data={allPublicQuestion} />
                 </div>
               </div>
             </div>

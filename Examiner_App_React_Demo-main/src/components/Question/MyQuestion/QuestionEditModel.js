@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 
 import EditQuestionForm from "./EditQuestionForm";
+import { Button } from "@mui/material";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 
 const QuestionEditModal = ({
   row,
@@ -88,7 +90,7 @@ const QuestionEditModal = ({
 
   return (
     <>
-      <button
+      {/* <button
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
@@ -97,7 +99,16 @@ const QuestionEditModal = ({
         <Link to="" style={{ color: "white" }}>
           <EditIcon />
         </Link>
-      </button>
+      </button> */}
+      <Button
+        data-bs-toggle="modal"
+        className="questionCardBtn"
+        data-bs-target={`#modalDialogScrollable-${row.id}`}
+      >
+        <DriveFileRenameOutlineIcon
+          sx={{ color: "#0c1f4d", fontSize: "18px" }}
+        />
+      </Button>
       <div
         className="modal fade"
         id={`modalDialogScrollable-${row.id}`}

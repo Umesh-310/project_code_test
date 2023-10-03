@@ -281,17 +281,6 @@ const AttendQuestionEditor = () => {
     }
   };
 
-  // document.addEventListener('visibilitychange',e=>{
-  //     // if(document.visibilityState === "hidden"){
-  //         // alert('plese not change tab')
-  //         setTabChangeCount((prev) => prev + 1)
-  //         console.log('not change tab==============')
-  //         setIsCopied(false)
-  //     // }
-  // })
-
-  // console.log('tabChangeCount +++++++++++++++++++++',tabChangeCount/22)
-
   useEffect(() => {
     const interval = setInterval(() => {
       if (exam?.is_time_limit) {

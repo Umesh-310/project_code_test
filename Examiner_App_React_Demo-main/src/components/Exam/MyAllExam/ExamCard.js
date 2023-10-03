@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,19 +11,13 @@ import Button from "@mui/material/Button";
 
 // icons
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import DeleteIcon from "@mui/icons-material/Delete";
-import RestoreFromTrashIcon from "@mui/icons-material/RestoreFromTrash";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 
 import css from "./ExamCardTable.module.css";
-import ExamEditModal from "./ExamEditModal";
 import { Box } from "@mui/material";
 import moment from "moment";
-import {
-  IOSSwitch,
-  assessmentOC_text,
-} from "../../../utils/utils";
+import { IOSSwitch, assessmentOC_text } from "../../../utils/utils";
 import DefaultModel from "../../Modal/DefaultModel";
 
 const ExamCard = (props) => {

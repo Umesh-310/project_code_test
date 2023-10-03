@@ -1,16 +1,24 @@
 import LaunchIcon from "@mui/icons-material/Launch";
+import { Button } from "@mui/material";
 
 const QuestionDetailModal = ({ que }) => {
   return (
     <>
-      <button
+      {/* <button
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target={`#modalDialogScrollable-${que.id}`}
       >
         <LaunchIcon />
-      </button>
+      </button> */}
+      <Button
+        data-bs-toggle="modal"
+        className="questionCardBtn"
+        data-bs-target={`#modalDialogScrollable-${que.id}`}
+      >
+        <LaunchIcon sx={{ color: "#0c1f4d", fontSize: "18px" }} />
+      </Button>
       <div
         className="modal fade"
         id={`modalDialogScrollable-${que.id}`}

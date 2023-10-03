@@ -1,5 +1,4 @@
 export const LevelBage = ({ level }) => {
-  // const color = level === "Medium" ? "#000" : "#fff";
   const color =
     level === "Medium" ? "#efad65" : level === "Hard" ? "#bf0012" : "green";
   return (
