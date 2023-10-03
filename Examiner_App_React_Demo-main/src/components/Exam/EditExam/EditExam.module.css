@@ -3,6 +3,15 @@
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0px 0px 5px #0004;
+  position: sticky;
+  overflow: scroll;
+  max-height: 90vh;
+  top: 10%;
+}
+.gridBox::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 .flex {
   display: flex;
@@ -36,4 +45,60 @@
   padding: 20px;
   display: flex;
   flex-direction: row-reverse;
+}
+.queCardBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px auto;
+  padding: 0px 10px;
+}
+.questionCardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.questionTitleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.questionTitle {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px;
+  color: #1b313de6;
+}
+.questionLevel {
+  font-weight: 400 !important;
+  font-size: 13px !important;
+}
+.headerAddBtn {
+  padding: 0 !important;
+  min-width: unset !important;
+}
+.easy {
+  color: #5ec566;
+}
+.medium {
+  color: #da9245;
+}
+.hard {
+  color: #ab3b64;
+}
+.cardBody {
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.ExamDate span {
+  color: #1b313d80;
+  font-size: 13px;
+}
+.examCardBottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed #1b313d80;
+  padding: 8px 10px !important;
 }
