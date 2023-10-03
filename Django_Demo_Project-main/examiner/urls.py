@@ -1,6 +1,6 @@
 from django.urls import path
 
-from examiner.views import CreateExamWithSelectedQuestionsAPIView, CreateExamWithRandomQuestionsAPIView, RetriveExamDetailByExaminerAPIView, UpdateExamAPIView, DeleteExamAPIView, RestoreExamAPIView, DeactivateExamAPIView, ActivateExamAPIView, RetriveExamByMeAPIView, MailExamLinkAPIView, RetriveExamDetailForRegisterAPIView
+from examiner.views import UpdateExamQuestionAPIView, CreateExamWithSelectedQuestionsAPIView, CreateExamWithRandomQuestionsAPIView, RetriveExamDetailByExaminerAPIView, UpdateExamAPIView, DeleteExamAPIView, RestoreExamAPIView, DeactivateExamAPIView, ActivateExamAPIView, RetriveExamByMeAPIView, MailExamLinkAPIView, RetriveExamDetailForRegisterAPIView
 
 urlpatterns = [
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('examlist_by_me/', RetriveExamByMeAPIView.as_view(), name="examlist_by_me"),
     path('get_single_exam_by_examiner/<str:pk>/', RetriveExamDetailByExaminerAPIView.as_view() , name="get_single_exam_by_examiner"),
     path('update_exam/<str:pk>/', UpdateExamAPIView.as_view(), name="update_exam"),
+    path('update_exam_question/<str:pk>/', UpdateExamQuestionAPIView.as_view(), name="update_exam_question"),
     path('delete_exam/<str:pk>/', DeleteExamAPIView.as_view() , name="delete_exam"),
     path('restore_exam/<str:pk>/', RestoreExamAPIView.as_view() , name="restore_exam"),
     path('deactivate_exam/<str:pk>/', DeactivateExamAPIView.as_view() , name="deactivate_exam"),

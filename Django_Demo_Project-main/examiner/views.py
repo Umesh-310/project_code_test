@@ -5,7 +5,7 @@ from django.core.mail import EmailMultiAlternatives, EmailMessage, send_mail
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView 
 from rest_framework import filters, pagination
 from rest_framework.response import Response
 from rest_framework import status
@@ -25,10 +25,11 @@ from django.template.loader import render_to_string
 from qrcode import *
 
 from examiner.renderers import ExamRenderer
-from examiner.models import Exam
-from examiner.serializers import ExamSerializer, ExamCreateSerializer, ExamListSerializer
+from examiner.serializers import ExamSerializer, ExamCreateSerializer, ExamListSerializer , ExamQuestionSerializer
 from examiner.custom_permissions import IsExaminerPermission, IsOwnExaminerPermission
+from examiner.models import Exam ,ExamQuestion
 from author.models import Question
+from attendee.models import AttendExam
 from admin_site.settings import FRONT_END_DOMAIN_LINK, MEDIA_ROOT
 
 
@@ -257,6 +258,62 @@ class UpdateExamAPIView(APIView):
             serializer.save()
             return Response({'msg': 'Exam Updated Successfully','data': serializer.data}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# update Exam Question
+class UpdateExamQuestionAPIView(APIView):
+    # renderer_classes = [ExamRenderer]
+    permission_classes = [AllowAny]
+    message = "You are not Authenticated to access to permission"
+    def get_object(self, pk):
+        try:
+            return Exam.everything.get(pk=pk)
+        except Exam.DoesNotExist:
+            raise Http404
+    def get_question(self , exam , question):
+        try:
+            return ExamQuestion.everything.get(exam=exam, question=question)
+        except ExamQuestion.DoesNotExist:
+            return None 
+    def get_attended(self, exam):
+        try:
+            return AttendExam.objects.filter(exam=exam)
+        except AttendExam.DoesNotExist:
+            return None
+
+    def post(self, request, pk, format=None):
+        exam = self.get_object(pk)
+        attended = self.get_attended(exam)
+        if attended:
+            return Response({'msg': "You have already invited candidates to this assessment and can no longer modify challenges."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+        self.check_object_permissions(request, exam)
+        question= request.data['question']
+        exam_question = self.get_question(exam, question)
+
+        if exam_question != None:
+            return Response({'msg': "Question already present"}, status=status.HTTP_202_ACCEPTED)
+        else:
+            serializer = ExamQuestionSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response({'msg': "Question added successfully" , 'data' :serializer.data},status=status.HTTP_200_OK)
+        
+    def delete(self, request, pk, format=None):
+        try:
+            exam_question = ExamQuestion.everything.get(pk=pk)
+            attended = self.get_attended(exam_question.exam)
+            if attended:
+                return Response({'msg': "You have already invited candidates to this assessment and can no longer modify challenges."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+            if exam_question != None:
+                exam_question.delete()
+                # exam_question.save()
+                return Response({'msg': "Question Deleted Successfully"}, status=status.HTTP_204_NO_CONTENT)
+        
+        except ExamQuestion.DoesNotExist:
+            return Response({'msg': "Question Not Found"}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 # soft delete single Exam
