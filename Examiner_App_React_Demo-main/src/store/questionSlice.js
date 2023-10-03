@@ -4,9 +4,11 @@ import axios from "axios";
 import { loadCookies } from "../utils/Cookies";
 
 const initialQuestionState = {
+  allPublicQuestion: [],
   allQuestion: [],
   myQuestion: [],
   error: "",
+  loading: false,
 };
 
 export const createQuestion = async (dispatch, body, navigate) => {
@@ -39,41 +41,14 @@ export const createQuestion = async (dispatch, body, navigate) => {
   }
 };
 
-export const getAllQuestion = async (dispatch, navigate, search) => {
-  try {
-    dispatch(GET_ALL_QUESTION_BEGIN());
-    let access_token = loadCookies("access_token");
-    if (!access_token) {
-      navigate("/question/login");
-    }
-    const headers = { Authorization: `Bearer ${access_token}` };
-    const response = await axios.get(
-      `/api/author/questionlist/?search=${search}`,
-      { headers }
-    );
-    if (response.status == 200) {
-      console.log(response.data);
-      dispatch(GET_ALL_QUESTION_SUCCESS(response.data));
-    } else {
-      console.log(response);
-      toast.error("Server Error");
-      dispatch(GET_ALL_QUESTION_FAIL("Something went wrong!"));
-    }
-  } catch (error) {
-    console.log(error);
-    dispatch(GET_ALL_QUESTION_FAIL("Something went wrong!"));
-    // toast.error(error.response.data.errors.non_field_errors[0])
-  }
-};
-
-export const GetMyQuestion = createAsyncThunk(
-  "getmyquestion",
+export const GetAllPublicQuestion = createAsyncThunk(
+  "getAllPublicQuestion",
   async (search, { rejectWihValue }) => {
     try {
       let access_token = loadCookies("access_token");
       const headers = { Authorization: `Bearer ${access_token}` };
       const response = await axios.get(
-        `/api/author/questionlist_by_me/?search=${search}`,
+        `/api/author/questionlist/${search ? "?search=" + search : ""}`,
         { headers }
       );
       return response.data;
@@ -83,28 +58,39 @@ export const GetMyQuestion = createAsyncThunk(
   }
 );
 
-// export const getMyQuestion = async(dispatch, navigate,search) =>{
-// 	try{
-// 		dispatch(GET_MY_QUESTION_BEGIN());
-// 		let access_token = loadCookies('access_token')
-// 		if(!access_token){
-// 			navigate('/question/login')
-// 		}
-// 		const headers = { 'Authorization': `Bearer ${access_token}` };
-// 		const response = await axios.get(`/api/author/questionlist_by_me/?search=${search}`,{headers});
-// 		if(response.status == 200) {
-// 			dispatch(GET_MY_QUESTION_SUCCESS(response.data));
-// 		}
-// 		else{
-// 			toast.error('Server Error');
-// 			dispatch(GET_MY_QUESTION_FAIL("Something went wrong!"));
-// 		}
-// 	}
-// 	catch (error) {
-// 	  dispatch(GET_MY_QUESTION_FAIL("Something went wrong!"));
-// 	  // toast.error(error.response.data.errors.non_field_errors[0])
-// 	}
-// };
+export const GetAllQuestion = createAsyncThunk(
+  "getAllQuestion",
+  async (search, { rejectWihValue }) => {
+    try {
+      let access_token = loadCookies("access_token");
+      const headers = { Authorization: `Bearer ${access_token}` };
+      const response = await axios.get(
+        `/api/author/all_questionlist/${search ? "?search=" + search : ""}`,
+        { headers }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWihValue(error);
+    }
+  }
+);
+
+export const GetMyQuestion = createAsyncThunk(
+  "getmyquestion",
+  async (search, { rejectWihValue }) => {
+    try {
+      let access_token = loadCookies("access_token");
+      const headers = { Authorization: `Bearer ${access_token}` };
+      const response = await axios.get(
+        `/api/author/questionlist_by_me/${search ? "?search=" + search : ""}`,
+        { headers }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWihValue(error);
+    }
+  }
+);
 
 const questionSlice = createSlice({
   name: "question",
@@ -117,16 +103,6 @@ const questionSlice = createSlice({
       state.loading = false;
     },
     CREATE_QUESTION_FAIL: (state) => {
-      state.loading = false;
-    },
-    GET_ALL_QUESTION_BEGIN: (state) => {
-      state.loading = true;
-    },
-    GET_ALL_QUESTION_SUCCESS: (state, action) => {
-      state.loading = false;
-      state.allQuestion = action.payload;
-    },
-    GET_ALL_QUESTION_FAIL: (state) => {
       state.loading = false;
     },
     GET_MY_QUESTION_BEGIN: (state) => {
@@ -152,6 +128,28 @@ const questionSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    [GetAllPublicQuestion.pending]: (state) => {
+      state.loading = true;
+    },
+    [GetAllPublicQuestion.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.allPublicQuestion = payload;
+    },
+    [GetAllPublicQuestion.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [GetAllQuestion.pending]: (state) => {
+      state.loading = true;
+    },
+    [GetAllQuestion.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.allQuestion = payload;
+    },
+    [GetAllQuestion.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -159,9 +157,6 @@ export const {
   CREATE_QUESTION_BEGIN,
   CREATE_QUESTION_SUCCESS,
   CREATE_QUESTION_FAIL,
-  GET_ALL_QUESTION_BEGIN,
-  GET_ALL_QUESTION_SUCCESS,
-  GET_ALL_QUESTION_FAIL,
   GET_MY_QUESTION_BEGIN,
   GET_MY_QUESTION_SUCCESS,
   GET_MY_QUESTION_FAIL,

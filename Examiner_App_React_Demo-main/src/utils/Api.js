@@ -49,3 +49,28 @@ export const deletionExamHandler = async (exam, navigate) => {
     return response;
   } catch (error) {}
 };
+
+export const onExamQueUpdateHandler = async (postReq, body) => {
+  try {
+    let access_token = loadCookies("access_token");
+    // if (!access_token) {
+    //   navigate("/auth/login");
+    // }
+    const headers = { Authorization: `Bearer ${access_token}` };
+    if (postReq) {
+      return await axios.post(
+        `/api/examiner/update_exam_question/${body.exam}/`,
+        body,
+        { headers }
+      );
+    } else {
+      return await axios.delete(
+        `/api/examiner/update_exam_question/${body.question}/`,
+        { headers }
+      );
+    }
+  } catch (error) {
+    return error?.response || "";
+    // toast.error("Server Error");
+  }
+};
