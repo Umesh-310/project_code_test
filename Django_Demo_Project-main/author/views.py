@@ -67,10 +67,7 @@ class AllQuestionsAPIView(ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        all_questions = Question.everything.filter(Q(created_by=user) | Q(is_private=False))
-        # public_questions = Question.objects.filter(is_private=False)
-        # my_questions = Question.everything.filter(created_by=user)
-        # all_questions = public_questions.union(my_questions)
+        all_questions = Question.everything.filter((Q(created_by=user) | Q(is_private=False)) & Q(is_deleted=False))
         return all_questions
 
 # create new Question    

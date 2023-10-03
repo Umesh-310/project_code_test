@@ -21,7 +21,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     # is_deleted = DefaultEmptyBooleanField(required=False)
     class Meta:
         model = Question
-        fields = ['id', 'title', 'description', 'example', 'level', 'question_language', 'testcases', 'is_active', 'is_private', 'is_deleted', 'python_init_code', 'javascript_init_code', 'created_by']
+        fields = ['id', 'title', 'description', 'example', 'level', 'question_language', 'testcases', 'is_active', 'is_private', 'is_deleted', 'python_init_code', 'javascript_init_code', 'created_by', 'created_at']
         
     def get_testcases(self,obj):
         testcases = obj.testcase_set.all()

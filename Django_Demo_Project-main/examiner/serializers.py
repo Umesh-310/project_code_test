@@ -11,7 +11,20 @@ from attendee.models import AttendExam
 
 EXAM_LINK = FRONT_END_DOMAIN_LINK + 'attend_exam/check_start_exam/'
 
-class ExamQuestionSerializer(serializers.ModelSerializer):
+class ExamQuestionWithDetailSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(source='question.title')
+    description = serializers.CharField(source='question.description')
+    question_language = serializers.JSONField(source='question.question_language')
+    level = serializers.CharField(source='question.level')
+    created_at = serializers.DateTimeField(source='question.created_at')
+    is_active = serializers.BooleanField(source='question.is_active')
+    is_deleted = serializers.BooleanField(source='question.is_deleted')
+    class Meta:
+        model = ExamQuestion
+        fields = ['id','question','exam', "number" , 'title','description','question_language','level','created_at','is_active','is_deleted']
+        
+class ExamQuestionSerializer(serializers.ModelSerializer, serializers.Serializer):
+
     class Meta:
         model = ExamQuestion
         fields = ['id','question','exam', "number"]
@@ -52,7 +65,7 @@ class ExamListSerializer(serializers.ModelSerializer):
     
     def get_questions(self,obj):
         questions = obj.examquestion_set.all()
-        serializer = ExamQuestionSerializer(questions, many=True)
+        serializer = ExamQuestionWithDetailSerializer(questions, many=True)
         return serializer.data
     
     def get_total_attendee(self,obj):
