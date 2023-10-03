@@ -1266,3 +1266,13 @@ h6 {
   align-items: center;
   height: 100%;
 }
+.tableLoader {
+  margin: auto;
+  display: flex;
+  width: 100px;
+  height: 300px;
+}
+.questionCardBtn {
+  padding: 0 !important;
+  min-width: unset !important;
+}

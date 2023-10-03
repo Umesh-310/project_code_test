@@ -1,81 +1,48 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 
-import { loadCookies } from "../../../utils/Cookies";
 import QuestionTable3 from "./QuestionTable3";
-import { useNavigate } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  GetAllPublicQuestion,
+  GetMyQuestion,
+} from "../../../store/questionSlice";
+import infinityloader from "../../../assets/svgs/infinityloader.svg";
 const Page3Question = ({
   onSubmit,
   previousPage,
   exam,
-  setExam,
   selectedQue,
   addQuestion,
   removeQuestion,
 }) => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [submitLoading, setLoading] = useState(false);
   const [questionByOption, setQuestionByOption] = useState("all");
   const [isFinalSubmit, setIsFinalSubmit] = useState(false);
-
-  const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { allPublicQuestion, myQuestion, loading } = useSelector(
+    (state) => state.question
+  );
+  // const [data, setData] = useState([]);
+  // const navigate = useNavigate();
   const onSearchChange = async (e) => {
     if (questionByOption === "all") {
-      await getAllQuestion(e.target.value);
+      await dispatch(GetAllPublicQuestion(e.target.value));
     } else if (questionByOption === "my") {
-      await getMyQuestion(e.target.value);
+      // await getMyQuestion(e.target.value);
+      dispatch(GetMyQuestion(e.target.value));
     }
   };
 
   const onQuestionByOptionChange = async (e) => {
     if (questionByOption === "all") {
       setQuestionByOption("my");
-      await getMyQuestion();
+      // await getMyQuestion();
+      dispatch(GetMyQuestion());
     } else if (questionByOption === "my") {
       setQuestionByOption("all");
-      await getAllQuestion();
+      await dispatch(GetAllPublicQuestion());
     }
-  };
-
-  const getAllQuestion = async (search = "") => {
-    try {
-      let access_token = loadCookies("access_token");
-      if (!access_token) {
-        navigate("/auth/login");
-      }
-      const headers = { Authorization: `Bearer ${access_token}` };
-      const response = await axios.get(
-        `/api/author/questionlist/?search=${search}`,
-        { headers },
-      );
-      if (response.status === 200) {
-        setData(response.data);
-      } else {
-        toast.error("Server Error");
-      }
-    } catch (error) {}
-  };
-
-  const getMyQuestion = async (search = "") => {
-    try {
-      let access_token = loadCookies("access_token");
-      if (!access_token) {
-        navigate("/auth/login");
-      }
-      const headers = { Authorization: `Bearer ${access_token}` };
-      const response = await axios.get(
-        `/api/author/questionlist_by_me/?search=${search}`,
-        { headers },
-      );
-      if (response.status === 200) {
-        setData(response.data);
-      } else {
-        toast.error("Server Error");
-      }
-    } catch (error) {}
   };
 
   const validateFormHandler = () => {
@@ -91,11 +58,11 @@ const Page3Question = ({
     setLoading(true);
     const validate = validateFormHandler();
     if (!validate) {
-      toast.error("Please select atleast 1 question...");
+      toast.error("Please select at least 1 question...");
     } else {
       if (
         window.confirm(
-          "Are you sure? \nYou will not be allowed to change questions after you submit....",
+          "Are you sure? \nYou will not be allowed to change questions after you submit...."
         )
       ) {
         setIsFinalSubmit(true);
@@ -117,8 +84,8 @@ const Page3Question = ({
   };
 
   useEffect(() => {
-    getAllQuestion();
-  }, []);
+    dispatch(GetAllPublicQuestion());
+  }, [dispatch]);
 
   return (
     <>
@@ -171,12 +138,17 @@ const Page3Question = ({
             </div>
           </div>
 
-          <QuestionTable3
-            data={data}
-            selectedQue={selectedQue}
-            addQuestion={addQuestion}
-            removeQuestion={removeQuestion}
-          />
+          {!loading && (
+            <QuestionTable3
+              data={questionByOption === "my" ? myQuestion : allPublicQuestion}
+              selectedQue={selectedQue}
+              addQuestion={addQuestion}
+              removeQuestion={removeQuestion}
+            />
+          )}
+          {loading && (
+            <img className="tableLoader" src={infinityloader} alt="loader" />
+          )}
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <button
@@ -186,7 +158,7 @@ const Page3Question = ({
             >
               Previous
             </button>
-            {loading ? (
+            {submitLoading ? (
               <button className="btn btn-primary" type="button" disabled>
                 <span
                   className="spinner-border spinner-border-sm"
