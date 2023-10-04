@@ -50,7 +50,7 @@ const WelcomeAttendExam = () => {
         if (response?.data?.data?.extra?.start_now) {
           const attendExamId = response?.data?.data?.data.id;
           dispatch(SET_EXAM_ID(attendExamId));
-          await startRecording(dispatch);
+          // await startRecording(dispatch);
           navigate(`/attend/attend_exam_detail/${attendExamId}`, {
             replace: true,
           });
@@ -133,8 +133,8 @@ const WelcomeAttendExam = () => {
                         className="text-secondary p-0"
                         style={{ fontWeight: "bold" }}
                       >
-                        Welcome to Your CoderTest Assesment. Try and Solve the
-                        challenges and answer the questions with this assesment
+                        Welcome to Your CoderTest Assessment. Try and Solve the
+                        challenges and answer the questions with this assessment
                         to the best of your ability. Good Luck!
                       </h5>
                     </div>
@@ -168,7 +168,7 @@ const WelcomeAttendExam = () => {
                     </div>
                     <div className="row mb-3">
                       <h6 className="text-secondary p-0">
-                        Once you begin this assesment you will need to complete
+                        Once you begin this assessment you will need to complete
                         all of the challenges and answer all of the questions
                         with the Time Limit
                       </h6>

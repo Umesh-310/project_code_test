@@ -26,16 +26,16 @@ const AddQuestion = () => {
       <main id="main" className="main custom-main">
         <PageTitlesCreate title="Add New Question" breadcrumb={breadcrumb} />
         <section className="section">
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-12">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">Add New Question</h5>
-                  <AddQuestionForm onCreateQue={onCreateQue} />
-                </div>
+                  <h5 className="card-title">Add New Question</h5> */}
+          <AddQuestionForm onCreateQue={onCreateQue} />
+          {/* </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
       </main>
     </>

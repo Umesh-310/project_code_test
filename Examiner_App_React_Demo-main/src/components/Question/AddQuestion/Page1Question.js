@@ -6,7 +6,7 @@ import { all_language_arr, languagesSvg } from "../../../utils/utils";
 import LanguageSelect from "../../../utils/LanguageSelect";
 
 const LanguageValues = all_language_arr.map((val) => val.key);
-
+//delete
 const Page1Question = ({ onSubmit, que, setQue }) => {
   const [loading, setLoading] = useState(false);
   const [language, setLanguage] = useState(LanguageValues);
@@ -61,16 +61,6 @@ const Page1Question = ({ onSubmit, que, setQue }) => {
       await onSubmit();
     }
     setLoading(false);
-  };
-
-  const ChipLogo = (value) => {
-    return (
-      <Chip
-        icon={languagesSvg[value.key]}
-        key={value.key}
-        label={value.value}
-      />
-    );
   };
 
   return (

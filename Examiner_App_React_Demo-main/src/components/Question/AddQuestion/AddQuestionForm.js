@@ -2,6 +2,8 @@ import { useState } from "react";
 import Page1Question from "./Page1Question";
 import Page2InitCode from "./Page2InitCode";
 import Page3Testcase from "./Page3Testcase";
+import { Box, Grid } from "@mui/material";
+import CreateQuestionDetails from "./CreateQuestionDetails";
 
 const WizardForm = ({ onCreateQue }) => {
   const [que, setQue] = useState({
@@ -46,35 +48,63 @@ const WizardForm = ({ onCreateQue }) => {
   };
 
   return (
-    <div>
-      {page === 1 && (
-        <Page1Question onSubmit={nextPageHandler} que={que} setQue={setQue} />
-      )}
-      {/* {page === 2 && (
-          <Page2InitCode
-            previousPage={previousPageHandler}
+    // <div>
+    //   {page === 1 && (
+    //     <Page1Question onSubmit={nextPageHandler} que={que} setQue={setQue} />
+    //   )}
+    //   {/* {page === 2 && (
+    //       <Page2InitCode
+    //         previousPage={previousPageHandler}
+    //         onSubmit={nextPageHandler}
+    //         que={que}
+    //         setQue={setQue}
+    //       />
+    //     )} */}
+    //   {page === 2 && (
+    // <Page3Testcase
+    //   previousPage={previousPageHandler}
+    //   onSubmit={onSubmitHandler}
+    //   testcase1={testcase1}
+    //   setTestcase1={setTestcase1}
+    //   testcase2={testcase2}
+    //   setTestcase2={setTestcase2}
+    //   testcase3={testcase3}
+    //   setTestcase3={setTestcase3}
+    //   testcase4={testcase4}
+    //   setTestcase4={setTestcase4}
+    //   testcase5={testcase5}
+    //   setTestcase5={setTestcase5}
+    // />
+    //   )}
+    // </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <CreateQuestionDetails
             onSubmit={nextPageHandler}
-            que={que}
+            question={que}
             setQue={setQue}
           />
-        )} */}
-      {page === 2 && (
-        <Page3Testcase
-          previousPage={previousPageHandler}
-          onSubmit={onSubmitHandler}
-          testcase1={testcase1}
-          setTestcase1={setTestcase1}
-          testcase2={testcase2}
-          setTestcase2={setTestcase2}
-          testcase3={testcase3}
-          setTestcase3={setTestcase3}
-          testcase4={testcase4}
-          setTestcase4={setTestcase4}
-          testcase5={testcase5}
-          setTestcase5={setTestcase5}
-        />
-      )}
-    </div>
+          {/* <Page1Question onSubmit={nextPageHandler} que={que} setQue={setQue} /> */}
+        </Grid>
+        <Grid item xs={6}>
+          <Page3Testcase
+            previousPage={previousPageHandler}
+            onSubmit={onSubmitHandler}
+            testcase1={testcase1}
+            setTestcase1={setTestcase1}
+            testcase2={testcase2}
+            setTestcase2={setTestcase2}
+            testcase3={testcase3}
+            setTestcase3={setTestcase3}
+            testcase4={testcase4}
+            setTestcase4={setTestcase4}
+            testcase5={testcase5}
+            setTestcase5={setTestcase5}
+          />
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

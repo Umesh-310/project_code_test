@@ -46,15 +46,52 @@
   <link href="%PUBLIC_URL%/assets/css/custom_style.css" rel="stylesheet" />
 
   <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
+  <!-- <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
         'gtm.start':
           new Date().getTime(), event: 'gtm.js'
       }); var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-MQ6MS5NS');</script>
+    })(window, document, 'script', 'dataLayer', 'GTM-5D2SKD5G');</script> -->
   <!-- End Google Tag Manager -->
+
+  <!--start sessionRewind -->
+  <script>
+    !function (o) {
+      var w = window;
+      w.SessionRewindConfig = o;
+      var f = document.createElement("script");
+      f.async = 1, f.crossOrigin = "anonymous",
+        f.src = "https://rec.sessionrewind.com/srloader.js";
+      var g = document.getElementsByTagName("head")[0];
+      g.insertBefore(f, g.firstChild);
+    }({
+      apiKey: 'FV35MS48F5RcVo40LGtu2HkJlGFNq5v1bc4SoNta',
+      // Start recording immediately upon page load.
+      // If not set (or set to false) recording will need to be started later via window.sessionRewind.startSession()
+      startRecording: false,
+      // OPTIONAL: Create a new session upon page load, even if one has already started.
+      createNewSession: false,
+      // OPTIONAL: Custom session metadata
+      sessionInfo: {
+        name: "Umesh Saini" // Example custom field
+      },
+      // OPTIONAL: Custom user metadata
+      // userInfo: {
+      //   userId: "trainy@lanetteam.com", // This field is required when using userInfo
+      //   userName: "Lanet", // Optional, user name
+      // },
+      // OPTIONAL: onLoad Callback
+      // onLoad: () => {
+      //   // Callback executed when the script is loaded. It can be used to
+      //   // do things like:
+      //   window.sessionRewind.getSessionUrl((url) => { console.log({ url }) })
+      // },
+    });
+  </script>
+
+  <!--end sessionRewind -->
 
   <!-- ///////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -107,7 +144,7 @@
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ6MS5NS" height="0" width="0"
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D2SKD5G" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 

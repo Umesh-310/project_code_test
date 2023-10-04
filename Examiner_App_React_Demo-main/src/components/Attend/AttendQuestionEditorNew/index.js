@@ -39,14 +39,6 @@ const AttendQuestionEditorNew = () => {
     copyDetect,
     fullScreenLeave,
   } = cheatingData;
-  console.table({
-    answer,
-    switchedTab,
-    switchedWindow,
-    curLanguage,
-    copyDetect,
-    fullScreenLeave,
-  });
 
   const [code, setCode] = useState("");
   const [testcases, setTestcases] = useState([]);
@@ -73,6 +65,7 @@ const AttendQuestionEditorNew = () => {
     (state) => state.remainTime
   );
   const user = useSelector((state) => state.auth.user);
+
   ////////////////////////////////////////////////////////////////
 
   Smartlook.init("fcd973a1cf80555e022df8d67a61832f8361d1a2", undefined, () =>
@@ -88,12 +81,12 @@ const AttendQuestionEditorNew = () => {
   });
 
   if (attendQuestionId && user?.id) {
-    // Smartlook.identify(attendQuestionId, {
-    //   name: user.name,
-    //   email: user.email,
-    //   questionId: attendQuestionId,
-    //   userId: user.id,
-    // });
+    Smartlook.identify(attendQuestionId, {
+      name: user.name,
+      email: user.email,
+      questionId: attendQuestionId,
+      // userId: user.id,
+    });
   }
   useEffect(() => {
     Smartlook.restart();
@@ -109,6 +102,25 @@ const AttendQuestionEditorNew = () => {
   console.log({ projectKey, url, recordId, sessionId, visitorId, version });
 
   ////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    if (window !== "undefined" && window.sessionRewind !== "undefined") {
+      if (attendQuestionId && user && user?.id && user?.name && user?.email) {
+        window.sessionRewind.startSession();
+        window.sessionRewind.identifyUser({
+          userId: attendQuestionId.split("-")[0] + user.name,
+          email: user.email,
+          name: user.name,
+          questionId: attendQuestionId,
+        });
+        window.sessionRewind.getSessionUrl((url) => {
+          console.log({ url });
+        });
+      }
+    }
+  }, [attendQuestionId, user]);
+
+  ////////////////////////////////////////////////////////////////////
 
   const getAttendQuestionDetail = useCallback(
     async (reset = false) => {
@@ -391,6 +403,10 @@ const AttendQuestionEditorNew = () => {
       );
 
       if (response.status === 200) {
+        if (window !== "undefined" && window.sessionRewind !== "undefined") {
+          window.sessionRewind.stopSession();
+        }
+
         attendExamId
           ? // navigate(`attend/  /${attendExamId}`, {
             //     replace: true,

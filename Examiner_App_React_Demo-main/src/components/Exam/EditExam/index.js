@@ -193,28 +193,22 @@ const EditExam = (props) => {
     setLoading(true);
     const curTitle = exam?.title?.trim();
     const curDescription = exam?.description?.trim();
-    if (isTimeLimit) {
-      let curTimeLimitHour = exam.time_limit_hour;
-      let curTimeLimitMinute = exam.time_limit_minute;
-
-      if (curTimeLimitHour === 0 && curTimeLimitMinute === 0) {
-        toast.warning(
-          "You have Selected Limited Time. Please Enter Time Limit Also."
-        );
-      } else {
-        await onSubmitHandler();
-      }
+    let curTimeLimitMinute = exam.time_limit_minute;
+    let curTimeLimitHour = exam.time_limit_hour;
+    if (isTimeLimit && curTimeLimitHour === 0 && curTimeLimitMinute === 0) {
+      toast.warning(
+        "You have Selected Limited Time. Please Enter Time Limit Also."
+      );
     } else if (curTitle === "" || curDescription === "") {
       toast.error("Please enter all details...");
-    } else if (selectedQue.length > 1) {
-      toast.warning("Please select at lest 1 question...");
+    } else if (exam.exam_language?.length === 0) {
+      toast.warning("Please select at lest 1 language...");
     } else {
-      setExam({ ...exam, time_limit_hour: 0, time_limit_minute: 0 });
       await onSubmitHandler();
     }
     setLoading(false);
   };
-
+  console.log({ exam: exam.exam_language });
   return (
     <main id="main" className="main custom-main">
       <PageTitlesCreate

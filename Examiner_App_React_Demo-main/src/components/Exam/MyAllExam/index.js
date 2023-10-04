@@ -106,7 +106,6 @@ const MyAllExam = () => {
       toast.error("Server Error");
     }
   };
-
   useEffect(() => {
     getMyAllExam();
   }, []);
